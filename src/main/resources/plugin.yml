@@ -1,0 +1,9 @@
+name: ChallengesReworked
+version: '${project.version}'
+main: wand555.github.io.challengesreworked.ChallengesReworked
+api-version: 1.19
+commands:
+  start:
+  pause:
+  resume:
+  end:
