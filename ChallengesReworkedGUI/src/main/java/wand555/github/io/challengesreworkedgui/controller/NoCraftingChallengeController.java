@@ -1,40 +1,30 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.bukkit.Material;
 import org.controlsfx.control.ListSelectionView;
-import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
-import wand555.github.io.challengesreworkedgui.HelloApplication;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
+import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NoCraftingChallengeController extends ChallengeController {
@@ -77,7 +67,7 @@ public class NoCraftingChallengeController extends ChallengeController {
                 .toList();
         List<MaterialRow> rows = obtainableItems.stream().map(MaterialRow::new).toList();
         listSelectionView.setSourceItems(FXCollections.observableArrayList(rows));
-        listSelectionView.setTargetItems(craftableItemsList.getItems());
+        listSelectionView.setTargetItems(CopyUtil.deepCopy(craftableItemsList.getItems()));
         root.getChildren().add(listSelectionView);
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -85,7 +75,7 @@ public class NoCraftingChallengeController extends ChallengeController {
         stage.initModality(Modality.APPLICATION_MODAL);
         //stage.initOwner();
         stage.show();
-        stage.setOnCloseRequest(event1 -> craftableItemsList.refresh());
+        stage.setOnCloseRequest(event1 -> craftableItemsList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems())));
         listSelectionView.setCellFactory(param -> {
             ListCell<MaterialRow> cell = new ListCell<>();
             ContextMenu contextMenu = new ContextMenu(new MenuItem("TEST"));

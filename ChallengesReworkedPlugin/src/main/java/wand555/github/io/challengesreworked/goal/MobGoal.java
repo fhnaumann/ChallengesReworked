@@ -18,20 +18,19 @@ import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MobGoal extends Goal implements Listener {
 
-    private final EntityType toKill;
-    private Collect collect;
+    private final Map<EntityType, Collect> toKill;
 
-    public MobGoal(EntityType toKill, int amountNeeded) {
-        this(false, toKill, new Collect(amountNeeded, 0));
+    public MobGoal(Map<EntityType, Collect> toKill) {
+        this(false, toKill);
     }
 
-    public MobGoal(boolean complete, EntityType toKill, Collect collect) {
+    public MobGoal(boolean complete, Map<EntityType, Collect> toKill) {
         super(complete);
         this.toKill = toKill;
-        this.collect = collect;
         JavaPlugin plugin = ChallengeManager.getInstance().getPlugin();
         if(HandlerList.getRegisteredListeners(plugin).stream().noneMatch(registeredListener -> registeredListener.getListener().getClass() == this.getClass())) {
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -41,10 +40,13 @@ public class MobGoal extends Goal implements Listener {
 
     @Override
     public void onGoalReached() {
+        if(isComplete()) {
+            return;
+        }
         ChallengeManager manager = ChallengeManager.getInstance();
         setComplete(true);
         ChatLogger.log("goals.mobgoal.complete", Map.of(
-                PlaceHolderHandler.AMOUNT_PLACEHOLDER, collect.getAmountNeeded(),
+                PlaceHolderHandler.AMOUNT_PLACEHOLDER, toKill.keySet().size(),
                 PlaceHolderHandler.MOB_PLACEHOLDER, toKill
         ));
         if(manager.allGoalsComplete()) {
@@ -58,21 +60,30 @@ public class MobGoal extends Goal implements Listener {
         if(!challengeManager.isRunning()) {
             return;
         }
-        if(event.getEntityType() != toKill) {
-            return;
-        }
         Player killer = event.getEntity().getKiller();
         if(killer == null) {
             return;
         }
-        collect.setCurrentAmount(collect.getCurrentAmount()+1);
-        ChatLogger.log("goals.mobgoal.success", Map.of(
-                PlaceHolderHandler.PLAYER_PLACEHOLDER, killer,
-                PlaceHolderHandler.MOB_PLACEHOLDER, event.getEntityType(),
-                PlaceHolderHandler.CURRENT_AMOUNT_PLACEHOLDER, collect.getCurrentAmount(),
-                PlaceHolderHandler.AMOUNT_NEEDED_PLACEHOLDER, collect.getAmountNeeded()
-        ));
-        if(collect.reached()) {
+        newMobKilled(killer, event.getEntityType());
+    }
+
+    private void newMobKilled(Player killer, EntityType killed) {
+        toKill.computeIfPresent(killed, (entityType, collect) -> {
+            collect.setCurrentAmount(collect.getCurrentAmount()+1);
+            ChatLogger.log("goals.mobgoal.success", Map.of(
+                    PlaceHolderHandler.PLAYER_PLACEHOLDER, killer,
+                    PlaceHolderHandler.MOB_PLACEHOLDER, killed,
+                    PlaceHolderHandler.CURRENT_AMOUNT_PLACEHOLDER, collect.getCurrentAmount(),
+                    PlaceHolderHandler.AMOUNT_NEEDED_PLACEHOLDER, collect.getAmountNeeded()
+            ));
+            return collect;
+        });
+        checkGoalReached();
+
+    }
+
+    private void checkGoalReached() {
+        if(toKill.values().stream().allMatch(Collect::reached)) {
             onGoalReached();
         }
     }
@@ -83,15 +94,18 @@ public class MobGoal extends Goal implements Listener {
         public Map<Object, Object> serialize(@NotNull MobGoal mobGoal) {
             return Map.of(
                     "complete", isComplete(),
-                    "toKill", toKill.toString(),
-                    "collect", collect
+                    "toKill", toKill.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue))
             );
         }
 
         @NotNull
         @Override
         public MobGoal deserialize(@NotNull Map<Object, Object> map) {
-            return new MobGoal((boolean) map.get("complete"), EntityType.valueOf(map.get("toKill").toString()), (Collect) map.get("collect"));
+            return new MobGoal(
+                    (boolean) map.get("complete"),
+                    ((Map<?, ?>) map.get("toKill")).entrySet().stream().collect(Collectors.toMap(
+                            entry -> EntityType.valueOf(entry.getKey().toString()), entry -> (Collect) entry.getValue())
+                    ));
         }
     };
 }

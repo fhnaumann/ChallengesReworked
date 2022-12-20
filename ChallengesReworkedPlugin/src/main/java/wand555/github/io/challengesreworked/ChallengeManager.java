@@ -80,7 +80,7 @@ public class ChallengeManager {
                 Set.of(Material.ENDER_EYE),
                 Set.of(InventoryType.WORKBENCH));
         activeChallenges.add(challenge);
-        Goal mobGoal = new MobGoal(EntityType.PIG, 2);
+        Goal mobGoal = new MobGoal(Map.of(EntityType.PIG, new Collect(2)));
         goals.add(mobGoal);
         Map<Material, Collect> map = new HashMap<>();
         map.put(Material.STONE, new Collect(3));

@@ -21,7 +21,7 @@
                <children>
                   <fx:include source="challenges/challenges_overview.fxml" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <fx:include source="challenges/challenges_overview.fxml" />
+                  <fx:include source="goals/goal_overview.fxml" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                   <fx:include source="challenges/challenges_overview.fxml" />
                </children>

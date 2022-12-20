@@ -9,7 +9,7 @@ import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 import java.io.InputStream;
 
-public class MaterialRow extends HBox {
+public class MaterialRow extends Row {
 
     private final Material material;
 
@@ -17,7 +17,7 @@ public class MaterialRow extends HBox {
         super(5);
         this.material = material;
         String userFriendly = PlaceHolderHandler.mapToString(material);
-        InputStream inputStream = HelloApplication.class.getResourceAsStream("item/%s.png".formatted(material.toString().toLowerCase()));
+        InputStream inputStream = ChallengeApplication.class.getResourceAsStream("item/%s.png".formatted(material.toString().toLowerCase()));
         if(inputStream != null) {
             ImageView imageView = new ImageView(new Image(inputStream));
             getChildren().add(imageView);
@@ -27,5 +27,10 @@ public class MaterialRow extends HBox {
 
     public Material getMaterial() {
         return material;
+    }
+
+    @Override
+    public Row copy() {
+        return new MaterialRow(getMaterial());
     }
 }

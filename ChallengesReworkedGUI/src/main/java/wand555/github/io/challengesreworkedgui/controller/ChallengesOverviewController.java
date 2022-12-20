@@ -1,19 +1,13 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import wand555.github.io.challengesreworkedgui.HelloApplication;
+import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class ChallengesOverviewController {
@@ -34,6 +28,6 @@ public class ChallengesOverviewController {
 
     @FXML
     private void initialize() throws FileNotFoundException {
-        Font font = Font.loadFont(HelloApplication.class.getResourceAsStream("fonts/VT323-Regular.ttf"), 30);
+        Font font = Font.loadFont(ChallengeApplication.class.getResourceAsStream("fonts/VT323-Regular.ttf"), 30);
     }
 }
