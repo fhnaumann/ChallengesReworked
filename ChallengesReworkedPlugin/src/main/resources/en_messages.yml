@@ -2,17 +2,28 @@ run:
   start: "<SOLID:F2F4CB>Run has been started!"
   end: "Run has ended! Use /restore if you want to replay the ending."
 timer:
-  running: "<GRADIENT:2C08BA>&l%time%</GRADIENT:028A97>"
+  running: "%time%"
 challenges:
-  nocraftingchallenge:
+  nocrafting:
     name: "NoCraftingChallenge"
     violation: "<SOLID:8CADA7>%player% <SOLID:F2F4CB>has crafted <SOLID:8CADA7>%material%!"
 punishments:
-  healthpunishment:
+  health:
     name: "HealthPunishment"
     affecttype:
       causer: "<SOLID:8CADA7>%player% <SOLID:F2F4CB>took <SOLID:B7990D>%amount% <SOLID:F2F4CB>damage!"
       all: "<SOLID:F2F4CB>Every player took <SOLID:B7990D>%amount% <SOLID:F2F4CB>damage!"
+  randomitem:
+    name: "RandomItemPunishment"
+    affecttype:
+      causer:
+        success: "Removed %itemstack% from %player%!"
+        failed: "Cannot remove an item from %player% because their inventory is empty."
+      all:
+        global: "Every player lost an item."
+        perplayer:
+          success: "You lost %itemstack%!"
+          failed: "Cannot remove an item because your inventory is empty."
 goals:
   mobgoal:
     success: "%player% has killed the %mob% (%current_amount%/%amount_needed% until complete)"

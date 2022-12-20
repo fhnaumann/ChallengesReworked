@@ -21,7 +21,7 @@ public class HealthPunishment extends Punishment {
     public HealthPunishment(int amountTriggered, AffectType affectType, int healthAmount) {
         super(amountTriggered, affectType);
         this.healthAmount = healthAmount;
-        StandardSerializer.getDefault().register(HealthPunishment.class, adapter);
+        StandardSerializer.getDefault().register(HealthPunishment.class, typeAdapter);
     }
 
 
@@ -30,8 +30,8 @@ public class HealthPunishment extends Punishment {
         super.enforcePunishment(causer);
         switch(affectType) {
             case CAUSER -> {
-                causer.damage(healthAmount);
-                ChatLogger.log("punishments.healthpunishment.affecttype.causer",
+                damagePlayer(causer);
+                ChatLogger.log("punishments.health.affecttype.causer",
                         Map.of(PlaceHolderHandler.PLAYER_PLACEHOLDER, causer,
                                 PlaceHolderHandler.AMOUNT_PLACEHOLDER, healthAmount
                         ));
@@ -40,14 +40,18 @@ public class HealthPunishment extends Punishment {
                 ChallengeManager.getInstance().getPlayers().stream()
                         .map(Bukkit::getPlayer)
                         .filter(Objects::nonNull)
-                        .forEach(player -> player.damage(healthAmount));
-                ChatLogger.log("punishments.healthpunishment.affecttype.all",
+                        .forEach(this::damagePlayer);
+                ChatLogger.log("punishments.health.affecttype.all",
                         Map.of(PlaceHolderHandler.AMOUNT_PLACEHOLDER, healthAmount));
             }
         }
     }
 
-    private final TypeAdapter<HealthPunishment> adapter = new TypeAdapter<HealthPunishment>() {
+    private void damagePlayer(Player player) {
+        player.damage(healthAmount);
+    }
+
+    private final TypeAdapter<HealthPunishment> typeAdapter = new TypeAdapter<HealthPunishment>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull HealthPunishment healthPunishment) {

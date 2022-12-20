@@ -60,18 +60,16 @@ public class NoCraftingChallenge extends PunishableChallenge implements Listener
         }
 
         InventoryType inventoryType = event.getInventory().getType();
-        System.out.println("1");
         if(!forbiddenToUse.contains(inventoryType)) {
             return;
         }
-        System.out.println("2");
         if(event.getCurrentItem() == null || event.getCurrentItem().getType().isAir()) {
             return;
         }
         if(allowedToCraft.contains(event.getCurrentItem().getType())) {
             return;
         }
-        ChatLogger.log("challenges.nocraftingchallenge.violation",
+        ChatLogger.log("challenges.nocrafting.violation",
                 Map.of(PlaceHolderHandler.PLAYER_PLACEHOLDER, player,
                         PlaceHolderHandler.MATERIAL_PLACEHOLDER, event.getCurrentItem().getType()));
         punishments.forEach(punishment -> punishment.enforcePunishment(player));

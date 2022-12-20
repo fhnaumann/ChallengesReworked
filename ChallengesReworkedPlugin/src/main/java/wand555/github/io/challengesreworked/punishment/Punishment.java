@@ -17,7 +17,6 @@ public abstract class Punishment {
     public Punishment(int amountTriggered, AffectType affectType) {
         this.amountTriggered = amountTriggered;
         this.affectType = affectType;
-
     }
 
     public void enforcePunishment(Player causer) {

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 
 import java.util.Map;
@@ -19,6 +20,8 @@ public class PlaceHolderHandler {
     public static final String AMOUNT_NEEDED_PLACEHOLDER = "amount_needed";
     public static final String MOB_PLACEHOLDER = "mob";
 
+    public static final String ITEMSTACK_PLACEHOLDER = "itemstack";
+
     private static final Set<String> PLACEHOLDERS = Set.of(
             PLAYER_PLACEHOLDER,
             AMOUNT_PLACEHOLDER,
@@ -26,7 +29,8 @@ public class PlaceHolderHandler {
             TIME_PLACEHOLDER,
             CURRENT_AMOUNT_PLACEHOLDER,
             AMOUNT_NEEDED_PLACEHOLDER,
-            MOB_PLACEHOLDER
+            MOB_PLACEHOLDER,
+            ITEMSTACK_PLACEHOLDER
     );
 
     public static String replacePlaceHolders(String message, Map<String, Object> data) {
@@ -46,6 +50,9 @@ public class PlaceHolderHandler {
         }
         if(obj instanceof Material material) {
             return WordUtils.capitalizeFully(material.toString().replace("_", " ").toLowerCase());
+        }
+        if(obj instanceof ItemStack itemStack) {
+            return "%ox%s".formatted(itemStack.getAmount(), mapToString(itemStack.getType()));
         }
         return obj.toString();
     }

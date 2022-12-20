@@ -20,6 +20,8 @@ import wand555.github.io.challengesreworked.goal.MobGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.punishment.AffectType;
 import wand555.github.io.challengesreworked.punishment.HealthPunishment;
+import wand555.github.io.challengesreworked.punishment.Punishment;
+import wand555.github.io.challengesreworked.punishment.RandomItemPunishment;
 import wand555.github.io.challengesreworked.timer.TimeOrder;
 import wand555.github.io.challengesreworked.timer.Timer;
 
@@ -70,8 +72,11 @@ public class ChallengeManager {
         /*if(gameState != GameState.SET_UP) {
             throw new IllegalStateException("TODODODODO");
         }*/
+        Set<Punishment> punishments = Set.of(
+                new RandomItemPunishment(0, AffectType.CAUSER, 1),
+                new HealthPunishment(0, AffectType.CAUSER, 2));
         NoCraftingChallenge challenge = new NoCraftingChallenge(
-                Set.of(new HealthPunishment(0, AffectType.CAUSER, 2)),
+                punishments,
                 Set.of(Material.ENDER_EYE),
                 Set.of(InventoryType.WORKBENCH));
         activeChallenges.add(challenge);
@@ -81,7 +86,7 @@ public class ChallengeManager {
         map.put(Material.STONE, new Collect(3));
         map.put(Material.COBBLESTONE, new Collect(2));
         goals.add(new ItemCollectGoal(map));
-
+        timer.start();
         gameState = GameState.RUNNING;
         ChatLogger.log("run.start");
     }
