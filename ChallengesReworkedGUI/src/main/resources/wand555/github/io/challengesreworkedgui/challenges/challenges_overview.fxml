@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="background-node" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controller.ChallengesOverviewController">
+   <children>
+      <VBox>
+         <children>
+            <CheckBox id="showActiveChallenges" fx:id="showActiveChallenges" mnemonicParsing="false" prefHeight="55.0" text="Zeige aktive Challenges">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </CheckBox>
+            <Label id="all-challenges" fx:id="allChallenges" alignment="CENTER" text="ALL CHALLENGES">
+            </Label>
+            <ScrollPane fx:id="challengesPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0">
+               <content>
+                  <Accordion>
+                     <panes>
+                        <fx:include fx:id="challenge3" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="challenge1" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="challenge2" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
+                     </panes>
+                  </Accordion>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

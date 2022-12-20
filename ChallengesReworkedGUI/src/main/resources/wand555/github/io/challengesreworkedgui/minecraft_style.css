@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Minecraft, monospace;
+    src: url("fonts/Minecraft.ttf") format("truetype");
+}
+
+.root {
+    -fx-text-fill: white;
+}
+
+#background-node {
+    -fx-background-image: url("dirt.png");
+    -fx-background-size: 32px;
+    -fx-background-repeat: repeat;
+}
+
+.check-box .text {
+    -fx-font-family: "Minecraft";
+    -fx-fill: white
+}
+.check-box .box {
+    -fx-background-color: black;
+    -fx-border-color: gray;
+}
+.check-box .mark {
+    -fx-progress-color: blue;
+}
+
+#all-challenges {
+    -fx-font-family: "Minecraft";
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, darkgray, 2, 0.5, 2, 2);
+}

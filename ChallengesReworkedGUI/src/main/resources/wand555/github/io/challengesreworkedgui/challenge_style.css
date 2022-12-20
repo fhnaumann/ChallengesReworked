@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Minecraft, monospace;
+    src: url("fonts/Minecraft.ttf") format("truetype");
+}
+
+.titled-pane .title {
+    -fx-background-color: green;
+}
+.titled-pane .title .text {
+    -fx-font-family: "Minecraft";
+    -fx-fill: white
+}
+.titled-pane .content {
+    -fx-background-image: url("demo_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.button {
+    -fx-background-image: url("button.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
