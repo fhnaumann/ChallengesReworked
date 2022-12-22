@@ -1,6 +1,7 @@
 package wand555.github.io.challengesreworked.logging;
 
 
+import io.github.wand555.challengesreworkedapi.Mapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
 import org.bukkit.Material;
@@ -38,23 +39,9 @@ public class PlaceHolderHandler {
         return PLACEHOLDERS.stream().reduce(message, (tempMessage, placeholder) -> {
             if(data.containsKey(placeholder)) {
                 Object obj = data.get(placeholder);
-                return tempMessage.replace("%"+placeholder+"%", mapToString(obj));
+                return tempMessage.replace("%"+placeholder+"%", Mapper.mapToString(obj));
             }
             return tempMessage;
         });
-    }
-
-    public static String mapToString(Object obj) {
-        //best effort match
-        if(obj instanceof Player player) {
-            return player.getDisplayName();
-        }
-        if(obj instanceof Material || obj instanceof EntityType) {
-            return WordUtils.capitalizeFully(obj.toString().replace("_", " ").toLowerCase());
-        }
-        if(obj instanceof ItemStack itemStack) {
-            return "%ox%s".formatted(itemStack.getAmount(), mapToString(itemStack.getType()));
-        }
-        return obj.toString();
     }
 }

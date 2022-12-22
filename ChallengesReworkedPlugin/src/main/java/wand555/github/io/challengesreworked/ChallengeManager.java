@@ -1,27 +1,30 @@
 package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import dev.dejvokep.boostedyaml.settings.general.GeneralSettings;
-import dev.dejvokep.boostedyaml.spigot.SpigotSerializer;
+import io.github.wand555.challengesreworkedapi.Collect;
+import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
+import io.github.wand555.challengesreworkedapi.goals.Goal;
+import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
+import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
+import io.github.wand555.challengesreworkedapi.punishments.AffectType;
+import io.github.wand555.challengesreworkedapi.punishments.health.HealthPunishmentCommon;
+import io.github.wand555.challengesreworkedapi.punishments.randomitem.RandomItemPunishmentCommon;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import wand555.github.io.challengesreworked.goal.ChallengeEnding;
-import wand555.github.io.challengesreworked.goal.Goal;
-import wand555.github.io.challengesreworked.goal.ItemCollectGoal;
-import wand555.github.io.challengesreworked.goal.MobGoal;
+import wand555.github.io.challengesreworked.goal.PluginGoal;
+import wand555.github.io.challengesreworked.goal.PluginItemCollectGoal;
+import wand555.github.io.challengesreworked.goal.PluginMobGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
-import wand555.github.io.challengesreworked.punishment.AffectType;
-import wand555.github.io.challengesreworked.punishment.HealthPunishment;
-import wand555.github.io.challengesreworked.punishment.Punishment;
-import wand555.github.io.challengesreworked.punishment.RandomItemPunishment;
+import wand555.github.io.challengesreworked.punishment.PluginHealthPunishment;
+import wand555.github.io.challengesreworked.punishment.PluginPunishment;
+import wand555.github.io.challengesreworked.punishment.PluginRandomItemPunishment;
 import wand555.github.io.challengesreworked.timer.TimeOrder;
 import wand555.github.io.challengesreworked.timer.Timer;
 
@@ -47,8 +50,8 @@ public class ChallengeManager {
 
     private Collection<UUID> players;
     private GameState gameState;
-    private Collection<Challenge> activeChallenges;
-    private Collection<Goal> goals;
+    private Collection<PluginChallenge> activePluginChallenges;
+    private Collection<PluginGoal> goals;
     private Timer timer;
 
 
@@ -63,7 +66,7 @@ public class ChallengeManager {
         //this.players = new HashSet<>();
         this.languageHandler = new LanguageHandler();
         languageHandler.setCurrentLocale(Locale.ENGLISH);
-        this.activeChallenges = new HashSet<>();
+        this.activePluginChallenges = new HashSet<>();
         this.goals = new HashSet<>();
         this.timer = new Timer(TimeOrder.ASC);
     }
@@ -72,20 +75,21 @@ public class ChallengeManager {
         /*if(gameState != GameState.SET_UP) {
             throw new IllegalStateException("TODODODODO");
         }*/
-        Set<Punishment> punishments = Set.of(
-                new RandomItemPunishment(0, AffectType.CAUSER, 1),
-                new HealthPunishment(0, AffectType.CAUSER, 2));
-        NoCraftingChallenge challenge = new NoCraftingChallenge(
-                punishments,
-                Set.of(Material.ENDER_EYE),
-                Set.of(InventoryType.WORKBENCH));
-        activeChallenges.add(challenge);
-        Goal mobGoal = new MobGoal(Map.of(EntityType.PIG, new Collect(2)));
+        this.players = Bukkit.getOnlinePlayers().stream().map(Player::getUniqueId).collect(Collectors.toSet());
+        Set<PluginPunishment> punishments = Set.of(
+                new PluginRandomItemPunishment(new RandomItemPunishmentCommon(0, AffectType.CAUSER, 1)),
+                new PluginHealthPunishment(new HealthPunishmentCommon(0, AffectType.CAUSER, 2)));
+        PluginNoCraftingChallenge challenge = new PluginNoCraftingChallenge(new NoCraftingChallengeCommon());
+        challenge.setPunishments(punishments);
+        activePluginChallenges.add(challenge);
+        Map<EntityType, Collect> map1 = new HashMap<>();
+        map1.put(EntityType.PIG, new Collect(2));
+        PluginGoal mobGoal = new PluginMobGoal(new MobGoalCommon(map1));
         goals.add(mobGoal);
         Map<Material, Collect> map = new HashMap<>();
         map.put(Material.STONE, new Collect(3));
         map.put(Material.COBBLESTONE, new Collect(2));
-        goals.add(new ItemCollectGoal(map));
+        goals.add(new PluginItemCollectGoal(new ItemCollectGoalCommon(false, map)));
         timer.start();
         gameState = GameState.RUNNING;
         ChatLogger.log("run.start");
@@ -122,7 +126,7 @@ public class ChallengeManager {
             gameState = GameState.PAUSED;
             storage.set("state", gameState.toString());
             storage.set("goals", new ArrayList<>(goals));
-            storage.set("challenges", new ArrayList<>(activeChallenges));
+            storage.set("challenges", new ArrayList<>(activePluginChallenges));
             storage.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,16 +143,16 @@ public class ChallengeManager {
             timer = new Timer(elapsedTime, TimeOrder.ASC);
             timer.start();
             gameState = storage.getEnum("state", GameState.class, GameState.SET_UP);
-            goals = (Collection<Goal>) storage.getList("goals", new ArrayList<>());
-            activeChallenges = (Collection<Challenge>) storage.getList("challenges", new ArrayList<>());
-            System.out.println(activeChallenges);
+            goals = (Collection<PluginGoal>) storage.getList("goals", new ArrayList<>());
+            activePluginChallenges = (Collection<PluginChallenge>) storage.getList("challenges", new ArrayList<>());
+            System.out.println(activePluginChallenges);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public boolean allGoalsComplete() {
-        return goals.stream().allMatch(Goal::isComplete);
+        return goals.stream().allMatch(PluginGoal::isComplete);
     }
 
     public boolean isRunning() {

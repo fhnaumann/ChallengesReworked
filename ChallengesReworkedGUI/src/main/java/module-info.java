@@ -4,7 +4,7 @@ module challenges.reworked.gui {
 
     requires org.controlsfx.controls;
     requires org.bukkit;
-    requires challenges.reworked.plugin;
+    requires challenges.reworked.api;
 
     opens wand555.github.io.challengesreworkedgui to javafx.fxml;
     opens wand555.github.io.challengesreworkedgui.controller to javafx.fxml;

@@ -14,6 +14,9 @@ public class ChallengesOverviewController {
 
 
     @FXML
+    private NoCraftingChallengeController noCraftingChallengeController;
+
+    @FXML
     private Label allChallenges;
     @FXML
     private ScrollPane challengesPane;

@@ -1,5 +1,6 @@
 package wand555.github.io.challengesreworked.timer;
 
+import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,8 +32,7 @@ public class Timer extends BukkitRunnable {
     public void run() {
         ChallengeManager manager = ChallengeManager.getInstance();
         String displayTime = DateUtil.formatDuration(elapsedTime /20);
-        BaseComponent[] component = TextComponent.fromLegacyText(ChatLogger.formatNoPrefix("timer.running", Map.of("time", displayTime)));
-        ChatLogger.sendActionBar(component);
+        ChatLogger.sendActionBar("timer.running", Map.of("time", displayTime));
         if(manager.isRunning()) {
             elapsedTime++;
         }

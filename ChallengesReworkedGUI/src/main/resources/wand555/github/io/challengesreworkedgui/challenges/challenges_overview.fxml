@@ -23,7 +23,7 @@
                <content>
                   <Accordion>
                      <panes>
-                        <fx:include fx:id="challenge3" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="noCraftingChallenge" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
                         <fx:include fx:id="challenge1" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
                         <fx:include fx:id="challenge2" source="no_crafting_challenge.fxml" VBox.vgrow="ALWAYS" />
                      </panes>

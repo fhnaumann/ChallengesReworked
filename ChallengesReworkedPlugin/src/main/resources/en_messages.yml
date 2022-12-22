@@ -1,18 +1,18 @@
 run:
-  start: "<SOLID:F2F4CB>Run has been started!"
+  start: "<color:#F2F4CB>Run has been started!"
   end: "Run has ended! Use /restore if you want to replay the ending."
 timer:
-  running: "%time%"
+  running: "<color:#8CADA7>%time%"
 challenges:
   nocrafting:
     name: "NoCraftingChallenge"
-    violation: "<SOLID:8CADA7>%player% <SOLID:F2F4CB>has crafted <SOLID:8CADA7>%material%!"
+    violation: "<color:#8CADA7>%player% <color:#F2F4CB>has crafted <color:#8CADA7>%material%!"
 punishments:
   health:
     name: "HealthPunishment"
     affecttype:
-      causer: "<SOLID:8CADA7>%player% <SOLID:F2F4CB>took <SOLID:B7990D>%amount% <SOLID:F2F4CB>damage!"
-      all: "<SOLID:F2F4CB>Every player took <SOLID:B7990D>%amount% <SOLID:F2F4CB>damage!"
+      causer: "<color:#8CADA7>%player% <color:#F2F4CB>took <color:#B7990D>%amount% <color:#F2F4CB>damage!"
+      all: "<color:#F2F4CB>Every player took <color:#B7990D>%amount% <color:#F2F4CB>damage!"
   randomitem:
     name: "RandomItemPunishment"
     affecttype:

@@ -1,9 +1,9 @@
 package wand555.github.io.challengesreworkedgui;
 
+import io.github.wand555.challengesreworkedapi.Mapper;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import org.bukkit.entity.EntityType;
-import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 public class MobRow extends AmountableRow {
 
@@ -16,7 +16,7 @@ public class MobRow extends AmountableRow {
     public MobRow(EntityType entityType, int amount) {
         super(amount);
         this.entityType = entityType;
-        getChildren().add(0, new StackPane(new Label(PlaceHolderHandler.mapToString(entityType))));
+        getChildren().add(0, new StackPane(new Label(Mapper.mapToString(entityType))));
     }
 
     public EntityType getEntityType() {

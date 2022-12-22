@@ -12,9 +12,10 @@ import dev.dejvokep.boostedyaml.spigot.SpigotSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.java.JavaPluginLoader;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -26,10 +27,6 @@ public final class ChallengesReworked extends JavaPlugin {
 
     public ChallengesReworked() {
         super();
-    }
-
-    protected ChallengesReworked(JavaPluginLoader loader, PluginDescriptionFile descriptionFile, File dataFolder, File file) {
-        super(loader, descriptionFile, dataFolder, file);
     }
 
     @Override
@@ -55,5 +52,12 @@ public final class ChallengesReworked extends JavaPlugin {
 
         //manager.saveDataToFile();
 
+    }
+
+    public static <T extends Listener> T registerListener(JavaPlugin plugin, T listener) {
+        if(HandlerList.getRegisteredListeners(plugin).stream().noneMatch(registeredListener -> registeredListener.getListener().getClass() == listener.getClass())) {
+            plugin.getServer().getPluginManager().registerEvents(listener, plugin);
+        }
+        return listener;
     }
 }

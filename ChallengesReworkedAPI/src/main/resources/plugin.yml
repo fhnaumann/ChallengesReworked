@@ -1,0 +1,4 @@
+name: Challenges Reworked Api
+version: '${project.version}'
+main: io.github.wand555.challengesreworkedapi.ChallengesReworkedApi
+api-version: 1.19

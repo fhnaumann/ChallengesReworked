@@ -1,9 +1,8 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallenge;
+import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,17 +16,18 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class NoCraftingChallengeController extends ChallengeController {
+public class NoCraftingChallengeController extends PunishableChallengeController implements NoCraftingChallenge {
     @FXML
     private ToggleButton activateButton;
     @FXML
@@ -39,20 +39,17 @@ public class NoCraftingChallengeController extends ChallengeController {
     @FXML
     private Button addForbiddenUIButton;
     @FXML
-    private ListView forbiddenUIList;
-
-    private final BooleanProperty active = new SimpleBooleanProperty(false);
+    private ListView<InventoryType> forbiddenUIList;
 
     @FXML
     @Override
     protected void initialize() {
-
-        /*System.out.println(VersionInfo.getRuntimeVersion());*/
-        super.initialize();
-        craftableItemsList.setItems(FXCollections.observableArrayList(new MaterialRow(Material.BLAZE_POWDER), new MaterialRow(Material.ENDER_EYE)));
+        common = new NoCraftingChallengeCommon();
+        craftableItemsList.setItems(FXCollections.observableArrayList(getCommon().getAllowedToCraft().stream().map(MaterialRow::new).toList()));
         addCraftableItemButton.setOnAction(event -> {
             initCraftableItemsUI();
         });
+
     }
 
     private void initCraftableItemsUI() {
@@ -91,5 +88,15 @@ public class NoCraftingChallengeController extends ChallengeController {
             cell.graphicProperty().bind(cell.itemProperty());
             return cell;
         });
+    }
+
+    @Override
+    public ItemStack getUIDisplay() {
+        return null;
+    }
+
+    @Override
+    public NoCraftingChallengeCommon getCommon() {
+        return (NoCraftingChallengeCommon) super.getCommon();
     }
 }

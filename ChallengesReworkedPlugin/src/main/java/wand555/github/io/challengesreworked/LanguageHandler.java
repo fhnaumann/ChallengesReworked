@@ -52,7 +52,7 @@ public class LanguageHandler {
         ChallengesReworked plugin = ChallengesReworked.getPlugin(ChallengesReworked.class);
         try {
             return YamlDocument.create(
-                    new File(plugin.getDataFolder(), locale.getDisplayLanguage()+"_messages.yml"),
+                    new File(plugin.getDataFolder(), locale.getLanguage()+"_messages.yml"),
                     plugin.getResource(locale.getLanguage()+"_messages.yml")
             );
         } catch (IOException e) {

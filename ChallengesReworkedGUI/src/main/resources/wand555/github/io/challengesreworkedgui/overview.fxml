@@ -7,19 +7,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controller.OverviewController">
    <children>
       <VBox>
          <children>
             <StackPane alignment="CENTER_RIGHT">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button fx:id="exportButton" onAction="#onExport" mnemonicParsing="false" text="Export" />
                </children>
             </StackPane>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
-                  <fx:include source="challenges/challenges_overview.fxml" />
+                  <fx:include fx:id="challengesOverview" source="challenges/challenges_overview.fxml" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                   <fx:include source="goals/goal_overview.fxml" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />

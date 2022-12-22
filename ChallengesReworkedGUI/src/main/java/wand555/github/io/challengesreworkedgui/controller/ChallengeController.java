@@ -1,11 +1,15 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
+import io.github.wand555.challengesreworkedapi.challenges.Challenge;
+import io.github.wand555.challengesreworkedapi.challenges.ChallengeCommon;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 
-public class ChallengeController {
+public abstract class ChallengeController implements Challenge {
+
+    protected ChallengeCommon common;
 
     @FXML
     protected TitledPane titledPane;
@@ -26,5 +30,10 @@ public class ChallengeController {
                 title.setStyle(null);
             }
         });
+    }
+
+    @Override
+    public ChallengeCommon getCommon() {
+        return common;
     }
 }
