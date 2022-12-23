@@ -1,6 +1,8 @@
 package io.github.wand555.challengesreworkedapi.punishments.randomitem;
 
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
+import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
 import io.github.wand555.challengesreworkedapi.punishments.AffectType;
 import io.github.wand555.challengesreworkedapi.punishments.PunishmentCommon;
 import org.jetbrains.annotations.NotNull;
@@ -14,9 +16,10 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
     public RandomItemPunishmentCommon(int amountTriggered, AffectType affectType, int howManyRemoved) {
         super(amountTriggered, affectType);
         this.howManyRemoved = howManyRemoved;
+        StandardSerializer.getDefault().register(RandomItemPunishmentCommon.class, adapter);
     }
 
-    public final TypeAdapter<RandomItemPunishmentCommon> typeAdapter = new TypeAdapter<RandomItemPunishmentCommon>() {
+    public final TypeAdapter<RandomItemPunishmentCommon> adapter = new TypeAdapter<RandomItemPunishmentCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull RandomItemPunishmentCommon randomItemPunishment) {
@@ -39,7 +42,7 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
     };
 
     @Override
-    public TypeAdapter<RandomItemPunishmentCommon> getTypeAdapter() {
-        return typeAdapter;
+    public TypeAdapter<RandomItemPunishmentCommon> getAdapter() {
+        return adapter;
     }
 }

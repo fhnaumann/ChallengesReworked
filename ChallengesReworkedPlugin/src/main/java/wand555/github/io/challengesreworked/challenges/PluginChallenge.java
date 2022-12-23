@@ -1,9 +1,10 @@
-package wand555.github.io.challengesreworked;
+package wand555.github.io.challengesreworked.challenges;
 
 import io.github.wand555.challengesreworkedapi.challenges.Challenge;
 import io.github.wand555.challengesreworkedapi.challenges.ChallengeCommon;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import wand555.github.io.challengesreworked.ChallengesReworked;
 
 public abstract class PluginChallenge implements Challenge {
 

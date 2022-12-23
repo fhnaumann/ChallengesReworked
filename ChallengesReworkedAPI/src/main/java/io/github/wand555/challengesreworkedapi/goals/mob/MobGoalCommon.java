@@ -23,6 +23,7 @@ public class MobGoalCommon extends GoalCommon {
     public MobGoalCommon(boolean complete, Map<EntityType, Collect> toKill) {
         super(complete);
         this.toKill = toKill;
+        StandardSerializer.getDefault().register(MobGoalCommon.class, adapter);
     }
 
     public Map<EntityType, Collect> getToKill() {
@@ -55,7 +56,7 @@ public class MobGoalCommon extends GoalCommon {
         }
     };
     @Override
-    public TypeAdapter<MobGoalCommon> getTypeAdapter() {
+    public TypeAdapter<MobGoalCommon> getAdapter() {
         return adapter;
     }
 }

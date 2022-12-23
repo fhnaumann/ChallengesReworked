@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworked.punishment;
+package wand555.github.io.challengesreworked.punishment.randomitem;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
+import wand555.github.io.challengesreworked.punishment.PluginPunishment;
 
 import java.util.List;
 import java.util.Map;
@@ -78,18 +79,5 @@ public class PluginRandomItemPunishment extends PluginPunishment implements Rand
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(PluginRandomItemPunishment.class, new TypeAdapter<PluginRandomItemPunishment>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull PluginRandomItemPunishment pluginRandomItemPunishment) {
-                return getCommon().getTypeAdapter().serialize(pluginRandomItemPunishment.getCommon());
-            }
-
-            @NotNull
-            @Override
-            public PluginRandomItemPunishment deserialize(@NotNull Map<Object, Object> map) {
-                return new PluginRandomItemPunishment(getCommon().getTypeAdapter().deserialize(map));
-            }
-        });
     }
 }

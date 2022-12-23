@@ -7,6 +7,6 @@ import java.util.Collection;
 
 public interface Punishable {
 
-    public Collection<? extends Punishment> getPunishments();
-    public void setPunishments(Collection<? extends Punishment> punishments);
+    public Collection<PunishmentCommon> getPunishmentsCommon();
+    public void setPunishmentsCommon(Collection<PunishmentCommon> punishmentsCommon);
 }

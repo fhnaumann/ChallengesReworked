@@ -1,15 +1,12 @@
-package wand555.github.io.challengesreworked.goal;
+package wand555.github.io.challengesreworked.goals.itemcollect;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.ClickType;
@@ -20,15 +17,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.ChallengesReworked;
+import wand555.github.io.challengesreworked.goals.ChallengeEnding;
+import wand555.github.io.challengesreworked.goals.PluginGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PluginItemCollectGoal extends PluginGoal implements Listener {
 
@@ -154,18 +151,5 @@ public class PluginItemCollectGoal extends PluginGoal implements Listener {
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(PluginItemCollectGoal.class, new TypeAdapter<PluginItemCollectGoal>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull PluginItemCollectGoal pluginItemCollectGoal) {
-                return getCommon().getTypeAdapter().serialize(pluginItemCollectGoal.getCommon());
-            }
-
-            @NotNull
-            @Override
-            public PluginItemCollectGoal deserialize(@NotNull Map<Object, Object> map) {
-                return new PluginItemCollectGoal(getCommon().getTypeAdapter().deserialize(map));
-            }
-        });
     }
 }

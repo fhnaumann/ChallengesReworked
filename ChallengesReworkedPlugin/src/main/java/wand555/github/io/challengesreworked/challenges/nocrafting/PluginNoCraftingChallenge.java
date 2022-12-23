@@ -1,9 +1,11 @@
-package wand555.github.io.challengesreworked;
+package wand555.github.io.challengesreworked.challenges.nocrafting;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallenge;
 import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
+import io.github.wand555.challengesreworkedapi.punishments.Punishment;
+import io.github.wand555.challengesreworkedapi.punishments.PunishmentCommon;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,9 +13,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challengesreworked.ChallengeManager;
+import wand555.github.io.challengesreworked.ChallengesReworked;
+import wand555.github.io.challengesreworked.Wrapper;
+import wand555.github.io.challengesreworked.challenges.PluginPunishableChallenge;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
+import java.util.Collection;
 import java.util.Map;
 
 public class PluginNoCraftingChallenge extends PluginPunishableChallenge implements NoCraftingChallenge, Listener {
@@ -68,18 +75,6 @@ public class PluginNoCraftingChallenge extends PluginPunishableChallenge impleme
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(PluginNoCraftingChallenge.class, new TypeAdapter<PluginNoCraftingChallenge>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull PluginNoCraftingChallenge pluginNoCraftingChallenge) {
-                return getCommon().getTypeAdapter().serialize(pluginNoCraftingChallenge.getCommon());
-            }
 
-            @NotNull
-            @Override
-            public PluginNoCraftingChallenge deserialize(@NotNull Map<Object, Object> map) {
-                return new PluginNoCraftingChallenge(getCommon().getTypeAdapter().deserialize(map));
-            }
-        });
     }
 }

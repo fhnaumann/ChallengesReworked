@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworked.punishment;
+package wand555.github.io.challengesreworked.punishment.health;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
+import wand555.github.io.challengesreworked.punishment.PluginPunishment;
 
 import java.util.Map;
 import java.util.Objects;
@@ -54,18 +55,5 @@ public class PluginHealthPunishment extends PluginPunishment implements HealthPu
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(PluginHealthPunishment.class, new TypeAdapter<PluginHealthPunishment>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull PluginHealthPunishment pluginHealthPunishment) {
-                return getCommon().getTypeAdapter().serialize(pluginHealthPunishment.getCommon());
-            }
-
-            @NotNull
-            @Override
-            public PluginHealthPunishment deserialize(@NotNull Map<Object, Object> map) {
-                return new PluginHealthPunishment(getCommon().getTypeAdapter().deserialize(map));
-            }
-        });
     }
 }

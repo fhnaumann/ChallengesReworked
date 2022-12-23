@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworked.goal;
+package wand555.github.io.challengesreworked.goals;
 
 import io.github.wand555.challengesreworkedapi.goals.Goal;
 import io.github.wand555.challengesreworkedapi.goals.GoalCommon;

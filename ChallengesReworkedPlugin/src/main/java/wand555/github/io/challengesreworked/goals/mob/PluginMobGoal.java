@@ -1,26 +1,24 @@
-package wand555.github.io.challengesreworked.goal;
+package wand555.github.io.challengesreworked.goals.mob;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.mob.MobGoal;
 import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.ChallengesReworked;
+import wand555.github.io.challengesreworked.goals.ChallengeEnding;
+import wand555.github.io.challengesreworked.goals.PluginGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
 
@@ -88,18 +86,6 @@ public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(PluginMobGoal.class, new TypeAdapter<PluginMobGoal>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull PluginMobGoal pluginMobGoal) {
-                return getCommon().getTypeAdapter().serialize(pluginMobGoal.getCommon());
-            }
 
-            @NotNull
-            @Override
-            public PluginMobGoal deserialize(@NotNull Map<Object, Object> map) {
-                return new PluginMobGoal(getCommon().getTypeAdapter().deserialize(map));
-            }
-        });
     }
 }

@@ -2,6 +2,7 @@ package io.github.wand555.challengesreworkedapi.challenges.nocrafting;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
+import io.github.wand555.challengesreworkedapi.Commonable;
 import io.github.wand555.challengesreworkedapi.challenges.PunishableChallengeCommon;
 import io.github.wand555.challengesreworkedapi.punishments.Punishment;
 import org.bukkit.Material;
@@ -48,7 +49,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         @Override
         public Map<Object, Object> serialize(@NotNull NoCraftingChallengeCommon noCraftingChallenge) {
             Map<Object, Object> map = new HashMap<>();
-            map.put("punishments", new ArrayList<>(getPunishments()));
+            map.put("punishments", new ArrayList<>(getPunishmentCommons()));
             map.put("allowedToCraft", allowedToCraft.stream().map(Enum::toString).collect(Collectors.toList()));
             map.put("forbiddenToUse", forbiddenToUse.stream().map(Enum::toString).collect(Collectors.toList()));
             return map;
@@ -65,7 +66,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
     };
 
     @Override
-    public TypeAdapter<NoCraftingChallengeCommon> getTypeAdapter() {
+    public TypeAdapter<NoCraftingChallengeCommon> getAdapter() {
         return adapter;
     }
 }

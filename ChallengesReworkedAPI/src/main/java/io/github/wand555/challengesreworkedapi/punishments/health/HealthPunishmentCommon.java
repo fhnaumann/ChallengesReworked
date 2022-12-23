@@ -1,5 +1,6 @@
 package io.github.wand555.challengesreworkedapi.punishments.health;
 
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.punishments.AffectType;
 import io.github.wand555.challengesreworkedapi.punishments.PunishmentCommon;
@@ -14,13 +15,14 @@ public class HealthPunishmentCommon extends PunishmentCommon {
     public HealthPunishmentCommon(int amountTriggered, AffectType affectType, int healthAmount) {
         super(amountTriggered, affectType);
         this.healthAmount = healthAmount;
+        StandardSerializer.getDefault().register(HealthPunishmentCommon.class, adapter);
     }
 
     public int getHealthAmount() {
         return healthAmount;
     }
 
-    public final TypeAdapter<HealthPunishmentCommon> typeAdapter = new TypeAdapter<HealthPunishmentCommon>() {
+    public final TypeAdapter<HealthPunishmentCommon> adapter = new TypeAdapter<HealthPunishmentCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull HealthPunishmentCommon healthPunishment) {
@@ -43,7 +45,7 @@ public class HealthPunishmentCommon extends PunishmentCommon {
     };
 
     @Override
-    public TypeAdapter<HealthPunishmentCommon> getTypeAdapter() {
-        return typeAdapter;
+    public TypeAdapter<HealthPunishmentCommon> getAdapter() {
+        return adapter;
     }
 }

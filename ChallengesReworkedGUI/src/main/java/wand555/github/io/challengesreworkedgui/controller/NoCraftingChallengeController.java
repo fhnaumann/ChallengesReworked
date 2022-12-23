@@ -22,7 +22,6 @@ import org.controlsfx.control.ListSelectionView;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
-import wand555.github.io.challengesreworkedgui.NotImplementedException;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
@@ -113,7 +112,7 @@ public class NoCraftingChallengeController extends PunishableChallengeController
             @NotNull
             @Override
             public Map<Object, Object> serialize(@NotNull NoCraftingChallengeController noCraftingChallengeController) {
-                return getCommon().getTypeAdapter().serialize(noCraftingChallengeController.getCommon());
+                return getCommon().getAdapter().serialize(noCraftingChallengeController.getCommon());
             }
 
             @NotNull

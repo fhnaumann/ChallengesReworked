@@ -1,8 +1,10 @@
 package io.github.wand555.challengesreworkedapi.goals.itemcollect;
 
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.Collect;
 import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
+import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,6 +18,7 @@ public class ItemCollectGoalCommon extends GoalCommon {
     public ItemCollectGoalCommon(boolean complete, Map<Material, Collect> toCollect) {
         super(complete);
         this.toCollect = toCollect;
+        StandardSerializer.getDefault().register(ItemCollectGoalCommon.class, adapter);
     }
 
     public Map<Material, Collect> getToCollect() {
@@ -41,7 +44,7 @@ public class ItemCollectGoalCommon extends GoalCommon {
     };
 
     @Override
-    public TypeAdapter<ItemCollectGoalCommon> getTypeAdapter() {
+    public TypeAdapter<ItemCollectGoalCommon> getAdapter() {
         return adapter;
     }
 }

@@ -2,10 +2,8 @@ package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.Common;
 import io.github.wand555.challengesreworkedapi.Commonable;
 import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
-import io.github.wand555.challengesreworkedapi.goals.Goal;
 import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
@@ -20,14 +18,16 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import wand555.github.io.challengesreworked.goal.ChallengeEnding;
-import wand555.github.io.challengesreworked.goal.PluginGoal;
-import wand555.github.io.challengesreworked.goal.PluginItemCollectGoal;
-import wand555.github.io.challengesreworked.goal.PluginMobGoal;
+import wand555.github.io.challengesreworked.challenges.PluginChallenge;
+import wand555.github.io.challengesreworked.challenges.nocrafting.PluginNoCraftingChallenge;
+import wand555.github.io.challengesreworked.goals.ChallengeEnding;
+import wand555.github.io.challengesreworked.goals.PluginGoal;
+import wand555.github.io.challengesreworked.goals.itemcollect.PluginItemCollectGoal;
+import wand555.github.io.challengesreworked.goals.mob.PluginMobGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
-import wand555.github.io.challengesreworked.punishment.PluginHealthPunishment;
+import wand555.github.io.challengesreworked.punishment.health.PluginHealthPunishment;
 import wand555.github.io.challengesreworked.punishment.PluginPunishment;
-import wand555.github.io.challengesreworked.punishment.PluginRandomItemPunishment;
+import wand555.github.io.challengesreworked.punishment.randomitem.PluginRandomItemPunishment;
 import wand555.github.io.challengesreworked.timer.TimeOrder;
 import wand555.github.io.challengesreworked.timer.Timer;
 
@@ -148,7 +148,7 @@ public class ChallengeManager {
             timer.start();
             gameState = storage.getEnum("state", GameState.class, GameState.SET_UP);
             Collection<GoalCommon> goalCommons = ((List<GoalCommon>)storage.getList("goals", new ArrayList<>()));
-            goals = goalCommons.stream().map(goalCommon -> Wrapper.wrap(goalCommon)).toList();
+            goals = goalCommons.stream().map(goalCommon -> (PluginGoal) Wrapper.wrap(goalCommon)).toList();
             activePluginChallenges = (Collection<PluginChallenge>) storage.getList("challenges", new ArrayList<>());
             System.out.println(activePluginChallenges);
         } catch (IOException e) {
