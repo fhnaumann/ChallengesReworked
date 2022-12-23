@@ -19,11 +19,18 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
+import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
+import wand555.github.io.challengesreworkedgui.NotImplementedException;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
+
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
+import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -98,5 +105,22 @@ public class NoCraftingChallengeController extends PunishableChallengeController
     @Override
     public NoCraftingChallengeCommon getCommon() {
         return (NoCraftingChallengeCommon) super.getCommon();
+    }
+
+    @Override
+    public void register() {
+        StandardSerializer.getDefault().register(NoCraftingChallengeController.class, new TypeAdapter<NoCraftingChallengeController>() {
+            @NotNull
+            @Override
+            public Map<Object, Object> serialize(@NotNull NoCraftingChallengeController noCraftingChallengeController) {
+                return getCommon().getTypeAdapter().serialize(noCraftingChallengeController.getCommon());
+            }
+
+            @NotNull
+            @Override
+            public NoCraftingChallengeController deserialize(@NotNull Map<Object, Object> map) {
+                throw new DeserializationNotImplementedException();
+            }
+        });
     }
 }

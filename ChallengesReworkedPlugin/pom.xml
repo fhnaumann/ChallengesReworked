@@ -106,12 +106,12 @@
             <artifactId>challenges-reworked-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>dev.dejvokep</groupId>
             <artifactId>boosted-yaml-spigot</artifactId>
             <version>1.3</version>
             <scope>compile</scope>
-        </dependency-->
+        </dependency>
         <!--dependency>
             <groupId>com.iridium</groupId>
             <artifactId>IridiumColorAPI</artifactId>

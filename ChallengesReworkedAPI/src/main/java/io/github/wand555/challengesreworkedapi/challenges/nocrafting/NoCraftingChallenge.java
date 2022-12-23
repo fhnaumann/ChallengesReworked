@@ -22,12 +22,4 @@ public interface NoCraftingChallenge extends PunishableChallenge {
     default void setPunishments(Collection<? extends Punishment> punishments) {
         getCommon().setPunishments(punishments);
     }
-
-    default Set<Material> getAllowedToCraft() {
-        return getCommon().getAllowedToCraft();
-    }
-
-    default Set<InventoryType> getForbiddenToUse() {
-        return getCommon().getForbiddenToUse();
-    }
 }

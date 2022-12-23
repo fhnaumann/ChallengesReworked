@@ -2,8 +2,11 @@ package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import io.github.wand555.challengesreworkedapi.Collect;
+import io.github.wand555.challengesreworkedapi.Common;
+import io.github.wand555.challengesreworkedapi.Commonable;
 import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
 import io.github.wand555.challengesreworkedapi.goals.Goal;
+import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
 import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
 import io.github.wand555.challengesreworkedapi.punishments.AffectType;
@@ -35,6 +38,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -125,8 +129,8 @@ public class ChallengeManager {
             storage.set("time", timer.getElapsedTime());
             gameState = GameState.PAUSED;
             storage.set("state", gameState.toString());
-            storage.set("goals", new ArrayList<>(goals));
-            storage.set("challenges", new ArrayList<>(activePluginChallenges));
+            storage.set("goals", new ArrayList<>(goals).stream().map(Commonable::getCommon).toList());
+            storage.set("challenges", new ArrayList<>(activePluginChallenges).stream().map(Commonable::getCommon).toList());
             storage.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,7 +147,8 @@ public class ChallengeManager {
             timer = new Timer(elapsedTime, TimeOrder.ASC);
             timer.start();
             gameState = storage.getEnum("state", GameState.class, GameState.SET_UP);
-            goals = (Collection<PluginGoal>) storage.getList("goals", new ArrayList<>());
+            Collection<GoalCommon> goalCommons = ((List<GoalCommon>)storage.getList("goals", new ArrayList<>()));
+            goals = goalCommons.stream().map(goalCommon -> Wrapper.wrap(goalCommon)).toList();
             activePluginChallenges = (Collection<PluginChallenge>) storage.getList("challenges", new ArrayList<>());
             System.out.println(activePluginChallenges);
         } catch (IOException e) {

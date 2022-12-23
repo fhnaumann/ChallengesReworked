@@ -1,5 +1,6 @@
 package io.github.wand555.challengesreworkedapi.challenges.nocrafting;
 
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import io.github.wand555.challengesreworkedapi.challenges.PunishableChallengeCommon;
 import io.github.wand555.challengesreworkedapi.punishments.Punishment;
@@ -31,6 +32,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         super(punishments);
         this.allowedToCraft = allowedToCraft;
         this.forbiddenToUse = forbiddenToUse;
+        StandardSerializer.getDefault().register(NoCraftingChallengeCommon.class, adapter);
     }
 
     public Set<Material> getAllowedToCraft() {

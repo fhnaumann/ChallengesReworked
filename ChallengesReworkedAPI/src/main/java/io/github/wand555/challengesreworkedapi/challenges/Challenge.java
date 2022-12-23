@@ -10,5 +10,5 @@ public interface Challenge extends Commonable, Storable {
     @Override
     ChallengeCommon getCommon();
 
-    public abstract ItemStack getUIDisplay();
+    public ItemStack getUIDisplay();
 }
