@@ -1,7 +1,5 @@
 package wand555.github.io.challengesreworked.goals;
 
-import io.github.wand555.challengesreworkedapi.goals.Goal;
-import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
 import org.bukkit.plugin.java.JavaPlugin;
 import wand555.github.io.challengesreworked.ChallengesReworked;
 

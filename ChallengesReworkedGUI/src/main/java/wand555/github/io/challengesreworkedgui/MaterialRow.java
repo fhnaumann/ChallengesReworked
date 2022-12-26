@@ -1,10 +1,9 @@
 package wand555.github.io.challengesreworkedgui;
 
-import io.github.wand555.challengesreworkedapi.Mapper;
+import wand555.github.io.challengesreworked.Mapper;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import org.bukkit.Material;
 
 import java.io.InputStream;

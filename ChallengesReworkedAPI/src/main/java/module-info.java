@@ -2,10 +2,10 @@ module challenges.reworked.api {
     requires org.bukkit;
     requires boosted.yaml.spigot;
     requires org.apache.commons.text;
-    exports io.github.wand555.challengesreworkedapi;
-    exports io.github.wand555.challengesreworkedapi.punishments;
-    exports io.github.wand555.challengesreworkedapi.challenges.nocrafting;
-    exports io.github.wand555.challengesreworkedapi.challenges;
-    exports io.github.wand555.challengesreworkedapi.punishments.health;
-    exports io.github.wand555.challengesreworkedapi.punishments.randomitem;
+    exports wand555.github.io.challengesreworked;
+    exports wand555.github.io.challengesreworked.punishments;
+    exports wand555.github.io.challengesreworked.challenges.nocrafting;
+    exports wand555.github.io.challengesreworked.challenges;
+    exports wand555.github.io.challengesreworked.punishments.health;
+    exports wand555.github.io.challengesreworked.punishments.randomitem;
 }

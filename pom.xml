@@ -11,6 +11,7 @@
 
     <name>ChallengesReworked</name>
     <modules>
+        <module>ChallengesReworkedAPI</module>
         <module>ChallengesReworkedPlugin</module>
         <module>ChallengesReworkedGUI</module>
     </modules>

@@ -1,12 +1,9 @@
 package wand555.github.io.challengesreworked.punishment.health;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
-import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
-import io.github.wand555.challengesreworkedapi.punishments.health.HealthPunishment;
-import io.github.wand555.challengesreworkedapi.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.health.HealthPunishment;
+import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;

@@ -1,7 +1,7 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
-import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallenge;
-import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallenge;
+import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -19,7 +19,6 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
-import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
@@ -51,10 +50,12 @@ public class NoCraftingChallengeController extends PunishableChallengeController
     @Override
     protected void initialize() {
         common = new NoCraftingChallengeCommon();
+        super.initialize();
         craftableItemsList.setItems(FXCollections.observableArrayList(getCommon().getAllowedToCraft().stream().map(MaterialRow::new).toList()));
         addCraftableItemButton.setOnAction(event -> {
             initCraftableItemsUI();
         });
+
 
     }
 
@@ -108,18 +109,6 @@ public class NoCraftingChallengeController extends PunishableChallengeController
 
     @Override
     public void register() {
-        StandardSerializer.getDefault().register(NoCraftingChallengeController.class, new TypeAdapter<NoCraftingChallengeController>() {
-            @NotNull
-            @Override
-            public Map<Object, Object> serialize(@NotNull NoCraftingChallengeController noCraftingChallengeController) {
-                return getCommon().getAdapter().serialize(noCraftingChallengeController.getCommon());
-            }
 
-            @NotNull
-            @Override
-            public NoCraftingChallengeController deserialize(@NotNull Map<Object, Object> map) {
-                throw new DeserializationNotImplementedException();
-            }
-        });
     }
 }

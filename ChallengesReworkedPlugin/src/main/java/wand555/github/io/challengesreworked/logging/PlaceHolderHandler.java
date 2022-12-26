@@ -1,14 +1,7 @@
 package wand555.github.io.challengesreworked.logging;
 
 
-import io.github.wand555.challengesreworkedapi.Mapper;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.WordUtils;
-import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.StringUtil;
+import wand555.github.io.challengesreworked.Mapper;
 
 import java.util.Map;
 import java.util.Set;

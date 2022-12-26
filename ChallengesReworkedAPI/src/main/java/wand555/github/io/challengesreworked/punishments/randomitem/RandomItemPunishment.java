@@ -1,32 +1,16 @@
-package wand555.github.io.challengesreworked.punishment.randomitem;
+package wand555.github.io.challengesreworked.punishments.randomitem;
 
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishment;
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import wand555.github.io.challengesreworked.ChallengeManager;
-import wand555.github.io.challengesreworked.logging.ChatLogger;
-import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
+import wand555.github.io.challengesreworked.punishments.Punishment;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Stream;
+public interface RandomItemPunishment extends Punishment {
+    @Override
+    RandomItemPunishmentCommon getCommon();
 
-public class PluginRandomItemPunishment extends PluginPunishment implements RandomItemPunishment {
-
-    public PluginRandomItemPunishment(RandomItemPunishmentCommon common) {
-        super(common);
-    }
-
+    /*
     @Override
     public void enforcePunishment(Player causer) {
         super.enforcePunishment(causer);
-        switch(getCommon().getAffectType()) {
+        switch(affectType) {
             case CAUSER -> {
                 removeRandomItem(causer).ifPresentOrElse(itemStack -> {
                     ChatLogger.log("punishments.randomitem.affecttype.causer.success", Map.of(
@@ -63,19 +47,12 @@ public class PluginRandomItemPunishment extends PluginPunishment implements Rand
                 .toList();
         if(playerItems.size() > 0) {
             ItemStack toRemove = playerItems.get(ThreadLocalRandom.current().nextInt(0, playerItems.size()));
-            int idxToRemove = player.getInventory().first(toRemove);
-            player.getInventory().clear(idxToRemove);
+            player.getInventory().remove(toRemove);
             return Optional.of(toRemove);
         }
         return Optional.empty();
     }
 
-    @Override
-    public RandomItemPunishmentCommon getCommon() {
-        return (RandomItemPunishmentCommon) super.getCommon();
-    }
 
-    @Override
-    public void register() {
-    }
+     */
 }

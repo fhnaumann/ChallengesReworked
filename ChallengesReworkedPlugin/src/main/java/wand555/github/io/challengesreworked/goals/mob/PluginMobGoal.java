@@ -1,16 +1,11 @@
 package wand555.github.io.challengesreworked.goals.mob;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
-import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
-import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.goals.mob.MobGoal;
-import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
+import wand555.github.io.challengesreworked.Collect;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.ChallengesReworked;
 import wand555.github.io.challengesreworked.goals.ChallengeEnding;

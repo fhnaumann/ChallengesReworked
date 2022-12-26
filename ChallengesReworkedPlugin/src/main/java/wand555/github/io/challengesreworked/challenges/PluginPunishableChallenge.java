@@ -1,8 +1,6 @@
 package wand555.github.io.challengesreworked.challenges;
 
-import io.github.wand555.challengesreworkedapi.challenges.PunishableChallengeCommon;
-import io.github.wand555.challengesreworkedapi.challenges.PunishableChallenge;
-import io.github.wand555.challengesreworkedapi.punishments.Punishment;
+import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.Wrapper;
 import wand555.github.io.challengesreworked.punishment.PluginPunishment;
 
@@ -14,7 +12,7 @@ public abstract class PluginPunishableChallenge extends PluginChallenge implemen
 
     public PluginPunishableChallenge(PunishableChallengeCommon common) {
         super(common);
-        this.punishments = mapToPunishments();
+        this.punishments = common.getPunishmentCommons().stream().map(punishmentCommon -> (PluginPunishment) Wrapper.wrap(punishmentCommon)).toList();
         //getPunishments()[0].getCommon() is the same as getCommon().getPunishmentCommons()[0]
     }
 
@@ -31,10 +29,5 @@ public abstract class PluginPunishableChallenge extends PluginChallenge implemen
     @Override
     public PunishableChallengeCommon getCommon() {
         return (PunishableChallengeCommon) super.getCommon();
-    }
-
-    @Override
-    public Collection<PluginPunishment> mapToPunishments() {
-        return getCommon().getPunishmentCommons().stream().map(punishmentCommon -> (PluginPunishment) Wrapper.wrap(punishmentCommon)).toList();
     }
 }

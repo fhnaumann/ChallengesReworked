@@ -1,15 +1,13 @@
 package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.Commonable;
-import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
-import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
-import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
-import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
-import io.github.wand555.challengesreworkedapi.punishments.AffectType;
-import io.github.wand555.challengesreworkedapi.punishments.health.HealthPunishmentCommon;
-import io.github.wand555.challengesreworkedapi.punishments.randomitem.RandomItemPunishmentCommon;
+import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.goals.GoalCommon;
+import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCommon;
+import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
+import wand555.github.io.challengesreworked.punishments.AffectType;
+import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;

@@ -4,10 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.wand555</groupId>
+    <parent>
+        <groupId>wand555.github.io</groupId>
+        <artifactId>challenges-reworked</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <artifactId>challenges-reworked-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
 
     <name>Challenges Reworked Api</name>
 
@@ -68,7 +72,7 @@
             <groupId>dev.dejvokep</groupId>
             <artifactId>boosted-yaml-spigot</artifactId>
             <version>1.3</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>

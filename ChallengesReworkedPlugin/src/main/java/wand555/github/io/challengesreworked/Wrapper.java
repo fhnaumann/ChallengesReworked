@@ -1,17 +1,15 @@
 package wand555.github.io.challengesreworked;
 
-import io.github.wand555.challengesreworkedapi.Common;
-import io.github.wand555.challengesreworkedapi.Commonable;
-import io.github.wand555.challengesreworkedapi.challenges.ChallengeCommon;
-import io.github.wand555.challengesreworkedapi.challenges.nocrafting.NoCraftingChallengeCommon;
-import io.github.wand555.challengesreworkedapi.goals.Goal;
-import io.github.wand555.challengesreworkedapi.goals.GoalCommon;
-import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
-import io.github.wand555.challengesreworkedapi.goals.mob.MobGoalCommon;
-import io.github.wand555.challengesreworkedapi.punishments.Punishment;
-import io.github.wand555.challengesreworkedapi.punishments.PunishmentCommon;
-import io.github.wand555.challengesreworkedapi.punishments.health.HealthPunishmentCommon;
-import io.github.wand555.challengesreworkedapi.punishments.randomitem.RandomItemPunishmentCommon;
+import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.goals.Goal;
+import wand555.github.io.challengesreworked.goals.GoalCommon;
+import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCommon;
+import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
+import wand555.github.io.challengesreworked.punishments.Punishment;
+import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworked.challenges.PluginChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.PluginNoCraftingChallenge;
 import wand555.github.io.challengesreworked.goals.itemcollect.PluginItemCollectGoal;
@@ -20,6 +18,7 @@ import wand555.github.io.challengesreworked.punishment.health.PluginHealthPunish
 import wand555.github.io.challengesreworked.punishment.randomitem.PluginRandomItemPunishment;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public class Wrapper {
 
@@ -27,9 +26,11 @@ public class Wrapper {
 
         //io.github.wand555.challengesreworkedapi.[challenges/goals/punishments].[<<challenge>>/<<goal>>/<<punishment>>].[<<challenge>>/<<goal>>/<<punishment>>]Common
         String commonClassName = common.getClass().getName();
-        String[] split = commonClassName.split("/");
-        split[split.length-1] = "Plugin" + commonClassName.replace("Common", "");
-        String pluginClassName = String.join("", split);
+        String[] split = commonClassName.split("\\.");
+        System.out.println(Arrays.toString(split));
+        split[split.length-1] = "Plugin" + split[split.length-1].replace("Common", "");
+        System.out.println(Arrays.toString(split));
+        String pluginClassName = String.join(".", split);
         try {
             Class<?> pluginClazz = Class.forName(pluginClassName);
             return (Commonable) pluginClazz.getConstructor(common.getClass()).newInstance(common);

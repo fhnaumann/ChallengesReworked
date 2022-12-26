@@ -1,8 +1,7 @@
 package wand555.github.io.challengesreworked.punishment;
 
-import io.github.wand555.challengesreworkedapi.punishments.AffectType;
-import io.github.wand555.challengesreworkedapi.punishments.Punishment;
-import io.github.wand555.challengesreworkedapi.punishments.PunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.Punishment;
+import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.bukkit.entity.Player;
 
 public abstract class PluginPunishment implements Punishment {

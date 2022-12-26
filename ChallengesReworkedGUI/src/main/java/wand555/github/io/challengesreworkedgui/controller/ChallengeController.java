@@ -1,7 +1,7 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
-import io.github.wand555.challengesreworkedapi.challenges.Challenge;
-import io.github.wand555.challengesreworkedapi.challenges.ChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.Challenge;
+import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;

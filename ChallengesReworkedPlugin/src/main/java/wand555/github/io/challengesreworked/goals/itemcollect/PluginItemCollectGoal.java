@@ -1,9 +1,6 @@
 package wand555.github.io.challengesreworked.goals.itemcollect;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
-import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
-import io.github.wand555.challengesreworkedapi.Collect;
-import io.github.wand555.challengesreworkedapi.goals.itemcollect.ItemCollectGoalCommon;
+import wand555.github.io.challengesreworked.Collect;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.ChallengesReworked;
 import wand555.github.io.challengesreworked.goals.ChallengeEnding;
@@ -27,7 +23,7 @@ import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 
 import java.util.Map;
 
-public class PluginItemCollectGoal extends PluginGoal implements Listener {
+public class PluginItemCollectGoal extends PluginGoal implements ItemCollectGoal, Listener {
 
     private static final String MARKED = "true";
 
