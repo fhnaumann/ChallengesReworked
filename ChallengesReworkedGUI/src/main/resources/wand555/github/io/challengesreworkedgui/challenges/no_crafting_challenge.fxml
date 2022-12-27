@@ -56,7 +56,7 @@
                                     <Pane HBox.hgrow="ALWAYS" />
                                     <StackPane>
                                        <children>
-                                          <Button fx:id="addCraftableItemButton" mnemonicParsing="false" text="Hinzufügen" />
+                                          <Button fx:id="addCraftableItemButton" mnemonicParsing="false" text="%challenge.edit" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -79,7 +79,7 @@
                                     <Pane HBox.hgrow="ALWAYS" />
                                     <StackPane>
                                        <children>
-                                          <Button fx:id="addForbiddenUIButton" mnemonicParsing="false" text="Hinzufügen" />
+                                          <Button fx:id="addForbiddenUIButton" mnemonicParsing="false" text="%challenge.edit" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -99,7 +99,7 @@
                                     <Pane HBox.hgrow="ALWAYS" />
                                     <StackPane>
                                        <children>
-                                          <Button fx:id="addPunishmentButton" mnemonicParsing="false" text="Hinzufügen" />
+                                          <Button fx:id="addPunishmentButton" mnemonicParsing="false" text="%challenge.edit" />
                                        </children>
                                     </StackPane>
                                  </children>

@@ -23,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
+import wand555.github.io.challengesreworkedgui.InventoryTypeRow;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
@@ -48,7 +49,7 @@ public class NoCraftingChallengeController extends PunishableChallengeController
     @FXML
     private Button addForbiddenUIButton;
     @FXML
-    private ListView<InventoryType> forbiddenUIList;
+    private ListView<InventoryTypeRow> forbiddenUIList;
 
     @FXML
     @Override
@@ -58,6 +59,10 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         craftableItemsList.setItems(FXCollections.observableArrayList(getCommon().getAllowedToCraft().stream().map(MaterialRow::new).toList()));
         addCraftableItemButton.setOnAction(event -> {
             initCraftableItemsUI();
+        });
+        forbiddenUIList.setItems(FXCollections.observableArrayList(getCommon().getForbiddenToUse().stream().map(InventoryTypeRow::new).toList()));
+        addForbiddenUIButton.setOnAction(event -> {
+            initForbiddenUIs();
         });
 
 
@@ -102,6 +107,24 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         });
 
          */
+    }
+
+    private void initForbiddenUIs() {
+        Stage stage = new Stage();
+        StackPane root = new StackPane();
+        ListSelectionView<InventoryTypeRow> listSelectionView = new ListSelectionView<>();
+        List<InventoryType> inventoryTypes = List.of(InventoryType.values());
+        List<InventoryTypeRow> rows = inventoryTypes.stream().map(InventoryTypeRow::new).toList();
+        listSelectionView.setSourceItems(FXCollections.observableArrayList(rows));
+        listSelectionView.setTargetItems(CopyUtil.deepCopy(forbiddenUIList.getItems()));
+        root.getChildren().add(listSelectionView);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setAlwaysOnTop(true);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initOwner();
+        stage.show();
+        stage.setOnCloseRequest(event1 -> forbiddenUIList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems())));
     }
 
     @Override
