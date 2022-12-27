@@ -13,7 +13,6 @@ public abstract class PluginChallenge implements Challenge {
     public PluginChallenge(ChallengeCommon common) {
         this.common = common;
         this.plugin = JavaPlugin.getPlugin(ChallengesReworked.class);
-        register();
     }
 
     @Override

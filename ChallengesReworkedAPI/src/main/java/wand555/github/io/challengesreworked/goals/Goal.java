@@ -1,9 +1,8 @@
 package wand555.github.io.challengesreworked.goals;
 
 import wand555.github.io.challengesreworked.Commonable;
-import wand555.github.io.challengesreworked.Storable;
 
-public interface Goal extends Commonable, Storable {
+public interface Goal extends Commonable {
 
     boolean isComplete();
 

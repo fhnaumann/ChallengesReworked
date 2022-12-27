@@ -78,9 +78,4 @@ public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
     public MobGoalCommon getCommon() {
         return (MobGoalCommon) super.getCommon();
     }
-
-    @Override
-    public void register() {
-
-    }
 }

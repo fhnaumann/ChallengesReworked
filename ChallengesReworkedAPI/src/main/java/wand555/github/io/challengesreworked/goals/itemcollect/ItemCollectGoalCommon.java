@@ -41,9 +41,4 @@ public class ItemCollectGoalCommon extends GoalCommon {
                     .collect(Collectors.toMap(entry -> Material.valueOf(entry.getKey().toString()), entry -> (Collect) entry.getValue())));
         }
     };
-
-    @Override
-    public TypeAdapter<ItemCollectGoalCommon> getAdapter() {
-        return adapter;
-    }
 }

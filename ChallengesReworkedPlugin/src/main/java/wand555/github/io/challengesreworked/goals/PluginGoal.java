@@ -12,7 +12,6 @@ public abstract class PluginGoal implements Goal {
     protected PluginGoal(GoalCommon common) {
         this.common = common;
         this.plugin = JavaPlugin.getPlugin(ChallengesReworked.class);
-        register();
     }
 
     @Override

@@ -9,6 +9,7 @@ module challenges.reworked.gui {
 
     opens wand555.github.io.challengesreworkedgui to javafx.fxml;
     opens wand555.github.io.challengesreworkedgui.controller to javafx.fxml;
+    exports wand555.github.io.challengesreworkedgui.util to javafx.fxml;
     exports wand555.github.io.challengesreworkedgui;
     exports wand555.github.io.challengesreworkedgui.controller;
 

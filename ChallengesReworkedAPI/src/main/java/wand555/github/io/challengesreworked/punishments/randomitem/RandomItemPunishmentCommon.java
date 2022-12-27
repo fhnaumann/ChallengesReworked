@@ -39,9 +39,4 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
             );
         }
     };
-
-    @Override
-    public TypeAdapter<RandomItemPunishmentCommon> getAdapter() {
-        return adapter;
-    }
 }

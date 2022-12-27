@@ -10,7 +10,6 @@ public abstract class PluginPunishment implements Punishment {
 
     public PluginPunishment(PunishmentCommon common) {
         this.common = common;
-        register();
     }
 
     @Override

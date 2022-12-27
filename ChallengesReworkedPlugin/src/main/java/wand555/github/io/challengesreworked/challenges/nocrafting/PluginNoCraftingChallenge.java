@@ -63,9 +63,4 @@ public class PluginNoCraftingChallenge extends PluginPunishableChallenge impleme
     public NoCraftingChallengeCommon getCommon() {
         return (NoCraftingChallengeCommon) super.getCommon();
     }
-
-    @Override
-    public void register() {
-
-    }
 }

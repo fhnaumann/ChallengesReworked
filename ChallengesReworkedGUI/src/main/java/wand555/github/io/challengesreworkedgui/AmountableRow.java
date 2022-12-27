@@ -3,7 +3,9 @@ package wand555.github.io.challengesreworkedgui;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
+import javafx.util.converter.IntegerStringConverter;
 
 public abstract class AmountableRow extends Row {
 
@@ -15,17 +17,25 @@ public abstract class AmountableRow extends Row {
         TextField textField = new TextField(String.valueOf(amount));
         textField.setAlignment(Pos.CENTER);
         textField.setPrefWidth(40);
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(isValid(newValue)) {
-                setAmount(Integer.parseInt(newValue));
-            }
-        });
+        textField.setTextFormatter(new TextFormatter<>(
+                new IntegerStringConverter(),
+                getAmount(),
+                change -> {
+                    String newText = change.getControlNewText();
+                    if(newText.isEmpty()) {
+                        setAmount(0);
+                        return change;
+                    }
+                    if(newText.matches("^[0-9]+$")) {
+                        int writtenAmount = Integer.parseInt(newText);
+                        if(writtenAmount <= 99999) {
+                            setAmount(writtenAmount);
+                            return change;
+                        }
+                    }
+                    return null;
+                }));
         getChildren().add(textField);
-    }
-
-    private boolean isValid(String userInput) {
-        //is numeric and > 0 but below Integer.MAX_VALUE
-        return true;
     }
 
     public int getAmount() {

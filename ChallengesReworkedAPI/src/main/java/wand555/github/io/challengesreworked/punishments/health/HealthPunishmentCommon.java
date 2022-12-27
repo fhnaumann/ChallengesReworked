@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class HealthPunishmentCommon extends PunishmentCommon {
 
-    private final int healthAmount;
+    private int healthAmount;
 
     public HealthPunishmentCommon(int amountTriggered, AffectType affectType, int healthAmount) {
         super(amountTriggered, affectType);
@@ -20,6 +20,10 @@ public class HealthPunishmentCommon extends PunishmentCommon {
 
     public int getHealthAmount() {
         return healthAmount;
+    }
+
+    public void setHealthAmount(int healthAmount) {
+        this.healthAmount = healthAmount;
     }
 
     public final TypeAdapter<HealthPunishmentCommon> adapter = new TypeAdapter<HealthPunishmentCommon>() {
@@ -43,9 +47,4 @@ public class HealthPunishmentCommon extends PunishmentCommon {
             );
         }
     };
-
-    @Override
-    public TypeAdapter<HealthPunishmentCommon> getAdapter() {
-        return adapter;
-    }
 }

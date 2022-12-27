@@ -63,9 +63,4 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
                     ((List<?>) map.get("forbiddenToUse")).stream().map(o -> InventoryType.valueOf(o.toString())).collect(Collectors.toSet()));
         }
     };
-
-    @Override
-    public TypeAdapter<NoCraftingChallengeCommon> getAdapter() {
-        return adapter;
-    }
 }

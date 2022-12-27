@@ -21,10 +21,6 @@ public class ChallengesOverviewController {
     @FXML
     private ScrollPane challengesPane;
     @FXML
-    private TitledPane challenge1;
-    @FXML
-    private TitledPane challenge2;
-    @FXML
     private VBox challengesVBox;
     @FXML
     private TitledPane challenge3;

@@ -1,5 +1,7 @@
 package wand555.github.io.challengesreworkedgui.controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
+import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
 import wand555.github.io.challengesreworkedgui.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
@@ -29,6 +32,7 @@ import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -80,6 +84,7 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         //stage.initOwner();
         stage.show();
         stage.setOnCloseRequest(event1 -> craftableItemsList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems())));
+        /*
         listSelectionView.setCellFactory(param -> {
             ListCell<MaterialRow> cell = new ListCell<>();
             ContextMenu contextMenu = new ContextMenu(new MenuItem("TEST"));
@@ -95,6 +100,8 @@ public class NoCraftingChallengeController extends PunishableChallengeController
             cell.graphicProperty().bind(cell.itemProperty());
             return cell;
         });
+
+         */
     }
 
     @Override
@@ -105,10 +112,5 @@ public class NoCraftingChallengeController extends PunishableChallengeController
     @Override
     public NoCraftingChallengeCommon getCommon() {
         return (NoCraftingChallengeCommon) super.getCommon();
-    }
-
-    @Override
-    public void register() {
-
     }
 }

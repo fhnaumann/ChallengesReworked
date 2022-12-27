@@ -5,7 +5,7 @@ import wand555.github.io.challengesreworked.Common;
 public abstract class PunishmentCommon implements Common {
 
     private int amountTriggered;
-    protected final AffectType affectType;
+    protected AffectType affectType;
 
     public PunishmentCommon(int amountTriggered, AffectType affectType) {
         this.amountTriggered = amountTriggered;
@@ -22,5 +22,9 @@ public abstract class PunishmentCommon implements Common {
 
     public AffectType getAffectType() {
         return affectType;
+    }
+
+    public void setAffectType(AffectType affectType) {
+        this.affectType = affectType;
     }
 }

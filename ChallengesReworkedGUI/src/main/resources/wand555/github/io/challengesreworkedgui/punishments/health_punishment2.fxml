@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
+
+<?import javafx.scene.control.ComboBox?>
+<TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%punishment.health.name" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controller.HealthPunishmentController">
+   <content>
+      <StackPane>
+         <children>
+            <VBox spacing="10.0">
+               <children>
+                  <HBox spacing="20.0">
+                     <children>
+                        <StackPane>
+                           <children>
+                              <Label text="%punishment.health.description" wrapText="true" />
+                           </children>
+                        </StackPane>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <StackPane>
+                           <children>
+                              <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="Für alle Challenges" />
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <children>
+                              <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="Aktivieren">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </ToggleButton>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <Separator />
+                  <Label text="Spezifische Einstellungen:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <VBox spacing="10.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <StackPane>
+                                 <children>
+                                    <Label text="Betroffen:" />
+                                 </children>
+                              </StackPane>
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <DisplayComboBox fx:id="affectTypeComboBox"/>
+                           </children>
+                        </HBox>
+                        <HBox spacing="5.0">
+                           <children>
+                              <StackPane>
+                                 <children>
+                                    <Label text="Herzen Abzug:" />
+                                 </children>
+                              </StackPane>
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="heartsTextField" text="1" />
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@heart.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <StackPane.margin>
+                  <Insets right="10.0" />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </StackPane>
+   </content>
+</TitledPane>

@@ -1,9 +1,8 @@
 package wand555.github.io.challengesreworked.punishments;
 
 import wand555.github.io.challengesreworked.Commonable;
-import wand555.github.io.challengesreworked.Storable;
 
-public interface Punishment extends Commonable, Storable {
+public interface Punishment extends Commonable {
 
     @Override
     PunishmentCommon getCommon();

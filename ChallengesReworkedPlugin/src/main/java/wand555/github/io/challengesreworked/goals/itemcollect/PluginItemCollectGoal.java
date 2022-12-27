@@ -144,8 +144,4 @@ public class PluginItemCollectGoal extends PluginGoal implements ItemCollectGoal
     public ItemCollectGoalCommon getCommon() {
         return (ItemCollectGoalCommon) super.getCommon();
     }
-
-    @Override
-    public void register() {
-    }
 }

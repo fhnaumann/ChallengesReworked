@@ -49,8 +49,4 @@ public class PluginHealthPunishment extends PluginPunishment implements HealthPu
     public HealthPunishmentCommon getCommon() {
         return (HealthPunishmentCommon) super.getCommon();
     }
-
-    @Override
-    public void register() {
-    }
 }

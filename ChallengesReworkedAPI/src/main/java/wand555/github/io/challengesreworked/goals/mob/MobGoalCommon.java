@@ -53,8 +53,4 @@ public class MobGoalCommon extends GoalCommon {
                     )));
         }
     };
-    @Override
-    public TypeAdapter<MobGoalCommon> getAdapter() {
-        return adapter;
-    }
 }

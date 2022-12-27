@@ -74,8 +74,4 @@ public class PluginRandomItemPunishment extends PluginPunishment implements Rand
     public RandomItemPunishmentCommon getCommon() {
         return (RandomItemPunishmentCommon) super.getCommon();
     }
-
-    @Override
-    public void register() {
-    }
 }

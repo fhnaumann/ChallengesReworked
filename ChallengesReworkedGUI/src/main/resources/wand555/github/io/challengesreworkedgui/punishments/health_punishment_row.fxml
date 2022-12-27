@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
+<?import wand555.github.io.challengesreworkedgui.PunishmentRow?>
+<?import javafx.scene.control.CheckBox?>
+<PunishmentRow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" fx:controller="wand555.github.io.challengesreworkedgui.controller.HealthPunishmentController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane>
+         <children>
+            <Label text="HealthPunishment" />
+         </children>
+      </StackPane>
+      <HBox spacing="2.0">
+         <children>
+            <StackPane>
+               <children>
+                  <TextField fx:id="heartsTextField" prefWidth="25.0" promptText="hearts" text="1" />
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@heart.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <StackPane>
+         <children>
+            <DisplayComboBox fx:id="affectTypeComboBox" />
+         </children>
+      </StackPane>
+      <StackPane>
+         <children>
+            <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="Für alle Challenges" />
+         </children>
+      </StackPane>
+   </children>
+</PunishmentRow>
