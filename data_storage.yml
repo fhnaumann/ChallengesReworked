@@ -1,0 +1,8 @@
+challenges:
+  allowedToCraft:
+  - ENDER_EYE
+  punishments: []
+  forbiddenToUse:
+  - WORKBENCH
+  - CRAFTING
+  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon

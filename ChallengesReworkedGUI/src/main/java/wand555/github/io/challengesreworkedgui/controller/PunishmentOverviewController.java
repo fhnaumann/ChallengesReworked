@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
+import wand555.github.io.challengesreworked.Commonable;
+import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.PunishmentRow;
 
 import java.util.List;
@@ -34,10 +36,11 @@ public class PunishmentOverviewController {
                 .toList();
     }
 
-    public ObservableList<PunishmentController> getPunishmentControllers() {
-        return FXCollections.observableArrayList(
-                healthPunishmentController
-        );
+    public List<PunishmentCommon> getAllPunishmentsAsCommon() {
+        return Stream.of(healthPunishmentController)
+                .filter(PunishmentController::isActive)
+                .map(punishmentController -> (PunishmentCommon) punishmentController.getCommon())
+                .toList();
     }
 
     public void setDataFromRows(ObservableList<PunishmentRow> punishmentRows) {

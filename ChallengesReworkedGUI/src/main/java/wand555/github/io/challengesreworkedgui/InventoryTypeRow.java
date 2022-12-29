@@ -19,7 +19,7 @@ public class InventoryTypeRow extends Row {
         return new InventoryTypeRow(inventoryType);
     }
 
-    private InventoryType getInventoryType() {
+    public InventoryType getInventoryType() {
         return inventoryType;
     }
 }

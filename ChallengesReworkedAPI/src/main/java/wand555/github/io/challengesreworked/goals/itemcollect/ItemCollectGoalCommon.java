@@ -3,6 +3,7 @@ package wand555.github.io.challengesreworked.goals.itemcollect;
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import wand555.github.io.challengesreworked.Collect;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -41,4 +42,9 @@ public class ItemCollectGoalCommon extends GoalCommon {
                     .collect(Collectors.toMap(entry -> Material.valueOf(entry.getKey().toString()), entry -> (Collect) entry.getValue())));
         }
     };
+
+    @Override
+    public Common copy() {
+        return new ItemCollectGoalCommon(isComplete(), getToCollect());
+    }
 }

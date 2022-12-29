@@ -2,6 +2,7 @@ package wand555.github.io.challengesreworked.punishments.randomitem;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.jetbrains.annotations.NotNull;
@@ -39,4 +40,13 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
             );
         }
     };
+
+    public int getHowManyRemoved() {
+        return howManyRemoved;
+    }
+
+    @Override
+    public RandomItemPunishmentCommon copy() {
+        return new RandomItemPunishmentCommon(getAmountTriggered(), getAffectType(), getHowManyRemoved());
+    }
 }

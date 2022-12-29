@@ -27,4 +27,9 @@ public abstract class PunishmentCommon implements Common {
     public void setAffectType(AffectType affectType) {
         this.affectType = affectType;
     }
+
+    @Override
+    public PunishmentCommon copy() {
+        throw new RuntimeException("Tried to copy abstract class");
+    }
 }

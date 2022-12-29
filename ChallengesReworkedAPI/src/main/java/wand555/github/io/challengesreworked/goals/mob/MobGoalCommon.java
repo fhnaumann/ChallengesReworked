@@ -3,6 +3,7 @@ package wand555.github.io.challengesreworked.goals.mob;
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import wand555.github.io.challengesreworked.Collect;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
@@ -53,4 +54,9 @@ public class MobGoalCommon extends GoalCommon {
                     )));
         }
     };
+
+    @Override
+    public Common copy() {
+        return new MobGoalCommon(isComplete(), getToKill());
+    }
 }

@@ -32,6 +32,10 @@ public abstract class ChallengeController implements Challenge {
         });
     }
 
+    public boolean isActive() {
+        return activateButton.isSelected();
+    }
+
     @Override
     public ChallengeCommon getCommon() {
         return common;

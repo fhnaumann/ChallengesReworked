@@ -44,7 +44,7 @@ public abstract class PunishableChallengeController extends ChallengeController 
                 stage.setScene(scene);
                 stage.setOnCloseRequest(event1 -> {
                     punishmentList.setItems(FXCollections.observableArrayList(punishmentOverviewController.getAllPunishmentsAsRow()));
-
+                    getCommon().setPunishmentCommons(punishmentOverviewController.getAllPunishmentsAsCommon());
                 });
                 stage.show();
             } catch (IOException e) {

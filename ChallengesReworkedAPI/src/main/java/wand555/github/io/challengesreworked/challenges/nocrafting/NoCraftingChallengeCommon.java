@@ -2,6 +2,7 @@ package wand555.github.io.challengesreworked.challenges.nocrafting;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.bukkit.Material;
@@ -17,8 +18,8 @@ import java.util.stream.Collectors;
 
 public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
 
-    private final Set<Material> allowedToCraft;
-    private final Set<InventoryType> forbiddenToUse;
+    private Set<Material> allowedToCraft;
+    private Set<InventoryType> forbiddenToUse;
 
     public NoCraftingChallengeCommon() {
         this(
@@ -39,8 +40,16 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         return allowedToCraft;
     }
 
+    public void setAllowedToCraft(Set<Material> allowedToCraft) {
+        this.allowedToCraft = allowedToCraft;
+    }
+
     public Set<InventoryType> getForbiddenToUse() {
         return forbiddenToUse;
+    }
+
+    public void setForbiddenToUse(Set<InventoryType> forbiddenToUse) {
+        this.forbiddenToUse = forbiddenToUse;
     }
 
     public final TypeAdapter<NoCraftingChallengeCommon> adapter = new TypeAdapter<NoCraftingChallengeCommon>() {
@@ -63,4 +72,9 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
                     ((List<?>) map.get("forbiddenToUse")).stream().map(o -> InventoryType.valueOf(o.toString())).collect(Collectors.toSet()));
         }
     };
+
+    @Override
+    public NoCraftingChallengeCommon copy() {
+        return new NoCraftingChallengeCommon(getPunishmentCommons().stream().map(PunishmentCommon::copy).toList(), allowedToCraft, forbiddenToUse);
+    }
 }

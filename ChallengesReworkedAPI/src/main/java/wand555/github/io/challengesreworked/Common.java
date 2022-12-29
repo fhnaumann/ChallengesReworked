@@ -4,5 +4,6 @@ import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 
 public interface Common {
 
+    Common copy();
 
 }

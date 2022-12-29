@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NoCraftingChallengeController extends PunishableChallengeController implements NoCraftingChallenge {
@@ -88,7 +89,10 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         stage.initModality(Modality.APPLICATION_MODAL);
         //stage.initOwner();
         stage.show();
-        stage.setOnCloseRequest(event1 -> craftableItemsList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems())));
+        stage.setOnCloseRequest(event1 -> {
+            craftableItemsList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems()));
+            getCommon().setAllowedToCraft(craftableItemsList.getItems().stream().map(MaterialRow::getMaterial).collect(Collectors.toSet()));
+        });
         /*
         listSelectionView.setCellFactory(param -> {
             ListCell<MaterialRow> cell = new ListCell<>();
@@ -124,7 +128,10 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         stage.initModality(Modality.APPLICATION_MODAL);
         //stage.initOwner();
         stage.show();
-        stage.setOnCloseRequest(event1 -> forbiddenUIList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems())));
+        stage.setOnCloseRequest(event1 -> {
+            forbiddenUIList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems()));
+            getCommon().setForbiddenToUse(forbiddenUIList.getItems().stream().map(InventoryTypeRow::getInventoryType).collect(Collectors.toSet()));
+        });
     }
 
     @Override

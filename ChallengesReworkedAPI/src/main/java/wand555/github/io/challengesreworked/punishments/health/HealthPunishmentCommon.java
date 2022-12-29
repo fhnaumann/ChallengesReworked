@@ -2,6 +2,7 @@ package wand555.github.io.challengesreworked.punishments.health;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.jetbrains.annotations.NotNull;
@@ -47,4 +48,9 @@ public class HealthPunishmentCommon extends PunishmentCommon {
             );
         }
     };
+
+    @Override
+    public HealthPunishmentCommon copy() {
+        return new HealthPunishmentCommon(getAmountTriggered(), getAffectType(), getHealthAmount());
+    }
 }
