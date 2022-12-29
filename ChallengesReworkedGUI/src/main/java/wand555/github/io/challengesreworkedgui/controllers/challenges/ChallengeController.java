@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.challenges;
 
 import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;

@@ -10,9 +10,9 @@
 
 
 <?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
-<?import wand555.github.io.challengesreworkedgui.PunishmentRow?>
+<?import wand555.github.io.challengesreworkedgui.rows.PunishmentRow?>
 <?import javafx.scene.control.CheckBox?>
-<PunishmentRow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" fx:controller="wand555.github.io.challengesreworkedgui.controller.HealthPunishmentController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<PunishmentRow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" fx:controller="wand555.github.io.challengesreworkedgui.controllers.punishments.HealthPunishmentController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane>
          <children>

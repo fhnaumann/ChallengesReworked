@@ -1,10 +1,11 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.rows;
 
 import wand555.github.io.challengesreworked.Mapper;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.bukkit.Material;
+import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 
 import java.io.InputStream;
 

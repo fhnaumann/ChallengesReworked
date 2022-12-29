@@ -1,15 +1,12 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.punishments;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
-import wand555.github.io.challengesreworked.Commonable;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
-import wand555.github.io.challengesreworkedgui.PunishmentRow;
+import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
 import java.util.List;
 import java.util.stream.Stream;

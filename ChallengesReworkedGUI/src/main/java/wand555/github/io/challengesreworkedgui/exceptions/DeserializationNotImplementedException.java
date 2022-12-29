@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.exceptions;
 
 public class DeserializationNotImplementedException extends NotImplementedException {
     public DeserializationNotImplementedException() {

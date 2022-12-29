@@ -17,7 +17,7 @@
 <?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
 
 <?import javafx.scene.control.ComboBox?>
-<TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%punishment.health.name" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controller.HealthPunishmentController">
+<TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%punishment.health.name" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.punishments.HealthPunishmentController">
    <content>
       <StackPane>
          <children>

@@ -1,19 +1,14 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.punishments;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.util.converter.IntegerStringConverter;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishment;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
-import wand555.github.io.challengesreworkedgui.PunishmentRow;
-import wand555.github.io.challengesreworkedgui.Row;
-import wand555.github.io.challengesreworkedgui.util.DisplayComboBox;
+import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
 import java.io.IOException;
 import java.util.ResourceBundle;

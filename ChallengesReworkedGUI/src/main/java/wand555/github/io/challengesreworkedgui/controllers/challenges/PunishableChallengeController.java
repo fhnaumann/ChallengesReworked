@@ -1,9 +1,7 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.challenges;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,7 +12,8 @@ import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import javafx.fxml.FXML;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
-import wand555.github.io.challengesreworkedgui.PunishmentRow;
+import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
+import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentOverviewController;
 
 import java.io.IOException;
 import java.util.Collection;

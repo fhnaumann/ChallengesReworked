@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.rows;
 
 import wand555.github.io.challengesreworked.Mapper;
 import javafx.scene.control.Label;

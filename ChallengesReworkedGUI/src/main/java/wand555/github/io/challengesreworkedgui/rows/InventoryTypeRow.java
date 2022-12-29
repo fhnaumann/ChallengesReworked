@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.rows;
 
 import javafx.scene.control.Label;
 import org.bukkit.event.inventory.InventoryType;

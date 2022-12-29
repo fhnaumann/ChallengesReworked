@@ -1,19 +1,16 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import org.bukkit.Material;
-import org.bukkit.event.inventory.InventoryType;
-import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 public class OverviewController {
 

@@ -1,7 +1,6 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.goals;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.bukkit.entity.EntityType;
 import org.controlsfx.control.ListSelectionView;
-import wand555.github.io.challengesreworkedgui.MaterialRow;
-import wand555.github.io.challengesreworkedgui.MobRow;
+import wand555.github.io.challengesreworkedgui.rows.MobRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
 import java.util.Comparator;

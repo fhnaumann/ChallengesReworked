@@ -1,17 +1,12 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.challenges;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
@@ -21,19 +16,12 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
-import wand555.github.io.challengesreworkedgui.ChallengeApplication;
-import wand555.github.io.challengesreworkedgui.DeserializationNotImplementedException;
-import wand555.github.io.challengesreworkedgui.InventoryTypeRow;
-import wand555.github.io.challengesreworkedgui.MaterialRow;
+import wand555.github.io.challengesreworkedgui.rows.InventoryTypeRow;
+import wand555.github.io.challengesreworkedgui.rows.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
-
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
-import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

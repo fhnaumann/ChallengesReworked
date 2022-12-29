@@ -1,10 +1,8 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.rows;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.layout.HBox;
 import javafx.util.converter.IntegerStringConverter;
 
 public abstract class AmountableRow extends Row {

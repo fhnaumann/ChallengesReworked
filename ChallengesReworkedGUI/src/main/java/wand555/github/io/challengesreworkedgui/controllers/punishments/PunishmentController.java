@@ -1,18 +1,16 @@
-package wand555.github.io.challengesreworkedgui.controller;
+package wand555.github.io.challengesreworkedgui.controllers.punishments;
 
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
-import wand555.github.io.challengesreworkedgui.PunishmentRow;
+import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.util.DisplayComboBox;
 
 import java.util.ResourceBundle;

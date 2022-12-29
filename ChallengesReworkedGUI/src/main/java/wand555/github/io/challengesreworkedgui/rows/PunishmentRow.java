@@ -1,7 +1,7 @@
-package wand555.github.io.challengesreworkedgui;
+package wand555.github.io.challengesreworkedgui.rows;
 
 import javafx.scene.layout.HBox;
-import wand555.github.io.challengesreworkedgui.controller.PunishmentController;
+import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentController;
 
 public class PunishmentRow extends HBox {
 
