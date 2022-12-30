@@ -1,6 +1,8 @@
 run:
   start: "<color:#F2F4CB>Run has been started!"
-  end: "Run has ended! Use /restore if you want to replay the ending."
+  end:
+    success: "Run has ended! All goals have been completed."
+    fail: "Run has ended! Use /restore if you want to replay the ending."
 timer:
   running: "<color:#8CADA7>%time%"
 challenges:
@@ -27,6 +29,11 @@ punishments:
         perplayer:
           success: "You lost %itemstack%!"
           failed: "Cannot remove an item because your inventory is empty."
+  randompotioneffect:
+    name: "RandomPotionEffectPunishment"
+    affecttype:
+      causer: "%player% received %potioneffect%!"
+      all: "Every player received %potioneffect%!"
 goals:
   mobgoal:
     success: "%player% has killed the %mob% (%current_amount%/%amount_needed% until complete)"

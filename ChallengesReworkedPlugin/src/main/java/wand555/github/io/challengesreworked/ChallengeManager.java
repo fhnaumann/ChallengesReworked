@@ -113,9 +113,13 @@ public class ChallengeManager {
 
     public void end(ChallengeEnding ending) {
         players.forEach(uuid -> Bukkit.getPlayer(uuid).setGameMode(GameMode.SPECTATOR));
-
         gameState = GameState.ENDED;
-        ChatLogger.log("run.end");
+        String path = switch(ending) {
+            case SUCCESS -> "run.end.success";
+            case FAILED -> "run.end.fail";
+            case CANCELLED -> "run.end.cancel";
+        };
+        ChatLogger.log(path);
     }
 
     public void saveDataToFile() {
