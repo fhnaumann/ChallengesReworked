@@ -32,6 +32,9 @@ public class PluginNoBlockPlacingChallenge extends PluginPunishableChallenge imp
             return;
         }
         Material placed = event.getBlockPlaced().getType();
+        if(getCommon().getAllowedToPlace().contains(placed)) {
+            return;
+        }
         ChatLogger.log("challenges.noblockplacing.violation",
                 Map.of(PlaceHolderHandler.PLAYER_PLACEHOLDER, player,
                         PlaceHolderHandler.MATERIAL_PLACEHOLDER, placed));
