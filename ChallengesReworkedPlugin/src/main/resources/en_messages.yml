@@ -5,8 +5,11 @@ timer:
   running: "<color:#8CADA7>%time%"
 challenges:
   nocrafting:
-    name: "NoCraftingChallenge"
+    name: "No Crafting Challenge"
     violation: "<color:#8CADA7>%player% <color:#F2F4CB>has crafted <color:#8CADA7>%material%!"
+  noblockplacing:
+    name: "No Block Placing Challenge"
+    violation: "%player% has placed %material%!"
 punishments:
   health:
     name: "HealthPunishment"

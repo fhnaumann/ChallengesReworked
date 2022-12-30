@@ -15,6 +15,7 @@ import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
 import java.util.Map;
 
 public class PluginNoCraftingChallenge extends PluginPunishableChallenge implements NoCraftingChallenge, Listener {
+
     public PluginNoCraftingChallenge(NoCraftingChallengeCommon common) {
         super(common);
         ChallengesReworked.registerListener(plugin, this);
