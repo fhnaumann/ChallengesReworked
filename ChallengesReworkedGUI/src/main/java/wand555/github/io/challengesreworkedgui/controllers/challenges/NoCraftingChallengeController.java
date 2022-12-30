@@ -1,5 +1,9 @@
 package wand555.github.io.challengesreworkedgui.controllers.challenges;
 
+import javafx.beans.value.ChangeListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
@@ -20,6 +24,7 @@ import wand555.github.io.challengesreworkedgui.rows.InventoryTypeRow;
 import wand555.github.io.challengesreworkedgui.rows.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -28,11 +33,7 @@ import java.util.stream.Stream;
 
 public class NoCraftingChallengeController extends PunishableChallengeController implements NoCraftingChallenge {
     @FXML
-    private ToggleButton activateButton;
-    @FXML
     private ListView<MaterialRow> craftableItemsList;
-    @FXML
-    private TitledPane noCraftingTitledPane;
     @FXML
     private Button addCraftableItemButton;
     @FXML
@@ -65,6 +66,7 @@ public class NoCraftingChallengeController extends PunishableChallengeController
                 .filter(Material::isItem)
                 .filter(Predicate.not(Material::isAir))
                 .filter(Predicate.not(Material::isLegacy))
+                .filter(material -> craftableItemsList.getItems().stream().noneMatch(materialRow -> materialRow.getMaterial() == material))
                 .sorted(Comparator.comparing(Enum::toString))
                 .toList();
         List<MaterialRow> rows = obtainableItems.stream().map(MaterialRow::new).toList();
@@ -105,9 +107,17 @@ public class NoCraftingChallengeController extends PunishableChallengeController
         Stage stage = new Stage();
         StackPane root = new StackPane();
         ListSelectionView<InventoryTypeRow> listSelectionView = new ListSelectionView<>();
-        List<InventoryType> inventoryTypes = List.of(InventoryType.values());
+        List<InventoryType> inventoryTypes = Stream.of(InventoryType.values())
+                .filter(inventoryType -> forbiddenUIList.getItems().stream().noneMatch(inventoryTypeRow -> inventoryTypeRow.getInventoryType() == inventoryType))
+                .sorted(Comparator.comparing(Enum::toString))
+                .toList();
         List<InventoryTypeRow> rows = inventoryTypes.stream().map(InventoryTypeRow::new).toList();
-        listSelectionView.setSourceItems(FXCollections.observableArrayList(rows));
+        ObservableList<InventoryTypeRow> inventoryTypeRowObservableList = FXCollections.observableArrayList(rows);
+        SortedList<InventoryTypeRow> sortedRows = new SortedList<>(
+                inventoryTypeRowObservableList,
+                Comparator.comparing(inventoryTypeRow -> inventoryTypeRow.getInventoryType().toString())
+        );
+        listSelectionView.setSourceItems(inventoryTypeRowObservableList);
         listSelectionView.setTargetItems(CopyUtil.deepCopy(forbiddenUIList.getItems()));
         root.getChildren().add(listSelectionView);
         Scene scene = new Scene(root);

@@ -46,7 +46,6 @@ public class HealthPunishmentController extends PunishmentController implements 
     @Override
     public PunishmentRow getAsOneLine() {
         try {
-            ResourceBundle bundle = ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_bundle");
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/health_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             HealthPunishmentController rowController = loader.getController();

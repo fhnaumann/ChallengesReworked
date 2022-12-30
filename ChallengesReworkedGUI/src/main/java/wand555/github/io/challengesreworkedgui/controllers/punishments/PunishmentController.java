@@ -31,14 +31,14 @@ public abstract class PunishmentController implements Punishment {
     @FXML
     protected CheckBox forAllChallenges;
 
+    protected ResourceBundle bundle = null;
+
     @FXML
     protected void initialize() {
-        affectTypeComboBox.setDisplayText(affectType -> {
-            ResourceBundle bundle = ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_bundle");
-            return switch(affectType) {
-                case CAUSER -> bundle.getString("punishment.affecttype.causer");
-                case ALL -> bundle.getString("punishment.affecttype.all");
-            };
+        bundle = ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_punishments");
+        affectTypeComboBox.setDisplayText(affectType -> switch(affectType) {
+            case CAUSER -> bundle.getString("punishment.affecttype.causer");
+            case ALL -> bundle.getString("punishment.affecttype.all");
         });
         affectTypeComboBox.setItems(FXCollections.observableArrayList(AffectType.values()));
         affectTypeComboBox.setValue(getCommon().getAffectType());
@@ -53,12 +53,12 @@ public abstract class PunishmentController implements Punishment {
                 System.out.println(titledPane.getChildrenUnmodifiable());
                 Node title = titledPane.lookup(".title");
                 if(newValue) {
-                    activateButton.setText("Deaktivieren");
+                    activateButton.setText(bundle.getString("punishment.deactivate"));
                     title.setStyle("-fx-background-color: green;");
 
                 }
                 else {
-                    activateButton.setText("Aktivieren");
+                    activateButton.setText(bundle.getString("punishment.activate"));
                     title.setStyle(null);
                     forAllChallenges.setSelected(false);
                 }

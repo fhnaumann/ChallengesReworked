@@ -12,6 +12,7 @@ import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import javafx.fxml.FXML;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
+import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentOverviewController;
 
@@ -31,7 +32,7 @@ public abstract class PunishableChallengeController extends ChallengeController 
         super.initialize();
 
         addPunishmentButton.setOnAction(event -> {
-            ResourceBundle bundle = ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_bundle");
+            ResourceBundle bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_punishments"));
             FXMLLoader punishmentLoader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/punishment_overview.fxml"), bundle);
             try {
                 Parent root = punishmentLoader.load();
@@ -39,7 +40,7 @@ public abstract class PunishableChallengeController extends ChallengeController 
                 punishmentOverviewController.setDataFromRows(punishmentList.getItems());
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
-                Scene scene = new Scene(root, 400, 400);
+                Scene scene = new Scene(root, 500, 600);
                 stage.setScene(scene);
                 stage.setOnCloseRequest(event1 -> {
                     punishmentList.setItems(FXCollections.observableArrayList(punishmentOverviewController.getAllPunishmentsAsRow()));

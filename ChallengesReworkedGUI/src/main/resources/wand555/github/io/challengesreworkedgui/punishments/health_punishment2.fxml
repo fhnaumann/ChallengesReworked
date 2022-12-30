@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
 
-<?import javafx.scene.control.ComboBox?>
 <TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%punishment.health.name" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.punishments.HealthPunishmentController">
    <content>
       <StackPane>
@@ -33,12 +32,12 @@
                         <Pane HBox.hgrow="ALWAYS" />
                         <StackPane>
                            <children>
-                              <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="Für alle Challenges" />
+                              <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="%punishment.forallchallenges" />
                            </children>
                         </StackPane>
                         <StackPane>
                            <children>
-                              <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="Aktivieren">
+                              <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="%punishment.activate">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -51,7 +50,7 @@
                      </VBox.margin>
                   </HBox>
                   <Separator />
-                  <Label text="Spezifische Einstellungen:">
+                  <Label text="%punishment.specific.settings">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
@@ -61,18 +60,18 @@
                            <children>
                               <StackPane>
                                  <children>
-                                    <Label text="Betroffen:" />
+                                    <Label text="%punishment.affected" />
                                  </children>
                               </StackPane>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <DisplayComboBox fx:id="affectTypeComboBox"/>
+                              <DisplayComboBox fx:id="affectTypeComboBox" />
                            </children>
                         </HBox>
                         <HBox spacing="5.0">
                            <children>
                               <StackPane>
                                  <children>
-                                    <Label text="Herzen Abzug:" />
+                                    <Label text="%punishment.health.hearts" />
                                  </children>
                               </StackPane>
                               <Pane HBox.hgrow="ALWAYS" />

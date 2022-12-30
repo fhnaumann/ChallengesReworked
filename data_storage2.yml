@@ -1,7 +1,7 @@
 challenges:
   allowedToCraft:
-  - ACACIA_DOOR
   - ENDER_EYE
+  - ACACIA_BOAT
   punishments:
   - healthAmount: 3
     affectType: ALL
@@ -9,6 +9,5 @@ challenges:
     ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
   forbiddenToUse:
   - WORKBENCH
-  - FURNACE
   - CRAFTING
   ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon

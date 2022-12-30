@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 
+import java.util.ResourceBundle;
+
 public abstract class ChallengeController implements Challenge {
 
     protected ChallengeCommon common;
@@ -17,12 +19,15 @@ public abstract class ChallengeController implements Challenge {
     @FXML
     protected ToggleButton activateButton;
 
+    protected ResourceBundle bundle = null;
+
     @FXML
     protected void initialize() {
+
         activateButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             Node title = titledPane.lookup(".title");
             if(newValue) {
-                activateButton.setText("Deaktivieren");
+                activateButton.setText("abc");
                 title.setStyle("-fx-background-color: green;");
             }
             else {

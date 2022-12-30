@@ -18,11 +18,10 @@
             </StackPane>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
-                  <fx:include fx:id="challengesOverview" source="challenges/challenges_overview.fxml" />
+                  <fx:include fx:id="challengesOverview" source="challenges/challenges_overview.fxml" resources="wand555/github/io/challengesreworkedgui/lang_challenges" charset="utf-8"/>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <fx:include source="goals/goal_overview.fxml" />
+                  <fx:include source="goals/goal_overview.fxml" resources="wand555/github/io/challengesreworkedgui/lang_goals"/>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <fx:include source="challenges/challenges_overview.fxml" />
                </children>
             </HBox>
          </children>

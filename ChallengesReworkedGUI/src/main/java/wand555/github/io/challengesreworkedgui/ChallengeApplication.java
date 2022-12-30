@@ -7,13 +7,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class ChallengeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ResourceBundle.clearCache();
-        ResourceBundle bundle = ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_bundle");
+        ResourceBundle bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_challenges"));
+        System.out.println(bundle.getString("challenge.name"));
         FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("overview.fxml"), bundle);
         Parent root = loader.load();
         Scene scene = new Scene(root, 1000, 1000);
@@ -24,4 +28,8 @@ public class ChallengeApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
+
+
 }

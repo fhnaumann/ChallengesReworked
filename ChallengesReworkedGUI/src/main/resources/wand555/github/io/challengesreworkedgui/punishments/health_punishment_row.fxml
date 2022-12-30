@@ -16,14 +16,14 @@
    <children>
       <StackPane>
          <children>
-            <Label text="HealthPunishment" />
+            <Label text="%punishment.health.name" />
          </children>
       </StackPane>
       <HBox spacing="2.0">
          <children>
             <StackPane>
                <children>
-                  <TextField fx:id="heartsTextField" prefWidth="25.0" promptText="hearts" text="1" />
+                  <TextField fx:id="heartsTextField" prefWidth="25.0" text="1" />
                </children>
             </StackPane>
             <StackPane>
