@@ -17,7 +17,6 @@ public class ChallengeApplication extends Application {
     public void start(Stage stage) throws IOException {
         ResourceBundle.clearCache();
         ResourceBundle bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_challenges"));
-        System.out.println(bundle.getString("challenge.name"));
         FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("overview.fxml"), bundle);
         Parent root = loader.load();
         Scene scene = new Scene(root, 1000, 1000);

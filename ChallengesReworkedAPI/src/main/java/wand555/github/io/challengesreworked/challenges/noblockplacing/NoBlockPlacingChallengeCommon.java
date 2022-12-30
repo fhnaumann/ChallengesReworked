@@ -1,14 +1,16 @@
 package wand555.github.io.challengesreworked.challenges.noblockplacing;
 
+import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
+import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
 
@@ -24,6 +26,7 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
     public NoBlockPlacingChallengeCommon(Collection<PunishmentCommon> punishmentCommons, Set<Material> allowedToPlace) {
         super(punishmentCommons);
         this.allowedToPlace = allowedToPlace;
+        StandardSerializer.getDefault().register(NoBlockPlacingChallengeCommon.class, adapter);
     }
 
     public Set<Material> getAllowedToPlace() {
@@ -38,4 +41,24 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
     public NoBlockPlacingChallengeCommon copy() {
         return new NoBlockPlacingChallengeCommon(getPunishmentCommons(), getAllowedToPlace());
     }
+
+    private final TypeAdapter<NoBlockPlacingChallengeCommon> adapter = new TypeAdapter<NoBlockPlacingChallengeCommon>() {
+        @NotNull
+        @Override
+        public Map<Object, Object> serialize(@NotNull NoBlockPlacingChallengeCommon common) {
+            Map<Object, Object> map = new HashMap<>();
+            map.put("punishments", new ArrayList<>(getPunishmentCommons()));
+            map.put("allowedToPlace", allowedToPlace.stream().map(Enum::toString).toList());
+            return map;
+        }
+
+        @NotNull
+        @Override
+        public NoBlockPlacingChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
+            return new NoBlockPlacingChallengeCommon(
+                    (List<PunishmentCommon>) map.get("punishments"),
+                    ((List<?>) map.get("allowedToPlace")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet())
+            );
+        }
+    };
 }

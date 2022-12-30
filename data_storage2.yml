@@ -1,13 +1,9 @@
 challenges:
-  allowedToCraft:
-  - ENDER_EYE
-  - ACACIA_BOAT
-  punishments:
-  - healthAmount: 3
-    affectType: ALL
-    amountTriggered: 0
+- punishments:
+  - amountTriggered: 0
+    affectType: CAUSER
+    healthAmount: 1
     ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
-  forbiddenToUse:
-  - WORKBENCH
-  - CRAFTING
-  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
+  allowedToPlace:
+  - ACACIA_FENCE
+  ==: wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon

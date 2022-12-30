@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
 
 import java.util.ResourceBundle;
 
@@ -23,15 +24,15 @@ public abstract class ChallengeController implements Challenge {
 
     @FXML
     protected void initialize() {
-
+        bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_challenges"));
         activateButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             Node title = titledPane.lookup(".title");
             if(newValue) {
-                activateButton.setText("abc");
+                activateButton.setText(bundle.getString("challenge.deactivate"));
                 title.setStyle("-fx-background-color: green;");
             }
             else {
-                activateButton.setText("Aktivieren");
+                activateButton.setText(bundle.getString("challenge.activate"));
                 title.setStyle(null);
             }
         });

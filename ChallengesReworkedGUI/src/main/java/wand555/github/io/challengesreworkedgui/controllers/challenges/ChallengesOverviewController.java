@@ -18,6 +18,8 @@ public class ChallengesOverviewController {
 
     @FXML
     private NoCraftingChallengeController noCraftingChallengeController;
+    @FXML
+    private NoBlockPlacingChallengeController noBlockPlacingChallengeController;
 
     @FXML
     private Label allChallenges;
@@ -34,8 +36,10 @@ public class ChallengesOverviewController {
     }
 
     public List<ChallengeCommon> getAllChallenges() {
-        System.out.println(noCraftingChallengeController.isActive());
-        return Stream.of(noCraftingChallengeController)
+        return Stream.of(
+                noCraftingChallengeController,
+                noBlockPlacingChallengeController
+                )
                 .filter(ChallengeController::isActive)
                 .map(challengeController -> (ChallengeCommon) challengeController.getCommon().copy())
                 .toList();

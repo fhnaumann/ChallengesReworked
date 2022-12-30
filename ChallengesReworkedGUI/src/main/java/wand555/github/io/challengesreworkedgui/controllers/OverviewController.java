@@ -30,23 +30,9 @@ public class OverviewController {
             //storage.set("challenges", null);
             System.out.println(storage);
             List<ChallengeCommon> allChallenges = challengesOverviewController.getAllChallenges();
-            /*var temp = (NoCraftingChallengeCommon)allChallenges.get(0);
-            storage.set("challenges", new NoCraftingChallengeCommon(
-                    temp.getPunishmentCommons().stream().toList(),
-                    temp.getAllowedToCraft(),
-                    temp.getForbiddenToUse()
-            ));*/
-            NoCraftingChallengeCommon common1 = (NoCraftingChallengeCommon) allChallenges.get(0);
-            System.out.println("original" + common1.getAllowedToCraft());
-            storage.set("challenges", allChallenges.get(0));
-
-            NoCraftingChallengeCommon between = (NoCraftingChallengeCommon) storage.get("challenges");
-            System.out.println("between " + between.getAllowedToCraft());
-
+            storage.set("challenges", allChallenges);
             storage.save();
             storage.reload();
-            NoCraftingChallengeCommon common = (NoCraftingChallengeCommon) storage.get("challenges");
-            System.out.println("after saving/reloading" + common.getAllowedToCraft());
         } catch (IOException e) {
             e.printStackTrace();
         }
