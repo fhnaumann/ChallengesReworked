@@ -28,5 +28,7 @@ module challenges.reworked.gui {
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting;
     exports wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
+    exports wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking;
+    opens wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking;
 
 }

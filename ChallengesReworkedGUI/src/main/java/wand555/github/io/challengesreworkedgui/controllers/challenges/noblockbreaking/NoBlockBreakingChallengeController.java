@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
+package wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -12,8 +12,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
 import wand555.github.io.challengesreworked.Common;
-import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
-import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallenge;
+import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallenge;
+import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.PunishableChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.MaterialRow;
@@ -25,38 +25,38 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NoBlockPlacingChallengeController extends PunishableChallengeController implements NoBlockPlacingChallenge {
+public class NoBlockBreakingChallengeController extends PunishableChallengeController implements NoBlockBreakingChallenge {
 
     @FXML
-    private Button addPlaceableBlocksButton;
+    private Button addBreakableBlocksButton;
     @FXML
-    private ListView<MaterialRow> placeableBlocksList;
+    private ListView<MaterialRow> breakableBlocksList;
 
     @FXML
     @Override
     protected void initialize() {
-        common = new NoBlockPlacingChallengeCommon();
+        common = new NoBlockBreakingChallengeCommon();
         super.initialize();
-        placeableBlocksList.setItems(FXCollections.observableArrayList(getCommon().getAllowedToPlace().stream().map(MaterialRow::new).toList()));
-        addPlaceableBlocksButton.setOnAction(event -> {
-            initPlaceableBlocksUI();
+        breakableBlocksList.setItems(FXCollections.observableArrayList(getCommon().getAllowedToBreak().stream().map(MaterialRow::new).toList()));
+        addBreakableBlocksButton.setOnAction(event -> {
+            initBreakableBlocksUI();
         });
     }
 
-    private void initPlaceableBlocksUI() {
+    private void initBreakableBlocksUI() {
         Stage stage = new Stage();
         StackPane root = new StackPane();
         ListSelectionView<MaterialRow> listSelectionView = new ListSelectionView<>();
-        List<Material> placeableBlockMaterials = Stream.of(Material.values())
+        List<Material> breakableBlockMaterials = Stream.of(Material.values())
                 .filter(Material::isBlock)
                 .filter(Predicate.not(Material::isAir))
                 .filter(Predicate.not(Material::isLegacy))
-                .filter(material -> placeableBlocksList.getItems().stream().noneMatch(materialRow -> materialRow.getMaterial() == material))
+                .filter(material -> breakableBlocksList.getItems().stream().noneMatch(materialRow -> materialRow.getMaterial() == material))
                 .sorted(Comparator.comparing(Enum::toString))
                 .toList();
-        List<MaterialRow> rows = placeableBlockMaterials.stream().map(MaterialRow::new).toList();
+        List<MaterialRow> rows = breakableBlockMaterials.stream().map(MaterialRow::new).toList();
         listSelectionView.setSourceItems(FXCollections.observableArrayList(rows));
-        listSelectionView.setTargetItems(CopyUtil.deepCopy(placeableBlocksList.getItems()));
+        listSelectionView.setTargetItems(CopyUtil.deepCopy(breakableBlocksList.getItems()));
         root.getChildren().add(listSelectionView);
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -65,16 +65,16 @@ public class NoBlockPlacingChallengeController extends PunishableChallengeContro
         //stage.initOwner();
         stage.show();
         stage.setOnCloseRequest(event1 -> {
-            placeableBlocksList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems()));
-            getCommon().setAllowedToPlace(placeableBlocksList.getItems().stream().map(MaterialRow::getMaterial).collect(Collectors.toSet()));
+            breakableBlocksList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems()));
+            getCommon().setAllowedToBreak(breakableBlocksList.getItems().stream().map(MaterialRow::getMaterial).collect(Collectors.toSet()));
             });
     }
 
     @Override
     public void setDataFromCommon(Common from) {
         super.setDataFromCommon(from);
-        List<MaterialRow> allowedToPlace = getCommon().getAllowedToPlace().stream().map(MaterialRow::new).toList();
-        placeableBlocksList.setItems(FXCollections.observableArrayList(allowedToPlace));
+        List<MaterialRow> allowedToBreak = getCommon().getAllowedToBreak().stream().map(MaterialRow::new).toList();
+        breakableBlocksList.setItems(FXCollections.observableArrayList(allowedToBreak));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class NoBlockPlacingChallengeController extends PunishableChallengeContro
     }
 
     @Override
-    public NoBlockPlacingChallengeCommon getCommon() {
-        return (NoBlockPlacingChallengeCommon) super.getCommon();
+    public NoBlockBreakingChallengeCommon getCommon() {
+        return (NoBlockBreakingChallengeCommon) super.getCommon();
     }
 }

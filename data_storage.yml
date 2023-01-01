@@ -1,16 +1,9 @@
 challenges:
-- allowedToCraft:
-  - ENDER_EYE
+- allowedToBreak:
+  - BASALT
   punishments:
-  - affectType: CAUSER
-    amountTriggered: 0
-    healthAmount: 1
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
   - affectType: ALL
     amountTriggered: 0
     howManyRemoved: 1
     ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
-  forbiddenToUse:
-  - WORKBENCH
-  - CRAFTING
-  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
+  ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon

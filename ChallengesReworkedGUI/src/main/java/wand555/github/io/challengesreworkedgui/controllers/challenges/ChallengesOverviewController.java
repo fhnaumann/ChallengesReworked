@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking.NoBlockBreakingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing.NoBlockPlacingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting.NoCraftingChallengeController;
 
@@ -22,6 +23,8 @@ public class ChallengesOverviewController {
     private NoCraftingChallengeController noCraftingChallengeController;
     @FXML
     private NoBlockPlacingChallengeController noBlockPlacingChallengeController;
+    @FXML
+    private NoBlockBreakingChallengeController noBlockBreakingChallengeController;
 
     @FXML
     private Label allChallenges;
@@ -40,14 +43,15 @@ public class ChallengesOverviewController {
     public List<ChallengeCommon> getAllChallenges() {
         return getAllChallengesController().stream()
                 .filter(ChallengeController::isActive)
-                .map(challengeController -> (ChallengeCommon) challengeController.getCommon().copy())
+                .map(challengeController -> challengeController.getCommon().copy())
                 .toList();
     }
 
     public List<ChallengeController> getAllChallengesController() {
         return List.of(
                 noCraftingChallengeController,
-                noBlockPlacingChallengeController
+                noBlockPlacingChallengeController,
+                noBlockBreakingChallengeController
         );
     }
 }
