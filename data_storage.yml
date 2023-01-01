@@ -1,13 +1,16 @@
 challenges:
 - allowedToCraft:
-  - ACACIA_DOOR
   - ENDER_EYE
   punishments:
-  - healthAmount: 5
-    affectType: ALL
+  - affectType: CAUSER
     amountTriggered: 0
+    healthAmount: 1
     ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
+  - affectType: ALL
+    amountTriggered: 0
+    howManyRemoved: 1
+    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
   forbiddenToUse:
-  - CRAFTING
   - WORKBENCH
+  - CRAFTING
   ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon

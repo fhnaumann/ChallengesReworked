@@ -9,6 +9,7 @@ import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.Wrapper;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController;
 
@@ -69,5 +70,6 @@ public class OverviewController {
         // That's why every punishment common object is created once so it's registered.
 
         new HealthPunishmentCommon(0, AffectType.CAUSER, 0);
+        new RandomItemPunishmentCommon();
     }
 }

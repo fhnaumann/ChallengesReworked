@@ -12,27 +12,18 @@
 <?import wand555.github.io.challengesreworkedgui.util.DisplayComboBox?>
 <?import wand555.github.io.challengesreworkedgui.rows.PunishmentRow?>
 <?import javafx.scene.control.CheckBox?>
-<PunishmentRow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" fx:controller="wand555.github.io.challengesreworkedgui.controllers.punishments.HealthPunishmentController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<PunishmentRow maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" fx:controller="wand555.github.io.challengesreworkedgui.controllers.punishments.RandomItemPunishmentController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane>
          <children>
-            <Label text="%punishment.health.name" />
+            <Label text="%punishment.randomitem.name" />
          </children>
       </StackPane>
       <HBox spacing="2.0">
          <children>
             <StackPane>
                <children>
-                  <TextField fx:id="heartsTextField" prefWidth="25.0" text="1" />
-               </children>
-            </StackPane>
-            <StackPane>
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@heart.png" />
-                     </image>
-                  </ImageView>
+                  <TextField fx:id="itemAmountTextField" prefWidth="25.0" text="1" />
                </children>
             </StackPane>
          </children>

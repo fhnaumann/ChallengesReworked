@@ -11,7 +11,11 @@ import java.util.Map;
 
 public class RandomItemPunishmentCommon extends PunishmentCommon {
 
-    private final int howManyRemoved;
+    private int howManyRemoved;
+
+    public RandomItemPunishmentCommon() {
+        this(0, AffectType.ALL, 1);
+    }
 
     public RandomItemPunishmentCommon(int amountTriggered, AffectType affectType, int howManyRemoved) {
         super(amountTriggered, affectType);
@@ -43,6 +47,10 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
 
     public int getHowManyRemoved() {
         return howManyRemoved;
+    }
+
+    public void setHowManyRemoved(int howManyRemoved) {
+        this.howManyRemoved = howManyRemoved;
     }
 
     @Override
