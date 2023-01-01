@@ -12,6 +12,9 @@ challenges:
   noblockplacing:
     name: "No Block Placing Challenge"
     violation: "%player% has placed %material%!"
+  noblockbreaking:
+    name: "No Block Breaking Challenge"
+    violation: "%player% has broken %material%!"
 punishments:
   health:
     name: "HealthPunishment"
