@@ -7,15 +7,18 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
+import wand555.github.io.challengesreworkedgui.controllers.Controller;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.util.DisplayComboBox;
 
 import java.util.ResourceBundle;
 
-public abstract class PunishmentController implements Punishment {
+public abstract class PunishmentController extends Controller implements Punishment {
 
     protected PunishmentCommon common;
 
@@ -52,24 +55,28 @@ public abstract class PunishmentController implements Punishment {
                 System.out.println("changed pane color");
                 System.out.println(titledPane.getChildrenUnmodifiable());
                 Node title = titledPane.lookup(".title");
-                if(newValue) {
-                    activateButton.setText(bundle.getString("punishment.deactivate"));
-                    title.setStyle("-fx-background-color: green;");
+                if(title != null) {
+                    if(newValue) {
+                        activateButton.setText(bundle.getString("punishment.deactivate"));
+                        title.setStyle("-fx-background-color: green;");
 
-                }
-                else {
-                    activateButton.setText(bundle.getString("punishment.activate"));
-                    title.setStyle(null);
-                    forAllChallenges.setSelected(false);
+                    }
+                    else {
+                        activateButton.setText(bundle.getString("punishment.activate"));
+                        title.setStyle(null);
+                        forAllChallenges.setSelected(false);
+                    }
                 }
             });
             forAllChallenges.selectedProperty().addListener((observable, oldValue, newValue) -> {
                 Node title = titledPane.lookup(".title");
-                if(newValue && activateButton.isSelected()) {
-                    title.setStyle("-fx-background-color: orange");
-                }
-                else {
-                    title.setStyle(null);
+                if(title != null) {
+                    if(newValue && activateButton.isSelected()) {
+                        title.setStyle("-fx-background-color: orange");
+                    }
+                    else {
+                        title.setStyle(null);
+                    }
                 }
             });
         }
@@ -85,6 +92,12 @@ public abstract class PunishmentController implements Punishment {
         activateButton.setSelected(true); //else it wouldnt be a row to begin with
         affectTypeComboBox.setValue(row.getPunishmentController().affectTypeComboBox.getValue());
         forAllChallenges.setSelected(row.getPunishmentController().forAllChallenges.isSelected());
+    }
+
+    @Override
+    public void setDataFromCommon(Common from) {
+        common = (PunishmentCommon) from.copy();
+        activateButton.setSelected(true); //set selected because this method is only called if its active
     }
 
     @Override

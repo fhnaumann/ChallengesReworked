@@ -1,5 +1,6 @@
 package wand555.github.io.challengesreworked.punishments;
 
+import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import wand555.github.io.challengesreworked.Common;
 
 public abstract class PunishmentCommon implements Common {
@@ -32,4 +33,5 @@ public abstract class PunishmentCommon implements Common {
     public PunishmentCommon copy() {
         throw new RuntimeException("Tried to copy abstract class");
     }
+
 }

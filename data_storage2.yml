@@ -1,9 +1,0 @@
-challenges:
-- punishments:
-  - amountTriggered: 0
-    affectType: CAUSER
-    healthAmount: 1
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
-  allowedToPlace:
-  - ACACIA_FENCE
-  ==: wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon

@@ -23,7 +23,7 @@
                <content>
                   <Accordion>
                      <panes>
-                        <fx:include fx:id="healthPunishment" source="health_punishment2.fxml" resources="wand555/github/io/challengesreworkedgui/lang_punishments"/>
+                        <fx:include fx:id="healthPunishment" source="health_punishment.fxml" resources="wand555/github/io/challengesreworkedgui/lang_punishments"/>
                      </panes>
                   </Accordion>
                </content>

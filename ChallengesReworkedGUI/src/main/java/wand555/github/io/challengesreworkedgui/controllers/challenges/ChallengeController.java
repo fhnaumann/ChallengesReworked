@@ -1,5 +1,6 @@
 package wand555.github.io.challengesreworkedgui.controllers.challenges;
 
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import javafx.fxml.FXML;
@@ -7,10 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
+import wand555.github.io.challengesreworkedgui.controllers.Controller;
 
 import java.util.ResourceBundle;
 
-public abstract class ChallengeController implements Challenge {
+public abstract class ChallengeController extends Controller implements Challenge {
 
     protected ChallengeCommon common;
 
@@ -36,6 +38,17 @@ public abstract class ChallengeController implements Challenge {
                 title.setStyle(null);
             }
         });
+    }
+
+    /**
+     * "from" is put into the "common" variable.
+     *
+     * @param from deserialized common object
+     */
+    @Override
+    public void setDataFromCommon(Common from) {
+        common = (ChallengeCommon) from.copy();
+        activateButton.setSelected(true); //set selected because this method is only called if its active
     }
 
     public boolean isActive() {

@@ -4,4 +4,6 @@ import wand555.github.io.challengesreworked.Common;
 
 public abstract class ChallengeCommon implements Common {
 
+    @Override
+    public abstract ChallengeCommon copy();
 }

@@ -1,4 +1,4 @@
-package wand555.github.io.challengesreworkedgui.controllers.challenges;
+package wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -14,6 +14,7 @@ import org.controlsfx.control.ListSelectionView;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallenge;
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.PunishableChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
 

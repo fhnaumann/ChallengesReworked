@@ -1,9 +1,10 @@
-package wand555.github.io.challengesreworkedgui.controllers.challenges;
+package wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.controlsfx.control.ListSelectionView;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.PunishableChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.InventoryTypeRow;
 import wand555.github.io.challengesreworkedgui.rows.MaterialRow;
 import wand555.github.io.challengesreworkedgui.util.CopyUtil;
@@ -130,6 +132,15 @@ public class NoCraftingChallengeController extends PunishableChallengeController
             forbiddenUIList.setItems(CopyUtil.deepCopy(listSelectionView.getTargetItems()));
             getCommon().setForbiddenToUse(forbiddenUIList.getItems().stream().map(InventoryTypeRow::getInventoryType).collect(Collectors.toSet()));
         });
+    }
+
+    @Override
+    public void setDataFromCommon(Common from) {
+        super.setDataFromCommon(from);
+        List<MaterialRow> materialRows = getCommon().getAllowedToCraft().stream().map(MaterialRow::new).toList();
+        craftableItemsList.setItems(FXCollections.observableArrayList(materialRows));
+        List<InventoryTypeRow> inventoryTypeRows = getCommon().getForbiddenToUse().stream().map(InventoryTypeRow::new).toList();
+        forbiddenUIList.setItems(FXCollections.observableArrayList(inventoryTypeRows));
     }
 
     @Override

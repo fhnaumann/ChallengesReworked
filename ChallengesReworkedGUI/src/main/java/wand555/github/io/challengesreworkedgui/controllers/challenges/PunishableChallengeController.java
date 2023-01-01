@@ -7,17 +7,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.PunishableChallenge;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import javafx.fxml.FXML;
+import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
+import wand555.github.io.challengesreworkedgui.Wrapper;
+import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentOverviewController;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class PunishableChallengeController extends ChallengeController implements PunishableChallenge {
@@ -53,6 +59,17 @@ public abstract class PunishableChallengeController extends ChallengeController 
         });
 
 
+    }
+
+    @Override
+    public void setDataFromCommon(Common from) {
+        super.setDataFromCommon(from);
+        Collection<PunishmentCommon> punishmentCommons = getCommon().getPunishmentCommons();
+        List<PunishmentRow> rows = punishmentCommons.stream()
+                .map(Wrapper::wrapAndInject)
+                .map(PunishmentController::getAsOneLine)
+                .toList();
+        punishmentList.setItems(FXCollections.observableArrayList(rows));
     }
 
     @Override

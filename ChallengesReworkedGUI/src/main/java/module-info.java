@@ -24,5 +24,9 @@ module challenges.reworked.gui {
     opens wand555.github.io.challengesreworkedgui.rows to javafx.fxml;
     exports wand555.github.io.challengesreworkedgui.exceptions;
     opens wand555.github.io.challengesreworkedgui.exceptions to javafx.fxml;
+    exports wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting;
+    opens wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting;
+    exports wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
+    opens wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing;
 
 }

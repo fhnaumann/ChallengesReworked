@@ -26,33 +26,35 @@ public class PluginRandomItemPunishment extends PluginPunishment implements Rand
     @Override
     public void enforcePunishment(Player causer) {
         super.enforcePunishment(causer);
-        switch(getCommon().getAffectType()) {
-            case CAUSER -> {
-                removeRandomItem(causer).ifPresentOrElse(itemStack -> {
-                    ChatLogger.log("punishments.randomitem.affecttype.causer.success", Map.of(
-                            PlaceHolderHandler.ITEMSTACK_PLACEHOLDER, itemStack,
-                            PlaceHolderHandler.PLAYER_PLACEHOLDER, causer
-                            ));
-                }, () -> {
-                    ChatLogger.log("punishments.randomitem.affecttype.causer.failed", Map.of(
-                            PlaceHolderHandler.PLAYER_PLACEHOLDER, causer
-                    ));
-                });
-            }
-            case ALL -> {
-                ChatLogger.log("punishments.randomitem.affecttype.all");
-                ChallengeManager.getInstance().getPlayers().stream()
-                        .map(Bukkit::getPlayer)
-                        .filter(Objects::nonNull)
-                        .forEach(player -> {
-                            removeRandomItem(player).ifPresentOrElse(itemStack -> {
-                                ChatLogger.log("punishments.randomitem.affecttype.all.perplayer.success", Map.of(
-                                        PlaceHolderHandler.ITEMSTACK_PLACEHOLDER, itemStack
-                                ));
-                            }, () -> {
-                                ChatLogger.log("punishments.randomitem.affecttype.all.perplayer.success");
+        for(int ignored=0; ignored<getCommon().getHowManyRemoved(); ignored++) {
+            switch(getCommon().getAffectType()) {
+                case CAUSER -> {
+                    removeRandomItem(causer).ifPresentOrElse(itemStack -> {
+                        ChatLogger.log("punishments.randomitem.affecttype.causer.success", Map.of(
+                                PlaceHolderHandler.ITEMSTACK_PLACEHOLDER, itemStack,
+                                PlaceHolderHandler.PLAYER_PLACEHOLDER, causer
+                        ));
+                    }, () -> {
+                        ChatLogger.log("punishments.randomitem.affecttype.causer.failed", Map.of(
+                                PlaceHolderHandler.PLAYER_PLACEHOLDER, causer
+                        ));
+                    });
+                }
+                case ALL -> {
+                    ChatLogger.log("punishments.randomitem.affecttype.all");
+                    ChallengeManager.getInstance().getPlayers().stream()
+                            .map(Bukkit::getPlayer)
+                            .filter(Objects::nonNull)
+                            .forEach(player -> {
+                                removeRandomItem(player).ifPresentOrElse(itemStack -> {
+                                    ChatLogger.log("punishments.randomitem.affecttype.all.perplayer.success", Map.of(
+                                            PlaceHolderHandler.ITEMSTACK_PLACEHOLDER, itemStack
+                                    ));
+                                }, () -> {
+                                    ChatLogger.log("punishments.randomitem.affecttype.all.perplayer.success");
+                                });
                             });
-                        });
+                }
             }
         }
     }

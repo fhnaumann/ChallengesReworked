@@ -13,7 +13,12 @@
          <children>
             <StackPane alignment="CENTER_LEFT">
                <children>
-                  <Button fx:id="exportButton" mnemonicParsing="false" onAction="#onExport" text="Export" />
+                  <HBox spacing="10">
+                     <children>
+                        <Button fx:id="exportButton" mnemonicParsing="false" onAction="#onExport" text="Export" />
+                        <Button fx:id="loadButton" mnemonicParsing="false" onAction="#onImport" text="Import" />
+                     </children>
+                  </HBox>
                </children>
             </StackPane>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">

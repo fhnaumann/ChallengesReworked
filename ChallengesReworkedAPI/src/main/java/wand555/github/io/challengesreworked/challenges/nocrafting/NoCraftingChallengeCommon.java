@@ -52,7 +52,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         this.forbiddenToUse = forbiddenToUse;
     }
 
-    public final TypeAdapter<NoCraftingChallengeCommon> adapter = new TypeAdapter<NoCraftingChallengeCommon>() {
+    private final TypeAdapter<NoCraftingChallengeCommon> adapter = new TypeAdapter<NoCraftingChallengeCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull NoCraftingChallengeCommon noCraftingChallenge) {
@@ -67,7 +67,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         @Override
         public NoCraftingChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
             return new NoCraftingChallengeCommon(
-                    (List<PunishmentCommon>) map.get("punishments"),
+                    ((List<PunishmentCommon>) map.get("punishments")),
                     ((List<?>) map.get("allowedToCraft")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet()),
                     ((List<?>) map.get("forbiddenToUse")).stream().map(o -> InventoryType.valueOf(o.toString())).collect(Collectors.toSet()));
         }
