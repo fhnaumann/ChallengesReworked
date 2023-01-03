@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 
 public class Collect {
-    private final int amountNeeded;
+    private int amountNeeded;
     private int currentAmount;
 
     public Collect(int amountNeeded) {
@@ -22,6 +22,10 @@ public class Collect {
 
     public int getAmountNeeded() {
         return amountNeeded;
+    }
+
+    public void setAmountNeeded(int amountNeeded) {
+        this.amountNeeded = amountNeeded;
     }
 
     public int getCurrentAmount() {

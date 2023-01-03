@@ -7,11 +7,13 @@ import javafx.scene.control.Button;
 import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.goals.GoalCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.Wrapper;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController;
+import wand555.github.io.challengesreworkedgui.controllers.goals.GoalsOverviewController;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,8 @@ public class OverviewController {
 
     @FXML
     private ChallengesOverviewController challengesOverviewController;
+    @FXML
+    private GoalsOverviewController goalsOverviewController;
     @FXML
     private Button exportButton;
     @FXML
@@ -38,6 +42,8 @@ public class OverviewController {
             System.out.println(storage);
             List<ChallengeCommon> allChallenges = challengesOverviewController.getAllChallenges();
             storage.set("challenges", allChallenges);
+            List<GoalCommon> allGoals = goalsOverviewController.getAllGoals();
+            storage.set("goals", allGoals);
             storage.save();
             storage.reload();
         } catch (IOException e) {

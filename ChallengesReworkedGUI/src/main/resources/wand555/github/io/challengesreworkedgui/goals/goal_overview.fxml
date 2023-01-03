@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background-node" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController">
+<AnchorPane id="background-node" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.goals.GoalsOverviewController">
    <children>
       <VBox>
          <children>
-            <CheckBox id="showActiveChallenges" fx:id="showActiveChallenges" mnemonicParsing="false" prefHeight="55.0" text="Zeige aktive Ziele">
+            <CheckBox id="showActiveChallenges" fx:id="showActiveGoals" mnemonicParsing="false" prefHeight="55.0" text="Zeige aktive Ziele">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -23,9 +23,7 @@
                <content>
                   <Accordion>
                      <panes>
-                        <fx:include fx:id="challenge3" source="mobgoal.fxml" VBox.vgrow="ALWAYS" />
-                        <fx:include fx:id="challenge1" source="mobgoal.fxml" VBox.vgrow="ALWAYS" />
-                        <fx:include fx:id="challenge2" source="mobgoal.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="mobGoal" source="mobgoal.fxml" VBox.vgrow="ALWAYS" />
                      </panes>
                   </Accordion>
                </content>

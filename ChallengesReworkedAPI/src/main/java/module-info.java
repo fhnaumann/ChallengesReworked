@@ -10,4 +10,6 @@ module challenges.reworked.api {
     exports wand555.github.io.challengesreworked.punishments.randomitem;
     exports wand555.github.io.challengesreworked.challenges.noblockplacing;
     exports wand555.github.io.challengesreworked.challenges.noblockbreaking;
+    exports wand555.github.io.challengesreworked.goals;
+    exports wand555.github.io.challengesreworked.goals.mob;
 }

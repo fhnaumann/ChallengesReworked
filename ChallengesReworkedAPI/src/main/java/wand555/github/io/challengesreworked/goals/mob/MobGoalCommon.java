@@ -8,12 +8,17 @@ import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MobGoalCommon extends GoalCommon {
 
-    private final Map<EntityType, Collect> toKill;
+    private Map<EntityType, Collect> toKill;
+
+    public MobGoalCommon() {
+        this(false, new HashMap<>(Map.of(EntityType.ENDER_DRAGON, new Collect(1))));
+    }
 
     public MobGoalCommon(Map<EntityType, Collect> toKill) {
         this(false, toKill);
@@ -27,6 +32,10 @@ public class MobGoalCommon extends GoalCommon {
 
     public Map<EntityType, Collect> getToKill() {
         return toKill;
+    }
+
+    public void setToKill(Map<EntityType, Collect> toKill) {
+        this.toKill = toKill;
     }
 
     private final TypeAdapter<MobGoalCommon> adapter = new TypeAdapter<>() {

@@ -1,9 +1,5 @@
-challenges:
-- allowedToBreak:
-  - BASALT
-  punishments:
-  - affectType: ALL
-    amountTriggered: 0
-    howManyRemoved: 1
-    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
-  ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon
+challenges: []
+goals:
+- toKill: {}
+  complete: false
+  ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

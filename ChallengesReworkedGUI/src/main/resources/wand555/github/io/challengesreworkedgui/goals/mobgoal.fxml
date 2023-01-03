@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%goal.name" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.goals.MobGoalController">
+<TitledPane fx:id="titledPane" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="%goal.mob.name" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.goals.MobGoalController">
    <content>
       <StackPane>
          <children>
@@ -22,13 +22,13 @@
                      <children>
                         <StackPane>
                            <children>
-                              <Label text="%goal.description" wrapText="true" />
+                              <Label text="%goal.mob.description" wrapText="true" />
                            </children>
                         </StackPane>
                         <Pane HBox.hgrow="ALWAYS" />
                         <StackPane>
                            <children>
-                              <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="Hinzufügen">
+                              <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="%goal.activate">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -41,7 +41,7 @@
                      </VBox.margin>
                   </HBox>
                   <Separator />
-                  <Label text="Ziel spezifische Einstellungen:" />
+                  <Label text="%goal.specificsettings" />
                   <VBox spacing="30.0">
                      <children>
                         <VBox spacing="5.0">
@@ -50,13 +50,13 @@
                                  <children>
                                     <StackPane>
                                        <children>
-                                          <Label text="Zu tötendes Mobs" />
+                                          <Label text="%goal.mob.tokill" />
                                        </children>
                                     </StackPane>
                                     <Pane HBox.hgrow="ALWAYS" />
                                     <StackPane>
                                        <children>
-                                          <Button fx:id="addMobsToKill" mnemonicParsing="false" text="Auswählen" />
+                                          <Button fx:id="addMobsToKill" mnemonicParsing="false" text="%goal.edit" />
                                        </children>
                                     </StackPane>
                                  </children>
