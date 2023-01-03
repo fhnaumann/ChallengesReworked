@@ -74,8 +74,12 @@ public abstract class PunishableChallengeController extends ChallengeController 
     }
 
     private boolean punishmentIsGloballyEnabled(PunishmentCommon punishmentCommon) {
-        // f- this static
+        // Punishments are considered global when every punishment with the exact same settings
+        // is present in every challenge.
+        // Theoretically a user could enable the exact same punishment on every challenge
+        // locally and upon reimporting the data this would be converted to a global punishment.
 
+        // f- this static
         boolean test = OverviewController.getInstance().getChallengesOverviewController().getAllChallenges().stream()
                 .filter(challengeCommon -> challengeCommon instanceof PunishableChallengeCommon)
                 .map(challengeCommon -> (PunishableChallengeCommon) challengeCommon)

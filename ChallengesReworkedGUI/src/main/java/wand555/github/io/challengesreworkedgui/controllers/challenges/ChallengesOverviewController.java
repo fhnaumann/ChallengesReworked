@@ -132,7 +132,13 @@ public class ChallengesOverviewController {
         }
     }
 
+
     public void setGlobalPunishmentRowsFromCommons(List<ChallengeCommon> commons) {
+        // Punishments are considered global when every punishment with the exact same settings
+        // is present in every challenge.
+        // Theoretically a user could enable the exact same punishment on every challenge
+        // locally and upon reimporting the data this would be converted to a global punishment.
+
         List<PunishableChallengeCommon> mapped = commons.stream()
                 .filter(challengeCommon -> challengeCommon instanceof PunishableChallengeCommon)
                 .map(challengeCommon -> (PunishableChallengeCommon) challengeCommon)
