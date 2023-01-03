@@ -52,7 +52,6 @@ public class HealthPunishmentController extends PunishmentController implements 
             rowController.common = getCommon();
             rowController.heartsTextField.setText(Integer.toString(getHealthAmount()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
-            rowController.forAllChallenges.setSelected(forAllChallenges.isSelected());
             root.setPunishmentController(rowController);
             return root;
         } catch (IOException e) {

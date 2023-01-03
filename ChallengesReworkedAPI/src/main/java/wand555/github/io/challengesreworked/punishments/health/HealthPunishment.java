@@ -1,10 +1,20 @@
 package wand555.github.io.challengesreworked.punishments.health;
 
+import wand555.github.io.challengesreworked.challenges.Challenge;
+import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallenge;
 import wand555.github.io.challengesreworked.punishments.Punishment;
+
+import java.util.Collection;
+import java.util.List;
 
 public interface HealthPunishment extends Punishment {
     @Override
     HealthPunishmentCommon getCommon();
+
+    @Override
+    default Collection<Class<? extends Challenge>> getIncompatibleChallenges() {
+        return List.of(NoDamageChallenge.class);
+    }
 
     default int getHealthAmount() {
         return getCommon().getHealthAmount();

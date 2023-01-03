@@ -33,10 +33,5 @@
             <DisplayComboBox fx:id="affectTypeComboBox" />
          </children>
       </StackPane>
-      <StackPane>
-         <children>
-            <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="%punishment.forallchallenges" />
-         </children>
-      </StackPane>
    </children>
 </PunishmentRow>

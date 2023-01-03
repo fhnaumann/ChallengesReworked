@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
@@ -18,8 +19,11 @@ import wand555.github.io.challengesreworkedgui.controllers.goals.GoalsOverviewCo
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class OverviewController {
+
+    private static OverviewController instance = null;
 
     @FXML
     private ChallengesOverviewController challengesOverviewController;
@@ -29,6 +33,11 @@ public class OverviewController {
     private Button exportButton;
     @FXML
     private Button loadButton;
+
+    @FXML
+    private void initialize() {
+        instance = this;
+    }
 
     @FXML
     private void onExport(ActionEvent actionEvent) {
@@ -41,6 +50,7 @@ public class OverviewController {
             //storage.set("challenges", null);
             System.out.println(storage);
             List<ChallengeCommon> allChallenges = challengesOverviewController.getAllChallenges();
+            System.out.println(allChallenges);
             storage.set("challenges", allChallenges);
             List<GoalCommon> allGoals = goalsOverviewController.getAllGoals();
             storage.set("goals", allGoals);
@@ -77,5 +87,14 @@ public class OverviewController {
 
         new HealthPunishmentCommon(0, AffectType.CAUSER, 0);
         new RandomItemPunishmentCommon();
+    }
+
+    public boolean isActive(Class<? extends Challenge> challengeClazz) {
+        return challengesOverviewController.getAllChallengesController().stream()
+                .anyMatch(challengeController -> challengeClazz.isInstance(challengeController) && challengeController.isActive());
+    }
+
+    public static OverviewController getInstance() {
+        return instance;
     }
 }

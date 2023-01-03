@@ -8,9 +8,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
+import wand555.github.io.challengesreworkedgui.controllers.OverviewController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking.NoBlockBreakingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing.NoBlockPlacingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting.NoCraftingChallengeController;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.nodamage.NoDamageChallengeController;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -25,6 +27,8 @@ public class ChallengesOverviewController {
     private NoBlockPlacingChallengeController noBlockPlacingChallengeController;
     @FXML
     private NoBlockBreakingChallengeController noBlockBreakingChallengeController;
+    @FXML
+    private NoDamageChallengeController noDamageChallengeController;
 
     @FXML
     private Label allChallenges;
@@ -38,6 +42,7 @@ public class ChallengesOverviewController {
     @FXML
     private void initialize() throws FileNotFoundException {
         Font font = Font.loadFont(ChallengeApplication.class.getResourceAsStream("fonts/VT323-Regular.ttf"), 30);
+
     }
 
     public List<ChallengeCommon> getAllChallenges() {
@@ -51,7 +56,8 @@ public class ChallengesOverviewController {
         return List.of(
                 noCraftingChallengeController,
                 noBlockPlacingChallengeController,
-                noBlockBreakingChallengeController
+                noBlockBreakingChallengeController,
+                noDamageChallengeController
         );
     }
 }

@@ -53,7 +53,6 @@ public class RandomItemPunishmentController extends PunishmentController impleme
             rowController.common = getCommon();
             rowController.itemAmountTextField.setText(Integer.toString(getCommon().getHowManyRemoved()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
-            rowController.forAllChallenges.setSelected(forAllChallenges.isSelected());
             root.setPunishmentController(rowController);
             return root;
         } catch (IOException e) {

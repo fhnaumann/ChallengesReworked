@@ -21,7 +21,7 @@ public class NoDamageChallengeCommon extends PunishableChallengeCommon {
 
         @Override
         public NoDamageChallengeCommon copy() {
-                return new NoDamageChallengeCommon(getPunishmentCommons());
+                return new NoDamageChallengeCommon(copyPunishmentCommons());
         }
 
         private final TypeAdapter<NoDamageChallengeCommon> adapter = new TypeAdapter<NoDamageChallengeCommon>() {

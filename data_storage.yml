@@ -1,5 +1,15 @@
-challenges: []
+challenges:
+- punishments:
+  - affectType: ALL
+    amountTriggered: 0
+    howManyRemoved: 3
+    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
+  ==: wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon
 goals:
-- toKill: {}
-  complete: false
+- complete: false
+  toKill:
+    ENDER_DRAGON:
+      amountNeeded: 1
+      currentAmount: 0
+      ==: wand555.github.io.challengesreworked.Collect
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

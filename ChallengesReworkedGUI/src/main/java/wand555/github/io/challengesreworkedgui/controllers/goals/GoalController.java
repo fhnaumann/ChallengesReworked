@@ -31,13 +31,15 @@ public abstract class GoalController extends Controller implements Goal {
 
         activateButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             Node title = titledPane.lookup(".title");
-            if(newValue) {
-                activateButton.setText(bundle.getString("goal.deactivate"));
-                title.setStyle("-fx-background-color: green;");
-            }
-            else {
-                activateButton.setText(bundle.getString("goal.activate"));
-                title.setStyle(null);
+            if(title != null) {
+                if(newValue) {
+                    activateButton.setText(bundle.getString("goal.deactivate"));
+                    title.setStyle("-fx-background-color: green;");
+                }
+                else {
+                    activateButton.setText(bundle.getString("goal.activate"));
+                    title.setStyle(null);
+                }
             }
         });
     }

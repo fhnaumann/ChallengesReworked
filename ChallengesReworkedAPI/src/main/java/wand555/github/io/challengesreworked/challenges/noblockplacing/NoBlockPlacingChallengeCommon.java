@@ -39,7 +39,7 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
 
     @Override
     public NoBlockPlacingChallengeCommon copy() {
-        return new NoBlockPlacingChallengeCommon(getPunishmentCommons(), getAllowedToPlace());
+        return new NoBlockPlacingChallengeCommon(copyPunishmentCommons(), getAllowedToPlace());
     }
 
     private final TypeAdapter<NoBlockPlacingChallengeCommon> adapter = new TypeAdapter<NoBlockPlacingChallengeCommon>() {
@@ -61,4 +61,13 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
             );
         }
     };
+
+    @Override
+    public String toString() {
+        return "NoBlockPlacingChallengeCommon{" +
+                "punishmentCommons=" + punishmentCommons +
+                ", allowedToPlace=" + allowedToPlace +
+                ", adapter=" + adapter +
+                '}';
+    }
 }

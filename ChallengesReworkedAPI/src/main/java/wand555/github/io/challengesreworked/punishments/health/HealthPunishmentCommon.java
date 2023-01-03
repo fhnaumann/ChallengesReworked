@@ -53,4 +53,13 @@ public class HealthPunishmentCommon extends PunishmentCommon {
     public HealthPunishmentCommon copy() {
         return new HealthPunishmentCommon(getAmountTriggered(), getAffectType(), getHealthAmount());
     }
+
+    @Override
+    public String toString() {
+        return "HealthPunishmentCommon{" +
+                "affectType=" + affectType +
+                ", healthAmount=" + healthAmount +
+                ", adapter=" + adapter +
+                '}';
+    }
 }

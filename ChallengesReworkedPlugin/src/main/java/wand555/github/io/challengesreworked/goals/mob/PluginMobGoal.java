@@ -32,7 +32,7 @@ public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
         setComplete(true);
         ChatLogger.log("goals.mobgoal.complete", Map.of(
                 PlaceHolderHandler.AMOUNT_PLACEHOLDER, getCommon().getToKill().keySet().size(),
-                PlaceHolderHandler.MOB_PLACEHOLDER, getCommon().getToKill()
+                PlaceHolderHandler.ENTITY_PLACEHOLDER, getCommon().getToKill()
         ));
         if(manager.allGoalsComplete()) {
             manager.end(ChallengeEnding.SUCCESS);
@@ -62,7 +62,7 @@ public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
             ChatLogger.log("goals.mobgoal.success", Map.of(
                     PlaceHolderHandler.PLAYER_PLACEHOLDER, killer,
-                    PlaceHolderHandler.MOB_PLACEHOLDER, killed,
+                    PlaceHolderHandler.ENTITY_PLACEHOLDER, killed,
                     PlaceHolderHandler.CURRENT_AMOUNT_PLACEHOLDER, collect.getCurrentAmount(),
                     PlaceHolderHandler.AMOUNT_NEEDED_PLACEHOLDER, collect.getAmountNeeded()
             ));

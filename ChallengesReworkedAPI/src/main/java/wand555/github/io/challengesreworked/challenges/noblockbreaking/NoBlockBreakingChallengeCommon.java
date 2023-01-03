@@ -28,7 +28,7 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
 
     @Override
     public NoBlockBreakingChallengeCommon copy() {
-        return new NoBlockBreakingChallengeCommon(getPunishmentCommons(), getAllowedToBreak());
+        return new NoBlockBreakingChallengeCommon(copyPunishmentCommons(), getAllowedToBreak());
     }
 
     public Set<Material> getAllowedToBreak() {
@@ -58,4 +58,13 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
             );
         }
     };
+
+    @Override
+    public String toString() {
+        return "NoBlockBreakingChallengeCommon{" +
+                "punishmentCommons=" + punishmentCommons +
+                ", allowedToBreak=" + allowedToBreak +
+                ", adapter=" + adapter +
+                '}';
+    }
 }

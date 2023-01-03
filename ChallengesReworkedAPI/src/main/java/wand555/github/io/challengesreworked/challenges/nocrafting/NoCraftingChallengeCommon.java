@@ -9,11 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
@@ -29,7 +25,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         );
     }
 
-    public NoCraftingChallengeCommon(List<PunishmentCommon> punishments, Set<Material> allowedToCraft, Set<InventoryType> forbiddenToUse) {
+    public NoCraftingChallengeCommon(Collection<PunishmentCommon> punishments, Set<Material> allowedToCraft, Set<InventoryType> forbiddenToUse) {
         super(punishments);
         this.allowedToCraft = allowedToCraft;
         this.forbiddenToUse = forbiddenToUse;
@@ -75,6 +71,6 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
 
     @Override
     public NoCraftingChallengeCommon copy() {
-        return new NoCraftingChallengeCommon(getPunishmentCommons().stream().map(PunishmentCommon::copy).toList(), allowedToCraft, forbiddenToUse);
+        return new NoCraftingChallengeCommon(copyPunishmentCommons(), allowedToCraft, forbiddenToUse);
     }
 }

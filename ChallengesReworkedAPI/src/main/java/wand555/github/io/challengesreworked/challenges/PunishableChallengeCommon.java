@@ -23,6 +23,10 @@ public abstract class PunishableChallengeCommon extends ChallengeCommon {
         return punishmentCommons;
     }
 
+    public Collection<PunishmentCommon> copyPunishmentCommons() {
+        return getPunishmentCommons().stream().map(PunishmentCommon::copy).toList();
+    }
+
     public void setPunishmentCommons(Collection<PunishmentCommon> punishmentCommons) {
         this.punishmentCommons = punishmentCommons;
     }

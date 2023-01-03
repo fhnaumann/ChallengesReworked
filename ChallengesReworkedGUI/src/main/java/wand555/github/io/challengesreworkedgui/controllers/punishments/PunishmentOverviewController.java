@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class PunishmentOverviewController {
     private HealthPunishmentController healthPunishmentController;
     @FXML
     private RandomItemPunishmentController randomItemPunishmentController;
+
+    private ChallengeController source;
 
 
     private List<PunishmentController> controllers;
@@ -33,6 +36,11 @@ public class PunishmentOverviewController {
                 healthPunishmentController,
                 randomItemPunishmentController
         );
+    }
+
+    public void setSource(ChallengeController source) {
+        this.source = source;
+        controllers.forEach(punishmentController -> punishmentController.setSource(source));
     }
 
     public List<PunishmentRow> getAllPunishmentsAsRow() {

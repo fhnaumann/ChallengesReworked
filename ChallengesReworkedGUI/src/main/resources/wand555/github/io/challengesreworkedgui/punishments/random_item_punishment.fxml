@@ -30,11 +30,6 @@
                         <Pane HBox.hgrow="ALWAYS" />
                         <StackPane>
                            <children>
-                              <CheckBox fx:id="forAllChallenges" mnemonicParsing="false" text="%punishment.forallchallenges" />
-                           </children>
-                        </StackPane>
-                        <StackPane>
-                           <children>
                               <ToggleButton fx:id="activateButton" mnemonicParsing="false" text="%punishment.activate">
                                  <opaqueInsets>
                                     <Insets />

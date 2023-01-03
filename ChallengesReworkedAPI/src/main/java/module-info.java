@@ -12,4 +12,5 @@ module challenges.reworked.api {
     exports wand555.github.io.challengesreworked.challenges.noblockbreaking;
     exports wand555.github.io.challengesreworked.goals;
     exports wand555.github.io.challengesreworked.goals.mob;
+    exports wand555.github.io.challengesreworked.challenges.nodamage;
 }

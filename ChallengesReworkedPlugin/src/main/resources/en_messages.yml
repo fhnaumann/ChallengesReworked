@@ -39,8 +39,8 @@ punishments:
       all: "Every player received %potioneffect%!"
 goals:
   mobgoal:
-    success: "%player% has killed the %mob% (%current_amount%/%amount_needed% until complete)"
-    complete: "Goal: \"Kill %amount% of %mob%(s)\" has been completed!"
+    success: "%player% has killed the %entity% (%current_amount%/%amount_needed% until complete)"
+    complete: "Goal: \"Kill %amount% of %entity%(s)\" has been completed!"
   itemcollectgoal:
     success: "%player% has collected %material% (%current_amount%/%amount_needed%)"
     complete: "Goal: \"Collect %amount% different item(s)\" has been completed!"

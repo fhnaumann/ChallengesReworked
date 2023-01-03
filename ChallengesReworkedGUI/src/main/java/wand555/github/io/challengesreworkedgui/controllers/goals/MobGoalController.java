@@ -1,5 +1,6 @@
 package wand555.github.io.challengesreworkedgui.controllers.goals;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -44,6 +45,8 @@ public class MobGoalController extends GoalController implements MobGoal {
         addMobsToKill.setOnAction(event -> {
             initMobsToKillUI();
         });
+        //enable by default
+        Platform.runLater(() -> activateButton.setSelected(true));
     }
 
 

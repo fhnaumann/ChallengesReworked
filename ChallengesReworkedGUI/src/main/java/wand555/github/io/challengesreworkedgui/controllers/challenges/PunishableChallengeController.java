@@ -43,6 +43,7 @@ public abstract class PunishableChallengeController extends ChallengeController 
             try {
                 Parent root = punishmentLoader.load();
                 PunishmentOverviewController punishmentOverviewController = punishmentLoader.getController();
+                punishmentOverviewController.setSource(this);
                 punishmentOverviewController.setDataFromRows(punishmentList.getItems());
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);

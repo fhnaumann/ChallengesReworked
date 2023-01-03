@@ -13,7 +13,7 @@ public class PlaceHolderHandler {
     public static final String TIME_PLACEHOLDER = "time";
     public static final String CURRENT_AMOUNT_PLACEHOLDER = "current_amount";
     public static final String AMOUNT_NEEDED_PLACEHOLDER = "amount_needed";
-    public static final String MOB_PLACEHOLDER = "mob";
+    public static final String ENTITY_PLACEHOLDER = "entity";
     public static final String POTION_EFFECT_PLACEHOLDER = "potioneffect";
 
     public static final String ITEMSTACK_PLACEHOLDER = "itemstack";
@@ -25,7 +25,7 @@ public class PlaceHolderHandler {
             TIME_PLACEHOLDER,
             CURRENT_AMOUNT_PLACEHOLDER,
             AMOUNT_NEEDED_PLACEHOLDER,
-            MOB_PLACEHOLDER,
+            ENTITY_PLACEHOLDER,
             ITEMSTACK_PLACEHOLDER,
             POTION_EFFECT_PLACEHOLDER
     );
