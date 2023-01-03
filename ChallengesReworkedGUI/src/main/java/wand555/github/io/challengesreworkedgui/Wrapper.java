@@ -32,7 +32,7 @@ public class Wrapper {
                     })
                     .findFirst()
                     .ifPresentOrElse(challengeController -> {
-                        challengeController.setDataFromCommon(common);
+                        challengeController.setDataFromCommon(common, true);
                     }, () -> {
                         throw new RuntimeException("Cannot find matching controller class for common object %s".formatted(common));
                     });
@@ -65,7 +65,7 @@ public class Wrapper {
             e.printStackTrace();
         }
         PunishmentController punishmentController = fxmlLoader.getController();
-        punishmentController.setDataFromCommon(punishmentCommon);
+        punishmentController.setDataFromCommon(punishmentCommon, true);
         return punishmentController;
     }
 }

@@ -50,13 +50,35 @@ public class RandomItemPunishmentController extends PunishmentController impleme
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/random_item_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             RandomItemPunishmentController rowController = loader.getController();
+            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
+
             rowController.common = getCommon();
             rowController.itemAmountTextField.setText(Integer.toString(getCommon().getHowManyRemoved()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
+
+            // changes needed if only global changes is true
+            if(isOnlyGlobalChanges()) {
+                rowController.affectTypeComboBox.setEditable(false);
+                rowController.affectTypeComboBox.setDisable(true);
+                rowController.itemAmountTextField.setEditable(false);
+                rowController.itemAmountTextField.setDisable(true);
+            }
+
             root.setPunishmentController(rowController);
             return root;
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void extractDataFromPunishmentRow(PunishmentRow row) {
+        super.extractDataFromPunishmentRow(row);
+        RandomItemPunishmentController randomItemPunishmentController = (RandomItemPunishmentController) row.getPunishmentController();
+        itemAmountTextField.setText(randomItemPunishmentController.itemAmountTextField.getText());
+        if(isOnlyGlobalChanges()) {
+            itemAmountTextField.setEditable(false);
+            itemAmountTextField.setDisable(true);
         }
     }
 

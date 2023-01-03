@@ -9,9 +9,7 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PunishmentOverviewController {
 
@@ -43,18 +41,22 @@ public class PunishmentOverviewController {
         controllers.forEach(punishmentController -> punishmentController.setSource(source));
     }
 
-    public List<PunishmentRow> getAllPunishmentsAsRow() {
+    public List<PunishmentRow> getAllActivePunishmentsAsRow() {
         return controllers.stream()
                 .filter(PunishmentController::isActive)
                 .map(PunishmentController::getAsOneLine)
                 .toList();
     }
 
-    public List<PunishmentCommon> getAllPunishmentsAsCommon() {
+    public List<PunishmentCommon> getAllActivePunishmentsAsCommon() {
         return controllers.stream()
                 .filter(PunishmentController::isActive)
                 .map(punishmentController -> (PunishmentCommon) punishmentController.getCommon())
                 .toList();
+    }
+
+    public List<PunishmentController> getControllers() {
+        return controllers;
     }
 
     public void setDataFromRows(ObservableList<PunishmentRow> punishmentRows) {

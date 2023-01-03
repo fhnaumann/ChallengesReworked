@@ -71,8 +71,8 @@ public class NoBlockBreakingChallengeController extends PunishableChallengeContr
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
-        super.setDataFromCommon(from);
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
         List<MaterialRow> allowedToBreak = getCommon().getAllowedToBreak().stream().map(MaterialRow::new).toList();
         breakableBlocksList.setItems(FXCollections.observableArrayList(allowedToBreak));
     }

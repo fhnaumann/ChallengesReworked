@@ -71,8 +71,8 @@ public class NoBlockPlacingChallengeController extends PunishableChallengeContro
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
-        super.setDataFromCommon(from);
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
         List<MaterialRow> allowedToPlace = getCommon().getAllowedToPlace().stream().map(MaterialRow::new).toList();
         placeableBlocksList.setItems(FXCollections.observableArrayList(allowedToPlace));
     }

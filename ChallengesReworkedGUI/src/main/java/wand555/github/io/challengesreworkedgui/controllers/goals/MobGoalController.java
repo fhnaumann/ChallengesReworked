@@ -81,8 +81,8 @@ public class MobGoalController extends GoalController implements MobGoal {
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
-        super.setDataFromCommon(from);
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
         //TODO
     }
 

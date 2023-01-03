@@ -22,7 +22,6 @@ public class HealthPunishmentController extends PunishmentController implements 
     protected void initialize() {
         common = new HealthPunishmentCommon(0, AffectType.CAUSER, 1);
         super.initialize();
-
         heartsTextField.setTextFormatter(new TextFormatter<>(
                 new IntegerStringConverter(),
                 getCommon().getHealthAmount(),
@@ -49,9 +48,21 @@ public class HealthPunishmentController extends PunishmentController implements 
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/health_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             HealthPunishmentController rowController = loader.getController();
+            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
+
             rowController.common = getCommon();
             rowController.heartsTextField.setText(Integer.toString(getHealthAmount()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
+
+            // changes needed if only global changes is true
+            if(isOnlyGlobalChanges()) {
+                rowController.affectTypeComboBox.setEditable(false);
+                rowController.affectTypeComboBox.setDisable(true);
+                rowController.heartsTextField.setEditable(false);
+                rowController.heartsTextField.setDisable(true);
+            }
+
+
             root.setPunishmentController(rowController);
             return root;
         } catch (IOException e) {
@@ -65,6 +76,10 @@ public class HealthPunishmentController extends PunishmentController implements 
         HealthPunishmentController healthPunishmentController = (HealthPunishmentController) row.getPunishmentController();
         heartsTextField.setText(healthPunishmentController.heartsTextField.getText());
         System.out.println(heartsTextField.getText() + "!!!");
+        if(isOnlyGlobalChanges()) {
+            heartsTextField.setEditable(false);
+            heartsTextField.setDisable(true);
+        }
     }
 
     @Override

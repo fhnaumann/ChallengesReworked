@@ -1,15 +1,22 @@
 challenges:
 - punishments:
-  - affectType: ALL
+  - howManyRemoved: 5
     amountTriggered: 0
-    howManyRemoved: 3
+    affectType: ALL
+    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
+  allowedToBreak: []
+  ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon
+- punishments:
+  - howManyRemoved: 5
+    amountTriggered: 0
+    affectType: ALL
     ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
   ==: wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon
 goals:
-- complete: false
-  toKill:
+- toKill:
     ENDER_DRAGON:
-      amountNeeded: 1
       currentAmount: 0
+      amountNeeded: 1
       ==: wand555.github.io.challengesreworked.Collect
+  complete: false
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

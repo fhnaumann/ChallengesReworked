@@ -46,9 +46,11 @@ public abstract class ChallengeController extends Controller implements Challeng
      * @param from deserialized common object
      */
     @Override
-    public void setDataFromCommon(Common from) {
+    public void setDataFromCommon(Common from, boolean thisActive) {
         common = (ChallengeCommon) from.copy();
-        activateButton.setSelected(true); //set selected because this method is only called if its active
+        if(thisActive) {
+            activateButton.setSelected(true); //set selected because this method is only called if its active
+        }
     }
 
     public boolean isActive() {

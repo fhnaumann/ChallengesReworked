@@ -45,7 +45,7 @@ public abstract class GoalController extends Controller implements Goal {
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
+    public void setDataFromCommon(Common from, boolean thisActive) {
         common = (GoalCommon) from.copy();
         activateButton.setSelected(true); //set selected because this method is only called if its active
     }

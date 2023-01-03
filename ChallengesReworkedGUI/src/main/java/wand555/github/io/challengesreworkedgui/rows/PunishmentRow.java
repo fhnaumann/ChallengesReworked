@@ -15,6 +15,10 @@ public class PunishmentRow extends HBox {
         return punishmentController;
     }
 
+    /**
+     * Called when all fields are copied over.
+     * @param punishmentController copied from
+     */
     public void setPunishmentController(PunishmentController punishmentController) {
         this.punishmentController = punishmentController;
     }

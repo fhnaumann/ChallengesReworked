@@ -13,6 +13,7 @@ import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.controllers.Controller;
+import wand555.github.io.challengesreworkedgui.controllers.OverviewController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.util.DisplayComboBox;
@@ -37,7 +38,16 @@ public abstract class PunishmentController extends Controller implements Punishm
 
     protected ResourceBundle bundle = null;
 
+    // indicates if this punishment is in a specific challenge where
+    // this punishment is incompatible with
     private boolean inIncompatibleChallenge = false;
+
+    // indicates if this punishment instance refers to the global one or not
+    // globally enabled punishments are show up locally in each challenge, but
+    // cannot be modified or disabled locally (only through global punishments)
+    protected boolean global = false;
+
+    protected boolean onlyGlobalChanges = false;
 
     @FXML
     protected void initialize() {
@@ -69,8 +79,12 @@ public abstract class PunishmentController extends Controller implements Punishm
                 if(title != null) {
                     if(newValue) {
                         activateButton.setText(bundle.getString("punishment.deactivate"));
-                        title.setStyle("-fx-background-color: green;");
-
+                        if(isOnlyGlobalChanges()) {
+                            title.setStyle("-fx-background-color: orange");
+                        }
+                        else {
+                            title.setStyle("-fx-background-color: green;");
+                        }
                     }
                     else {
                         activateButton.setText(bundle.getString("punishment.activate"));
@@ -93,8 +107,12 @@ public abstract class PunishmentController extends Controller implements Punishm
 
     public final void setSource(ChallengeController source) {
         this.source = source;
-        inIncompatibleChallenge = getIncompatibleChallenges().stream()
-                .anyMatch(controllerClazz -> controllerClazz.isInstance(source));
+        // source == null when this punishment along with all other punishments
+        // are loaded globally and not locally
+        if(source != null) {
+            inIncompatibleChallenge = getIncompatibleChallenges().stream()
+                    .anyMatch(controllerClazz -> controllerClazz.isInstance(source));
+        }
     }
 
     protected final ChallengeController getSource() {
@@ -107,12 +125,19 @@ public abstract class PunishmentController extends Controller implements Punishm
         System.out.println(this);
         System.out.println(row);
         System.out.println("set in punishment controller");
+        System.out.println(row.getPunishmentController());
+        setOnlyGlobalChanges(row.getPunishmentController().isOnlyGlobalChanges());
         activateButton.setSelected(true); //else it wouldnt be a row to begin with
         affectTypeComboBox.setValue(row.getPunishmentController().affectTypeComboBox.getValue());
+
+        if(isOnlyGlobalChanges()) {
+            activateButton.setDisable(true);
+            affectTypeComboBox.setDisable(true);
+        }
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
+    public void setDataFromCommon(Common from, boolean thisActive) {
         common = (PunishmentCommon) from.copy();
         activateButton.setSelected(true); //set selected because this method is only called if its active
     }
@@ -129,5 +154,21 @@ public abstract class PunishmentController extends Controller implements Punishm
      */
     public boolean isActive() {
         return activateButton.isSelected() && !inIncompatibleChallenge;
+    }
+
+    public boolean isGlobal() {
+        return global;
+    }
+
+    public void setGlobal(boolean global) {
+        this.global = global;
+    }
+
+    public boolean isOnlyGlobalChanges() {
+        return onlyGlobalChanges;
+    }
+
+    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
+        this.onlyGlobalChanges = onlyGlobalChanges;
     }
 }

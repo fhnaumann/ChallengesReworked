@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import wand555.github.io.challengesreworked.Common;
-import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.PunishableChallenge;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.Punishment;
@@ -50,8 +49,8 @@ public abstract class PunishableChallengeController extends ChallengeController 
                 Scene scene = new Scene(root, 500, 600);
                 stage.setScene(scene);
                 stage.setOnCloseRequest(event1 -> {
-                    punishmentList.setItems(FXCollections.observableArrayList(punishmentOverviewController.getAllPunishmentsAsRow()));
-                    getCommon().setPunishmentCommons(punishmentOverviewController.getAllPunishmentsAsCommon());
+                    punishmentList.setItems(FXCollections.observableArrayList(punishmentOverviewController.getAllActivePunishmentsAsRow()));
+                    getCommon().setPunishmentCommons(punishmentOverviewController.getAllActivePunishmentsAsCommon());
                 });
                 stage.show();
             } catch (IOException e) {
@@ -63,8 +62,8 @@ public abstract class PunishableChallengeController extends ChallengeController 
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
-        super.setDataFromCommon(from);
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
         Collection<PunishmentCommon> punishmentCommons = getCommon().getPunishmentCommons();
         List<PunishmentRow> rows = punishmentCommons.stream()
                 .map(Wrapper::wrapAndInject)
@@ -81,6 +80,10 @@ public abstract class PunishableChallengeController extends ChallengeController 
     @Override
     public void setPunishments(Collection<? extends Punishment> punishments) {
 
+    }
+
+    public ListView<PunishmentRow> getPunishmentList() {
+        return punishmentList;
     }
 
     @Override

@@ -135,8 +135,8 @@ public class NoCraftingChallengeController extends PunishableChallengeController
     }
 
     @Override
-    public void setDataFromCommon(Common from) {
-        super.setDataFromCommon(from);
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
         List<MaterialRow> materialRows = getCommon().getAllowedToCraft().stream().map(MaterialRow::new).toList();
         craftableItemsList.setItems(FXCollections.observableArrayList(materialRows));
         List<InventoryTypeRow> inventoryTypeRows = getCommon().getForbiddenToUse().stream().map(InventoryTypeRow::new).toList();
