@@ -8,6 +8,7 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class RandomItemPunishmentCommon extends PunishmentCommon {
 
@@ -56,5 +57,28 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
     @Override
     public RandomItemPunishmentCommon copy() {
         return new RandomItemPunishmentCommon(getAmountTriggered(), getAffectType(), getHowManyRemoved());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RandomItemPunishmentCommon that = (RandomItemPunishmentCommon) o;
+        return howManyRemoved == that.howManyRemoved;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), howManyRemoved);
+    }
+
+    @Override
+    public String toString() {
+        return "RandomItemPunishmentCommon{" +
+                "affectType=" + affectType +
+                ", howManyRemoved=" + howManyRemoved +
+                ", adapter=" + adapter +
+                '}';
     }
 }

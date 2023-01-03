@@ -8,6 +8,7 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class RandomEffectPunishmentCommon extends PunishmentCommon {
 
@@ -60,4 +61,28 @@ public class RandomEffectPunishmentCommon extends PunishmentCommon {
             );
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RandomEffectPunishmentCommon that = (RandomEffectPunishmentCommon) o;
+        return howManyEffects == that.howManyEffects && effectDuration == that.effectDuration;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), howManyEffects, effectDuration);
+    }
+
+    @Override
+    public String toString() {
+        return "RandomEffectPunishmentCommon{" +
+                "affectType=" + affectType +
+                ", howManyEffects=" + howManyEffects +
+                ", effectDuration=" + effectDuration +
+                ", adapter=" + adapter +
+                '}';
+    }
 }

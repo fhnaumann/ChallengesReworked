@@ -41,4 +41,9 @@ public class NoDamageChallengeCommon extends PunishableChallengeCommon {
                         );
                 }
         };
+
+        @Override
+        public boolean equals(Object other) {
+                return super.equals(other);
+        }
 }

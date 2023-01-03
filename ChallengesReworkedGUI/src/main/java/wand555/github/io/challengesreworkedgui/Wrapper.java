@@ -44,7 +44,7 @@ public class Wrapper {
      * @param punishmentCommon
      * @return
      */
-    public static PunishmentController wrapAndInject(PunishmentCommon punishmentCommon) {
+    public static PunishmentController wrapAndInject(PunishmentCommon punishmentCommon, boolean globallyEnabled) {
         // load fxml file where the associated punishment controller matches the punishment common type.
         // call setDataFromCommon on the controller
         // return controller
@@ -65,6 +65,7 @@ public class Wrapper {
             e.printStackTrace();
         }
         PunishmentController punishmentController = fxmlLoader.getController();
+        punishmentController.setOnlyGlobalChanges(globallyEnabled);
         punishmentController.setDataFromCommon(punishmentCommon, true);
         return punishmentController;
     }

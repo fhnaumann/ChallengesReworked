@@ -16,6 +16,7 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
 import wand555.github.io.challengesreworkedgui.Wrapper;
+import wand555.github.io.challengesreworkedgui.controllers.OverviewController;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentOverviewController;
@@ -66,10 +67,25 @@ public abstract class PunishableChallengeController extends ChallengeController 
         super.setDataFromCommon(from, thisActive);
         Collection<PunishmentCommon> punishmentCommons = getCommon().getPunishmentCommons();
         List<PunishmentRow> rows = punishmentCommons.stream()
-                .map(Wrapper::wrapAndInject)
+                .map(punishmentCommon -> Wrapper.wrapAndInject(punishmentCommon, punishmentIsGloballyEnabled(punishmentCommon)))
                 .map(PunishmentController::getAsOneLine)
                 .toList();
         punishmentList.setItems(FXCollections.observableArrayList(rows));
+    }
+
+    private boolean punishmentIsGloballyEnabled(PunishmentCommon punishmentCommon) {
+        // f- this static
+
+        boolean test = OverviewController.getInstance().getChallengesOverviewController().getAllChallenges().stream()
+                .filter(challengeCommon -> challengeCommon instanceof PunishableChallengeCommon)
+                .map(challengeCommon -> (PunishableChallengeCommon) challengeCommon)
+                .peek(punishableChallengeCommon -> {
+                    System.out.println("current " + punishmentCommon);
+                    System.out.println("all in challenge " + punishableChallengeCommon.getPunishmentCommons());
+                })
+                .allMatch(punishableChallengeCommon -> punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon));
+        System.out.println(test);
+        return test;
     }
 
     @Override

@@ -18,9 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.PunishableChallenge;
+import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
+import wand555.github.io.challengesreworkedgui.Wrapper;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking.NoBlockBreakingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing.NoBlockPlacingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting.NoCraftingChallengeController;
@@ -127,6 +129,20 @@ public class ChallengesOverviewController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setGlobalPunishmentRowsFromCommons(List<ChallengeCommon> commons) {
+        List<PunishableChallengeCommon> mapped = commons.stream()
+                .filter(challengeCommon -> challengeCommon instanceof PunishableChallengeCommon)
+                .map(challengeCommon -> (PunishableChallengeCommon) challengeCommon)
+                .toList();
+        for(PunishableChallengeCommon common : mapped) {
+            for(PunishmentCommon punishmentCommon : common.getPunishmentCommons()) {
+                if(mapped.stream().allMatch(punishableChallengeCommon -> punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon))) {
+                    globalPunishmentRows.add(Wrapper.wrapAndInject(punishmentCommon, false).getAsOneLine());
+                }
+            }
         }
     }
 }

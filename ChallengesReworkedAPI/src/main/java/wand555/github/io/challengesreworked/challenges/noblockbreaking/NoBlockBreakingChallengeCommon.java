@@ -60,6 +60,20 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
     };
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        NoBlockBreakingChallengeCommon that = (NoBlockBreakingChallengeCommon) o;
+        return Objects.equals(allowedToBreak, that.allowedToBreak);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), allowedToBreak);
+    }
+
+    @Override
     public String toString() {
         return "NoBlockBreakingChallengeCommon{" +
                 "punishmentCommons=" + punishmentCommons +

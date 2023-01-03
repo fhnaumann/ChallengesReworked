@@ -8,6 +8,7 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class HealthPunishmentCommon extends PunishmentCommon {
 
@@ -52,6 +53,20 @@ public class HealthPunishmentCommon extends PunishmentCommon {
     @Override
     public HealthPunishmentCommon copy() {
         return new HealthPunishmentCommon(getAmountTriggered(), getAffectType(), getHealthAmount());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        HealthPunishmentCommon that = (HealthPunishmentCommon) o;
+        return healthAmount == that.healthAmount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), healthAmount);
     }
 
     @Override

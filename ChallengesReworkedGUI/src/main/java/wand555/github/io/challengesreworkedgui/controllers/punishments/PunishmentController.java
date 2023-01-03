@@ -140,6 +140,10 @@ public abstract class PunishmentController extends Controller implements Punishm
     public void setDataFromCommon(Common from, boolean thisActive) {
         common = (PunishmentCommon) from.copy();
         activateButton.setSelected(true); //set selected because this method is only called if its active
+        if(isOnlyGlobalChanges()) {
+            activateButton.setDisable(true);
+            affectTypeComboBox.setDisable(true);
+        }
     }
 
     @Override

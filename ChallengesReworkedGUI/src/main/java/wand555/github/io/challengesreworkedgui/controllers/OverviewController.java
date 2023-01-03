@@ -73,6 +73,7 @@ public class OverviewController {
             );
             //storage.set("challenges", null);
             List<ChallengeCommon> list = (List<ChallengeCommon>) storage.getList("challenges");
+            challengesOverviewController.setGlobalPunishmentRowsFromCommons(list);
             Wrapper.setDataInControllerFrom(list, challengesOverviewController.getAllChallengesController());
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,6 +93,10 @@ public class OverviewController {
     public boolean isActive(Class<? extends Challenge> challengeClazz) {
         return challengesOverviewController.getAllChallengesController().stream()
                 .anyMatch(challengeController -> challengeClazz.isInstance(challengeController) && challengeController.isActive());
+    }
+
+    public ChallengesOverviewController getChallengesOverviewController() {
+        return challengesOverviewController;
     }
 
     public static OverviewController getInstance() {

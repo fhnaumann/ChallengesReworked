@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishment;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
@@ -78,6 +79,15 @@ public class RandomItemPunishmentController extends PunishmentController impleme
         itemAmountTextField.setText(randomItemPunishmentController.itemAmountTextField.getText());
         if(isOnlyGlobalChanges()) {
             itemAmountTextField.setEditable(false);
+            itemAmountTextField.setDisable(true);
+        }
+    }
+
+    @Override
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
+        itemAmountTextField.setText(Integer.toString(getCommon().getHowManyRemoved()));
+        if(isOnlyGlobalChanges()) {
             itemAmountTextField.setDisable(true);
         }
     }

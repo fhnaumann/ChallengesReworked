@@ -70,6 +70,20 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
     };
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        NoCraftingChallengeCommon that = (NoCraftingChallengeCommon) o;
+        return Objects.equals(allowedToCraft, that.allowedToCraft) && Objects.equals(forbiddenToUse, that.forbiddenToUse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), allowedToCraft, forbiddenToUse);
+    }
+
+    @Override
     public NoCraftingChallengeCommon copy() {
         return new NoCraftingChallengeCommon(copyPunishmentCommons(), allowedToCraft, forbiddenToUse);
     }

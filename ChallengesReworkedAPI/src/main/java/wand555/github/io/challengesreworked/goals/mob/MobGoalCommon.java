@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MobGoalCommon extends GoalCommon {
@@ -67,5 +68,27 @@ public class MobGoalCommon extends GoalCommon {
     @Override
     public Common copy() {
         return new MobGoalCommon(isComplete(), getToKill());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MobGoalCommon that = (MobGoalCommon) o;
+        return toKill.equals(that.toKill);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), toKill);
+    }
+
+    @Override
+    public String toString() {
+        return "MobGoalCommon{" +
+                "toKill=" + toKill +
+                ", adapter=" + adapter +
+                '}';
     }
 }

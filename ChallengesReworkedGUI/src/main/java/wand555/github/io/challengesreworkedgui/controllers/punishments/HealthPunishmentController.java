@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.util.converter.IntegerStringConverter;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishment;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
@@ -78,6 +79,15 @@ public class HealthPunishmentController extends PunishmentController implements 
         System.out.println(heartsTextField.getText() + "!!!");
         if(isOnlyGlobalChanges()) {
             heartsTextField.setEditable(false);
+            heartsTextField.setDisable(true);
+        }
+    }
+
+    @Override
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
+        heartsTextField.setText(Integer.toString(getCommon().getHealthAmount()));
+        if(isOnlyGlobalChanges()) {
             heartsTextField.setDisable(true);
         }
     }
