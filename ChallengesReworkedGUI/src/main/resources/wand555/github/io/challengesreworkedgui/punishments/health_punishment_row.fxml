@@ -23,7 +23,7 @@
          <children>
             <StackPane>
                <children>
-                  <TextField fx:id="heartsTextField" prefWidth="25.0" text="1" />
+                  <TextField fx:id="heartsTextField" prefWidth="35.0" text="1" />
                </children>
             </StackPane>
             <StackPane>

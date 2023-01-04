@@ -83,7 +83,10 @@ public class MobGoalController extends GoalController implements MobGoal {
     @Override
     public void setDataFromCommon(Common from, boolean thisActive) {
         super.setDataFromCommon(from, thisActive);
-        //TODO
+        List<MobRow> rows = getCommon().getToKill().entrySet().stream()
+                .map(entityTypeCollectEntry -> new MobRow(entityTypeCollectEntry.getKey(), entityTypeCollectEntry.getValue()))
+                .toList();
+        mobsToKillList.setItems(FXCollections.observableArrayList(rows));
     }
 
     @Override
@@ -101,6 +104,7 @@ public class MobGoalController extends GoalController implements MobGoal {
         }
 
         public MobRow(EntityType entityType, Collect collect) {
+            super(5);
             this.entityType = entityType;
             this.collect = collect;
 

@@ -1,18 +1,13 @@
 package wand555.github.io.challengesreworkedgui;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import wand555.github.io.challengesreworked.Common;
-import wand555.github.io.challengesreworked.Commonable;
-import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
-import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengeController;
+import wand555.github.io.challengesreworkedgui.controllers.Controller;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentController;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -20,12 +15,21 @@ import java.util.stream.Stream;
 
 public class Wrapper {
 
-    public static void setDataInControllerFrom(List<ChallengeCommon> commons, List<ChallengeController> challengeControllers) {
-        for(ChallengeCommon common : commons) {
+    /**
+     * Uses the deserialized common objects to find their corresponding controller classes.
+     * The naming scheme follows an order (e.g.):
+     * NoCraftingChallengeCommon -> NoCraftingChallengeController
+     * HealthPunishmentCommon -> HealthPunishmentController
+     * MobGoalCommon -> MobGoalController
+     * @param commons list of common objects
+     * @param controllers existing controllers where the common object will be "injected" to.
+     */
+    public static void setDataInControllerFrom(List<? extends Common> commons, List<? extends Controller> controllers) {
+        for(Common common : commons) {
             String commonClassName = common.getClass().getSimpleName();
             commonClassName = commonClassName.replace("Common", "") + "Controller";
             String finalCommonClassName = commonClassName;
-            challengeControllers.stream()
+            controllers.stream()
                     .filter(challengeController -> {
                         System.out.println(challengeController.getClass().getSimpleName());
                         return challengeController.getClass().getSimpleName().equals(finalCommonClassName);

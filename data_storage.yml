@@ -1,20 +1,13 @@
-challenges:
-- allowedToCraft:
-  - ENDER_EYE
-  punishments:
-  - healthAmount: 3
-    affectType: CAUSER
-    amountTriggered: 0
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
-  forbiddenToUse:
-  - WORKBENCH
-  - CRAFTING
-  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
+challenges: []
 goals:
-- toKill:
+- complete: false
+  toKill:
     ENDER_DRAGON:
+      amountNeeded: 5
       currentAmount: 0
-      amountNeeded: 1
       ==: wand555.github.io.challengesreworked.Collect
-  complete: false
+    ALLAY:
+      amountNeeded: 1
+      currentAmount: 0
+      ==: wand555.github.io.challengesreworked.Collect
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

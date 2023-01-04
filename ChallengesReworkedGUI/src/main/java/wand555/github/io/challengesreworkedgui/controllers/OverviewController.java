@@ -8,6 +8,7 @@ import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.goals.Goal;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
@@ -71,10 +72,15 @@ public class OverviewController {
             YamlDocument storage = YamlDocument.create(
                     new File("data_storage.yml")
             );
-            //storage.set("challenges", null);
+            //challenges (and punishments)
             List<ChallengeCommon> list = (List<ChallengeCommon>) storage.getList("challenges");
             challengesOverviewController.setGlobalPunishmentRowsFromCommons(list);
             Wrapper.setDataInControllerFrom(list, challengesOverviewController.getAllChallengesController());
+
+            //goals
+            List<GoalCommon> goalCommons = (List<GoalCommon>) storage.getList("goals");
+            Wrapper.setDataInControllerFrom(goalCommons, goalsOverviewController.getAllGoalControllers());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,7 +90,7 @@ public class OverviewController {
         // For common objects whose "wrapper" controller is not instantiated at application launch
         // their TypeAdapter is not registered yet because no instance of the common object was
         // created yet.
-        // That's why every punishment common object is created once so it's registered.
+        // That's why every punishment common object is created once, so it's registered.
 
         new HealthPunishmentCommon(0, AffectType.CAUSER, 0);
         new RandomItemPunishmentCommon();
