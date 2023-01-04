@@ -23,7 +23,6 @@ public class RandomEffectPunishmentCommon extends PunishmentCommon {
         super(amountTriggered, affectType);
         this.howManyEffects = howManyEffects;
         this.effectDuration = effectDuration;
-        StandardSerializer.getDefault().register(RandomEffectPunishmentCommon.class, adapter);
     }
 
     public int getHowManyEffects() {
@@ -42,15 +41,15 @@ public class RandomEffectPunishmentCommon extends PunishmentCommon {
         this.effectDuration = effectDuration;
     }
 
-    private final TypeAdapter<RandomEffectPunishmentCommon> adapter = new TypeAdapter<RandomEffectPunishmentCommon>() {
+    public static final TypeAdapter<RandomEffectPunishmentCommon> adapter = new TypeAdapter<RandomEffectPunishmentCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull RandomEffectPunishmentCommon randomEffectPunishmentCommon) {
             return Map.of(
-                    "amountTriggered", getAmountTriggered(),
-                    "affectType", getAffectType().toString(),
-                    "howManyEffects", howManyEffects,
-                    "effectDuration", effectDuration
+                    "amountTriggered", randomEffectPunishmentCommon.getAmountTriggered(),
+                    "affectType", randomEffectPunishmentCommon.getAffectType().toString(),
+                    "howManyEffects", randomEffectPunishmentCommon.getHowManyEffects(),
+                    "effectDuration", randomEffectPunishmentCommon.getEffectDuration()
             );
         }
 

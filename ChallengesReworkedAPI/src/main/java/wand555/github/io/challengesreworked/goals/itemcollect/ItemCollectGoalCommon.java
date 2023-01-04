@@ -24,7 +24,6 @@ public class ItemCollectGoalCommon extends GoalCommon {
     public ItemCollectGoalCommon(boolean complete, Map<Material, Collect> toCollect) {
         super(complete);
         this.toCollect = toCollect;
-        StandardSerializer.getDefault().register(ItemCollectGoalCommon.class, adapter);
     }
 
     public Map<Material, Collect> getToCollect() {
@@ -35,13 +34,13 @@ public class ItemCollectGoalCommon extends GoalCommon {
         this.toCollect = toCollect;
     }
 
-    private final TypeAdapter<ItemCollectGoalCommon> adapter = new TypeAdapter<ItemCollectGoalCommon>() {
+    public static final TypeAdapter<ItemCollectGoalCommon> adapter = new TypeAdapter<ItemCollectGoalCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull ItemCollectGoalCommon itemCollectGoal) {
             return Map.of(
-                    "complete", isComplete(),
-                    "toCollect", toCollect.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue))
+                    "complete", itemCollectGoal.isComplete(),
+                    "toCollect", itemCollectGoal.getToCollect().entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue))
             );
         }
 

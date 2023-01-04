@@ -1,4 +1,15 @@
-challenges: []
+challenges:
+- allowedToCraft:
+  - ENDER_EYE
+  punishments:
+  - amountTriggered: 0
+    affectType: CAUSER
+    healthAmount: 2
+    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
+  forbiddenToUse:
+  - CRAFTING
+  - WORKBENCH
+  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
 goals:
 - toKill:
     ENDER_DRAGON:

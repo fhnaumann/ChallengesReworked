@@ -28,7 +28,6 @@ public class MobGoalCommon extends GoalCommon {
     public MobGoalCommon(boolean complete, Map<EntityType, Collect> toKill) {
         super(complete);
         this.toKill = toKill;
-        StandardSerializer.getDefault().register(MobGoalCommon.class, adapter);
     }
 
     public Map<EntityType, Collect> getToKill() {
@@ -39,12 +38,12 @@ public class MobGoalCommon extends GoalCommon {
         this.toKill = toKill;
     }
 
-    private final TypeAdapter<MobGoalCommon> adapter = new TypeAdapter<>() {
+    public static final TypeAdapter<MobGoalCommon> adapter = new TypeAdapter<>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull MobGoalCommon mobGoal) {
             return Map.of(
-                    "complete", isComplete(),
+                    "complete", mobGoal.isComplete(),
                     "toKill", mobGoal.getToKill().entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), entry -> {
                         System.out.println(entry.getValue().getCurrentAmount());
                         //Map.Entry::getValue

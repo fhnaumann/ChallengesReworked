@@ -26,7 +26,6 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
     public NoBlockPlacingChallengeCommon(Collection<PunishmentCommon> punishmentCommons, Set<Material> allowedToPlace) {
         super(punishmentCommons);
         this.allowedToPlace = allowedToPlace;
-        StandardSerializer.getDefault().register(NoBlockPlacingChallengeCommon.class, adapter);
     }
 
     public Set<Material> getAllowedToPlace() {
@@ -42,13 +41,13 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
         return new NoBlockPlacingChallengeCommon(copyPunishmentCommons(), getAllowedToPlace());
     }
 
-    private final TypeAdapter<NoBlockPlacingChallengeCommon> adapter = new TypeAdapter<NoBlockPlacingChallengeCommon>() {
+    public static final TypeAdapter<NoBlockPlacingChallengeCommon> adapter = new TypeAdapter<NoBlockPlacingChallengeCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull NoBlockPlacingChallengeCommon common) {
             Map<Object, Object> map = new HashMap<>();
-            map.put("punishments", new ArrayList<>(getPunishmentCommons()));
-            map.put("allowedToPlace", allowedToPlace.stream().map(Enum::toString).toList());
+            map.put("punishments", new ArrayList<>(common.getPunishmentCommons()));
+            map.put("allowedToPlace", common.getAllowedToPlace().stream().map(Enum::toString).toList());
             return map;
         }
 

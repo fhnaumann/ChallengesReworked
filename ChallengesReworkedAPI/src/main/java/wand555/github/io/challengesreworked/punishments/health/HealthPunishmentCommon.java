@@ -21,7 +21,6 @@ public class HealthPunishmentCommon extends PunishmentCommon {
     public HealthPunishmentCommon(int amountTriggered, AffectType affectType, int healthAmount) {
         super(amountTriggered, affectType);
         this.healthAmount = healthAmount;
-        StandardSerializer.getDefault().register(HealthPunishmentCommon.class, adapter);
     }
 
     public int getHealthAmount() {
@@ -32,14 +31,14 @@ public class HealthPunishmentCommon extends PunishmentCommon {
         this.healthAmount = healthAmount;
     }
 
-    public final TypeAdapter<HealthPunishmentCommon> adapter = new TypeAdapter<HealthPunishmentCommon>() {
+    public static final TypeAdapter<HealthPunishmentCommon> adapter = new TypeAdapter<HealthPunishmentCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull HealthPunishmentCommon healthPunishment) {
             return Map.of(
-                    "amountTriggered", getAmountTriggered(),
-                    "affectType", getAffectType().toString(),
-                    "healthAmount", healthAmount
+                    "amountTriggered", healthPunishment.getAmountTriggered(),
+                    "affectType", healthPunishment.getAffectType().toString(),
+                    "healthAmount", healthPunishment.getHealthAmount()
             );
         }
 

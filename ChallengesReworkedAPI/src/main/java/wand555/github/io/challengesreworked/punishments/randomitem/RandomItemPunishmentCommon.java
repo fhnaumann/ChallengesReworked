@@ -21,17 +21,16 @@ public class RandomItemPunishmentCommon extends PunishmentCommon {
     public RandomItemPunishmentCommon(int amountTriggered, AffectType affectType, int howManyRemoved) {
         super(amountTriggered, affectType);
         this.howManyRemoved = howManyRemoved;
-        StandardSerializer.getDefault().register(RandomItemPunishmentCommon.class, adapter);
     }
 
-    public final TypeAdapter<RandomItemPunishmentCommon> adapter = new TypeAdapter<RandomItemPunishmentCommon>() {
+    public static final TypeAdapter<RandomItemPunishmentCommon> adapter = new TypeAdapter<RandomItemPunishmentCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull RandomItemPunishmentCommon randomItemPunishment) {
             return Map.of(
-                    "amountTriggered", getAmountTriggered(),
-                    "affectType", getAffectType().toString(),
-                    "howManyRemoved", howManyRemoved
+                    "amountTriggered", randomItemPunishment.getAmountTriggered(),
+                    "affectType", randomItemPunishment.getAffectType().toString(),
+                    "howManyRemoved", randomItemPunishment.getHowManyRemoved()
             );
         }
 

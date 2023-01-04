@@ -29,7 +29,6 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         super(punishments);
         this.allowedToCraft = allowedToCraft;
         this.forbiddenToUse = forbiddenToUse;
-        StandardSerializer.getDefault().register(NoCraftingChallengeCommon.class, adapter);
     }
 
     public Set<Material> getAllowedToCraft() {
@@ -48,14 +47,14 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         this.forbiddenToUse = forbiddenToUse;
     }
 
-    private final TypeAdapter<NoCraftingChallengeCommon> adapter = new TypeAdapter<NoCraftingChallengeCommon>() {
+    public static final TypeAdapter<NoCraftingChallengeCommon> adapter = new TypeAdapter<NoCraftingChallengeCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull NoCraftingChallengeCommon noCraftingChallenge) {
             Map<Object, Object> map = new HashMap<>();
-            map.put("punishments", new ArrayList<>(getPunishmentCommons()));
-            map.put("allowedToCraft", allowedToCraft.stream().map(Enum::toString).collect(Collectors.toList()));
-            map.put("forbiddenToUse", forbiddenToUse.stream().map(Enum::toString).collect(Collectors.toList()));
+            map.put("punishments", new ArrayList<>(noCraftingChallenge.getPunishmentCommons()));
+            map.put("allowedToCraft", noCraftingChallenge.getAllowedToCraft().stream().map(Enum::toString).collect(Collectors.toList()));
+            map.put("forbiddenToUse", noCraftingChallenge.getForbiddenToUse().stream().map(Enum::toString).collect(Collectors.toList()));
             return map;
         }
 

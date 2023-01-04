@@ -23,7 +23,6 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
     public NoBlockBreakingChallengeCommon(Collection<PunishmentCommon> punishmentCommons, Set<Material> allowedToBreak) {
         super(punishmentCommons);
         this.allowedToBreak = allowedToBreak;
-        StandardSerializer.getDefault().register(NoBlockBreakingChallengeCommon.class, adapter);
     }
 
     @Override
@@ -39,13 +38,13 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
         this.allowedToBreak = allowedToBreak;
     }
 
-    private final TypeAdapter<NoBlockBreakingChallengeCommon> adapter = new TypeAdapter<NoBlockBreakingChallengeCommon>() {
+    public static final TypeAdapter<NoBlockBreakingChallengeCommon> adapter = new TypeAdapter<NoBlockBreakingChallengeCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull NoBlockBreakingChallengeCommon noBlockBreakingChallengeCommon) {
             return Map.of(
-                    "punishments", new ArrayList<>(getPunishmentCommons()),
-                    "allowedToBreak", getAllowedToBreak().stream().map(Enum::toString).toList()
+                    "punishments", new ArrayList<>(noBlockBreakingChallengeCommon.getPunishmentCommons()),
+                    "allowedToBreak", noBlockBreakingChallengeCommon.getAllowedToBreak().stream().map(Enum::toString).toList()
             );
         }
 

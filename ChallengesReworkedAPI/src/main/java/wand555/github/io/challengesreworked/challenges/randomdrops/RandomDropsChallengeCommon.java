@@ -32,7 +32,6 @@ public class RandomDropsChallengeCommon extends ChallengeCommon {
         this.randomMobDrops = randomMobDrops;
         this.randomCraftingDrops = randomCraftingDrops;
         this.randomFurnaceDrops = randomFurnaceDrops;
-        StandardSerializer.getDefault().register(RandomDropsChallengeCommon.class, adapter);
     }
 
     public void rerollRandomizations() {
@@ -113,16 +112,16 @@ public class RandomDropsChallengeCommon extends ChallengeCommon {
         this.randomFurnaceDrops = randomFurnaceDrops;
     }
 
-    private final TypeAdapter<RandomDropsChallengeCommon> adapter = new TypeAdapter<RandomDropsChallengeCommon>() {
+    public static final TypeAdapter<RandomDropsChallengeCommon> adapter = new TypeAdapter<RandomDropsChallengeCommon>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull RandomDropsChallengeCommon randomDropsChallengeCommon) {
             return Map.of(
-                    "randomized", randomized,
-                    "randomBlockDrops", isRandomBlockDrops(),
-                    "randomMobDrops", isRandomMobDrops(),
-                    "randomCraftingDrops", isRandomCraftingDrops(),
-                    "randomFurnaceDrops", isRandomFurnaceDrops()
+                    "randomized", randomDropsChallengeCommon.getRandomizedMaterials(),
+                    "randomBlockDrops", randomDropsChallengeCommon.isRandomBlockDrops(),
+                    "randomMobDrops", randomDropsChallengeCommon.isRandomMobDrops(),
+                    "randomCraftingDrops", randomDropsChallengeCommon.isRandomCraftingDrops(),
+                    "randomFurnaceDrops", randomDropsChallengeCommon.isRandomFurnaceDrops()
             );
         }
 

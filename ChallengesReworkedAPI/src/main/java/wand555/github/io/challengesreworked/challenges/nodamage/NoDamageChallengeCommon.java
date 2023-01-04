@@ -17,7 +17,6 @@ public class NoDamageChallengeCommon extends PunishableChallengeCommon {
 
         public NoDamageChallengeCommon(Collection<PunishmentCommon> punishmentCommons) {
                 super(punishmentCommons);
-                StandardSerializer.getDefault().register(NoDamageChallengeCommon.class, adapter);
         }
 
         @Override
@@ -25,12 +24,12 @@ public class NoDamageChallengeCommon extends PunishableChallengeCommon {
                 return new NoDamageChallengeCommon(copyPunishmentCommons());
         }
 
-        private final TypeAdapter<NoDamageChallengeCommon> adapter = new TypeAdapter<NoDamageChallengeCommon>() {
+        public static final TypeAdapter<NoDamageChallengeCommon> adapter = new TypeAdapter<NoDamageChallengeCommon>() {
                 @NotNull
                 @Override
                 public Map<Object, Object> serialize(@NotNull NoDamageChallengeCommon noDamageChallengeCommon) {
                         return Map.of(
-                                "punishments", new ArrayList<>(getPunishmentCommons())
+                                "punishments", new ArrayList<>(noDamageChallengeCommon.getPunishmentCommons())
                         );
                 }
 

@@ -31,6 +31,8 @@ public final class ChallengesReworked extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        ChallengesReworkedApi.registerTypeAdapters();
+
         // Plugin startup logic
         CommandExecutor ce = new ChallengeCommands();
         getCommand("start").setExecutor(ce);

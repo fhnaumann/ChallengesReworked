@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import wand555.github.io.challengesreworked.ChallengesReworkedApi;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -15,6 +16,8 @@ import java.util.Set;
 public class ChallengeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        ChallengesReworkedApi.registerTypeAdapters();
+
         ResourceBundle.clearCache();
         ResourceBundle bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_challenges"));
         FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("overview.fxml"), bundle);
