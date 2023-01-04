@@ -8,12 +8,18 @@ import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ItemCollectGoalCommon extends GoalCommon {
 
-    private final Map<Material, Collect> toCollect;
+    private Map<Material, Collect> toCollect;
+
+    public ItemCollectGoalCommon() {
+        this(false, new HashMap<>());
+    }
 
     public ItemCollectGoalCommon(boolean complete, Map<Material, Collect> toCollect) {
         super(complete);
@@ -23,6 +29,10 @@ public class ItemCollectGoalCommon extends GoalCommon {
 
     public Map<Material, Collect> getToCollect() {
         return toCollect;
+    }
+
+    public void setToCollect(Map<Material, Collect> toCollect) {
+        this.toCollect = toCollect;
     }
 
     private final TypeAdapter<ItemCollectGoalCommon> adapter = new TypeAdapter<ItemCollectGoalCommon>() {
@@ -44,7 +54,29 @@ public class ItemCollectGoalCommon extends GoalCommon {
     };
 
     @Override
-    public Common copy() {
+    public ItemCollectGoalCommon copy() {
         return new ItemCollectGoalCommon(isComplete(), getToCollect());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ItemCollectGoalCommon that = (ItemCollectGoalCommon) o;
+        return Objects.equals(toCollect, that.toCollect) && Objects.equals(adapter, that.adapter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), toCollect, adapter);
+    }
+
+    @Override
+    public String toString() {
+        return "ItemCollectGoalCommon{" +
+                "toCollect=" + toCollect +
+                ", adapter=" + adapter +
+                '}';
     }
 }

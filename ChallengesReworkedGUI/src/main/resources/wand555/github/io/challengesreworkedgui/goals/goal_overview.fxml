@@ -23,7 +23,8 @@
                <content>
                   <Accordion>
                      <panes>
-                        <fx:include fx:id="mobGoal" source="mobgoal.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="mobGoal" source="mob_goal.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include fx:id="itemCollectGoal" source="item_collect_goal.fxml"/>
                      </panes>
                   </Accordion>
                </content>

@@ -12,6 +12,9 @@ public abstract class GoalCommon implements Common {
         this.complete = complete;
     }
 
+    @Override
+    public abstract GoalCommon copy();
+
     public boolean isComplete() {
         return complete;
     }

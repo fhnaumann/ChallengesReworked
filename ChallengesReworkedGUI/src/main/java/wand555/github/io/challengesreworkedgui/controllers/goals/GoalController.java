@@ -52,6 +52,11 @@ public abstract class GoalController extends Controller implements Goal {
         }
     }
 
+    @Override
+    public GoalCommon getCommon() {
+        return common;
+    }
+
     public boolean isActive() {
         return activateButton.isSelected();
     }

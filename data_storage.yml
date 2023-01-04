@@ -1,13 +1,9 @@
 challenges: []
 goals:
-- complete: false
-  toKill:
+- toKill:
     ENDER_DRAGON:
-      amountNeeded: 5
       currentAmount: 0
-      ==: wand555.github.io.challengesreworked.Collect
-    ALLAY:
       amountNeeded: 1
-      currentAmount: 0
       ==: wand555.github.io.challengesreworked.Collect
+  complete: false
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

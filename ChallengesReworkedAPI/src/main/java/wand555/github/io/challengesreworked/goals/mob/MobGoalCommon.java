@@ -66,7 +66,7 @@ public class MobGoalCommon extends GoalCommon {
     };
 
     @Override
-    public Common copy() {
+    public MobGoalCommon copy() {
         return new MobGoalCommon(isComplete(), getToKill());
     }
 
