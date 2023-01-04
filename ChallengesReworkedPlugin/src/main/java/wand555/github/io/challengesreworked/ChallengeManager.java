@@ -1,12 +1,18 @@
 package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallenge;
+import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCommon;
 import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishment;
+import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -71,6 +77,26 @@ public class ChallengeManager {
         this.activePluginChallenges = new HashSet<>();
         this.goals = new HashSet<>();
         this.timer = new Timer(TimeOrder.ASC);
+
+        createDummyObjects();
+    }
+
+    private void createDummyObjects() {
+        // challenge commons
+        new NoBlockBreakingChallengeCommon();
+        new NoBlockPlacingChallengeCommon();
+        new NoCraftingChallengeCommon();
+        new NoDamageChallengeCommon();
+
+        // goal commons
+        new ItemCollectGoalCommon();
+        new MobGoalCommon();
+
+        // punishment commons
+        new HealthPunishmentCommon();
+        new RandomItemPunishmentCommon();
+        new RandomEffectPunishmentCommon();
+
     }
 
     public void start() throws IllegalStateException{
@@ -106,7 +132,7 @@ public class ChallengeManager {
 
     public void resume() throws IllegalStateException {
         if(gameState != GameState.PAUSED) {
-            throw new IllegalStateException();
+            //throw new IllegalStateException();
         }
         gameState = GameState.RUNNING;
     }
@@ -151,6 +177,7 @@ public class ChallengeManager {
             gameState = storage.getEnum("state", GameState.class, GameState.SET_UP);
             Collection<GoalCommon> goalCommons = ((List<GoalCommon>)storage.getList("goals", new ArrayList<>()));
             goals = goalCommons.stream().map(goalCommon -> (PluginGoal) Wrapper.wrap(goalCommon)).toList();
+            System.out.println(goals.stream().map(pluginGoal -> pluginGoal.getCommon()).toList());
             activePluginChallenges = (Collection<PluginChallenge>) storage.getList("challenges", new ArrayList<>());
             System.out.println(activePluginChallenges);
         } catch (IOException e) {
@@ -159,7 +186,7 @@ public class ChallengeManager {
     }
 
     public boolean allGoalsComplete() {
-        return goals.stream().allMatch(PluginGoal::isComplete);
+        return goals.stream().allMatch(pluginGoal -> pluginGoal.getCommon().isComplete());
     }
 
     public boolean isRunning() {

@@ -14,6 +14,10 @@ public class HealthPunishmentCommon extends PunishmentCommon {
 
     private int healthAmount;
 
+    public HealthPunishmentCommon() {
+        this(0, AffectType.ALL, 1);
+    }
+
     public HealthPunishmentCommon(int amountTriggered, AffectType affectType, int healthAmount) {
         super(amountTriggered, affectType);
         this.healthAmount = healthAmount;

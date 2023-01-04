@@ -34,11 +34,11 @@ public class PluginItemCollectGoal extends PluginGoal implements ItemCollectGoal
 
     @Override
     public void onGoalReached() {
-        if(isComplete()) {
+        if(getCommon().isComplete()) {
             return;
         }
         ChallengeManager manager = ChallengeManager.getInstance();
-        setComplete(true);
+        getCommon().setComplete(true);
         ChatLogger.log("goals.itemcollectgoal.complete", Map.of(
                 PlaceHolderHandler.AMOUNT_PLACEHOLDER, getCommon().getToCollect().keySet().size()
         ));

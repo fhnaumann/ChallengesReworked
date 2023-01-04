@@ -25,11 +25,11 @@ public class PluginMobGoal extends PluginGoal implements MobGoal, Listener {
 
     @Override
     public void onGoalReached() {
-        if(isComplete()) {
+        if(getCommon().isComplete()) {
             return;
         }
         ChallengeManager manager = ChallengeManager.getInstance();
-        setComplete(true);
+        getCommon().setComplete(true);
         ChatLogger.log("goals.mobgoal.complete", Map.of(
                 PlaceHolderHandler.AMOUNT_PLACEHOLDER, getCommon().getToKill().keySet().size(),
                 PlaceHolderHandler.ENTITY_PLACEHOLDER, getCommon().getToKill()

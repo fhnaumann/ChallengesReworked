@@ -19,16 +19,6 @@ public abstract class PluginGoal implements Goal {
         return common;
     }
 
-    @Override
-    public boolean isComplete() {
-        return common.isComplete();
-    }
-
-    @Override
-    public void setComplete(boolean complete) {
-        common.setComplete(complete);
-    }
-
     public abstract void onGoalReached();
 
     public abstract boolean isGoalReached();

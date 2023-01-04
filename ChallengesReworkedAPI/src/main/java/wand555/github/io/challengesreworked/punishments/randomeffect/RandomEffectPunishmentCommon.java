@@ -15,6 +15,10 @@ public class RandomEffectPunishmentCommon extends PunishmentCommon {
     private int howManyEffects;
     private int effectDuration; //in seconds
 
+    public RandomEffectPunishmentCommon() {
+        this(0, AffectType.ALL, 1, 5);
+    }
+
     public RandomEffectPunishmentCommon(int amountTriggered, AffectType affectType, int howManyEffects, int effectDuration) {
         super(amountTriggered, affectType);
         this.howManyEffects = howManyEffects;
