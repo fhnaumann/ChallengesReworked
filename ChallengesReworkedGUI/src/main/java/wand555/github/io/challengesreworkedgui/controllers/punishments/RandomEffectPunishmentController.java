@@ -72,7 +72,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/random_effect_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             RandomEffectPunishmentController rowController = loader.getController();
-            rowController.setOnlyGlobalChanges(true);
+            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
 
             rowController.common = getCommon();
             rowController.howManyTextField.setText(Integer.toString(getCommon().getHowManyEffects()));
@@ -120,5 +120,12 @@ public class RandomEffectPunishmentController extends PunishmentController imple
     @Override
     public RandomEffectPunishmentCommon getCommon() {
         return (RandomEffectPunishmentCommon) super.getCommon();
+    }
+
+    @Override
+    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
+        super.setOnlyGlobalChanges(onlyGlobalChanges);
+        howManyTextField.setDisable(onlyGlobalChanges);
+        durationTextField.setDisable(onlyGlobalChanges);
     }
 }

@@ -33,6 +33,7 @@ import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,7 +112,7 @@ public class ChallengesOverviewController {
                         .map(challengeController -> (PunishableChallengeController) challengeController)
                         .forEach(punishableChallengeController -> {
                             //set in model
-                            punishableChallengeController.getCommon().setPunishmentCommons(globallyEnabledPunishmentCommons);
+                            punishableChallengeController.getCommon().getPunishmentCommons().addAll(globallyEnabledPunishmentCommons);
 
                             //set in ui (the common object was modified in the line above, so set it again, so it reapplies the data into the UI fields)
                             punishableChallengeController.getPunishmentList().setItems(FXCollections.observableArrayList(
@@ -132,6 +133,34 @@ public class ChallengesOverviewController {
         }
     }
 
+    public void checkForGlobalPunishments() {
+        getAllChallengesController().stream()
+                .filter(challengeController -> challengeController instanceof PunishableChallengeController)
+                .map(challengeController -> (PunishableChallengeController) challengeController)
+                .forEach(punishableChallengeController -> {
+                    for(PunishmentCommon punishmentCommon : punishableChallengeController.getCommon().getPunishmentCommons()) {
+                        boolean globallyEnabled = punishableChallengeController.punishmentIsGloballyEnabled(punishmentCommon);
+                        if(globallyEnabled) {
+                            //go through every controller and set this punishment ("punishmentCommon") in there to global (non-editable)
+                            markAsGlobalPunishment(punishmentCommon);
+                        }
+                    }
+                });
+    }
+
+    private void markAsGlobalPunishment(PunishmentCommon punishmentCommon) {
+        getAllChallengesController().stream()
+                .filter(challengeController -> challengeController instanceof PunishableChallengeController)
+                .map(challengeController -> (PunishableChallengeController) challengeController)
+                .forEach(punishableChallengeController -> {
+                    System.out.println(punishableChallengeController);
+                    punishableChallengeController.getPunishmentList().getItems().stream()
+                            .filter(punishmentRow -> punishmentRow.getPunishmentController().getCommon().equals(punishmentCommon))
+                            .forEach(punishmentRow -> {
+                                punishmentRow.getPunishmentController().setOnlyGlobalChanges(true);
+                    });
+                });
+    }
 
     public void setGlobalPunishmentRowsFromCommons(List<ChallengeCommon> commons) {
         // Punishments are considered global when every punishment with the exact same settings
@@ -146,7 +175,7 @@ public class ChallengesOverviewController {
         for(PunishableChallengeCommon common : mapped) {
             for(PunishmentCommon punishmentCommon : common.getPunishmentCommons()) {
                 if(mapped.stream().allMatch(punishableChallengeCommon -> punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon))) {
-                    globalPunishmentRows.add(Wrapper.wrapAndInject(punishmentCommon, false).getAsOneLine());
+                    globalPunishmentRows.add(Wrapper.wrapAndInject(punishmentCommon).getAsOneLine());
                 }
             }
         }

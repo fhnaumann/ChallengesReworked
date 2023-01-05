@@ -96,4 +96,10 @@ public class HealthPunishmentController extends PunishmentController implements 
     public HealthPunishmentCommon getCommon() {
         return (HealthPunishmentCommon) common;
     }
+
+    @Override
+    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
+        super.setOnlyGlobalChanges(onlyGlobalChanges);
+        heartsTextField.setDisable(onlyGlobalChanges);
+    }
 }

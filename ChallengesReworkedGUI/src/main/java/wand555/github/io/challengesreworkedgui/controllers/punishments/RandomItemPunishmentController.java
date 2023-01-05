@@ -96,4 +96,10 @@ public class RandomItemPunishmentController extends PunishmentController impleme
     public RandomItemPunishmentCommon getCommon() {
         return (RandomItemPunishmentCommon) super.getCommon();
     }
+
+    @Override
+    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
+        super.setOnlyGlobalChanges(onlyGlobalChanges);
+        itemAmountTextField.setDisable(onlyGlobalChanges);
+    }
 }

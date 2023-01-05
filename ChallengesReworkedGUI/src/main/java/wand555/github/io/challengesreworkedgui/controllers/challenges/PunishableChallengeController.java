@@ -67,13 +67,13 @@ public abstract class PunishableChallengeController extends ChallengeController 
         super.setDataFromCommon(from, thisActive);
         Collection<PunishmentCommon> punishmentCommons = getCommon().getPunishmentCommons();
         List<PunishmentRow> rows = punishmentCommons.stream()
-                .map(punishmentCommon -> Wrapper.wrapAndInject(punishmentCommon, punishmentIsGloballyEnabled(punishmentCommon)))
+                .map(punishmentCommon -> Wrapper.wrapAndInject(punishmentCommon))
                 .map(PunishmentController::getAsOneLine)
                 .toList();
         punishmentList.setItems(FXCollections.observableArrayList(rows));
     }
 
-    private boolean punishmentIsGloballyEnabled(PunishmentCommon punishmentCommon) {
+    public boolean punishmentIsGloballyEnabled(PunishmentCommon punishmentCommon) {
         // Punishments are considered global when every punishment with the exact same settings
         // is present in every challenge.
         // Theoretically a user could enable the exact same punishment on every challenge
@@ -81,10 +81,12 @@ public abstract class PunishableChallengeController extends ChallengeController 
 
         // f- this static
         boolean test = OverviewController.getInstance().getChallengesOverviewController().getAllChallenges().stream()
+                .peek(challengeCommon -> System.out.println(challengeCommon + "!!"))
                 .filter(challengeCommon -> challengeCommon instanceof PunishableChallengeCommon)
                 .map(challengeCommon -> (PunishableChallengeCommon) challengeCommon)
                 .peek(punishableChallengeCommon -> {
                     System.out.println("current " + punishmentCommon);
+                    System.out.println("punishablechallenge (source) " + punishableChallengeCommon);
                     System.out.println("all in challenge " + punishableChallengeCommon.getPunishmentCommons());
                 })
                 .allMatch(punishableChallengeCommon -> punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon));

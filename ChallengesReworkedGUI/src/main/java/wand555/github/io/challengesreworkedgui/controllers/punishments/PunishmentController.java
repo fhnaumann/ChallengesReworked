@@ -174,5 +174,9 @@ public abstract class PunishmentController extends Controller implements Punishm
 
     public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
         this.onlyGlobalChanges = onlyGlobalChanges;
+        if(activateButton != null) {
+            activateButton.setDisable(onlyGlobalChanges);
+        }
+        affectTypeComboBox.setDisable(onlyGlobalChanges);
     }
 }

@@ -76,6 +76,8 @@ public class OverviewController {
             List<ChallengeCommon> list = (List<ChallengeCommon>) storage.getList("challenges");
             challengesOverviewController.setGlobalPunishmentRowsFromCommons(list);
             Wrapper.setDataInControllerFrom(list, challengesOverviewController.getAllChallengesController());
+            // now that all challenges are loaded (including punishments), check for global punishments
+            challengesOverviewController.checkForGlobalPunishments();
 
             //goals
             List<GoalCommon> goalCommons = (List<GoalCommon>) storage.getList("goals");

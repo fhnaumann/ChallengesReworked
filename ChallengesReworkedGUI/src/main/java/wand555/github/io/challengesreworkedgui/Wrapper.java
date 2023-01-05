@@ -30,13 +30,13 @@ public class Wrapper {
             commonClassName = commonClassName.replace("Common", "") + "Controller";
             String finalCommonClassName = commonClassName;
             controllers.stream()
-                    .filter(challengeController -> {
-                        System.out.println(challengeController.getClass().getSimpleName());
-                        return challengeController.getClass().getSimpleName().equals(finalCommonClassName);
+                    .filter(controller -> {
+                        System.out.println(controller.getClass().getSimpleName());
+                        return controller.getClass().getSimpleName().equals(finalCommonClassName);
                     })
                     .findFirst()
-                    .ifPresentOrElse(challengeController -> {
-                        challengeController.setDataFromCommon(common, true);
+                    .ifPresentOrElse(controller -> {
+                        controller.setDataFromCommon(common, true);
                     }, () -> {
                         throw new RuntimeException("Cannot find matching controller class for common object %s".formatted(common));
                     });
@@ -48,7 +48,7 @@ public class Wrapper {
      * @param punishmentCommon
      * @return
      */
-    public static PunishmentController wrapAndInject(PunishmentCommon punishmentCommon, boolean globallyEnabled) {
+    public static PunishmentController wrapAndInject(PunishmentCommon punishmentCommon) {
         // load fxml file where the associated punishment controller matches the punishment common type.
         // call setDataFromCommon on the controller
         // return controller
@@ -69,7 +69,6 @@ public class Wrapper {
             e.printStackTrace();
         }
         PunishmentController punishmentController = fxmlLoader.getController();
-        punishmentController.setOnlyGlobalChanges(globallyEnabled);
         punishmentController.setDataFromCommon(punishmentCommon, true);
         return punishmentController;
     }
