@@ -17,7 +17,6 @@ public class Collect {
     public Collect(int amountNeeded, int currentAmount) {
         this.amountNeeded = amountNeeded;
         this.currentAmount = currentAmount;
-        StandardSerializer.getDefault().register(Collect.class, adapter);
     }
 
     public int getAmountNeeded() {
@@ -40,7 +39,7 @@ public class Collect {
         return currentAmount >= amountNeeded;
     }
 
-    private final TypeAdapter<Collect> adapter = new TypeAdapter<Collect>() {
+    public static final TypeAdapter<Collect> adapter = new TypeAdapter<Collect>() {
         @NotNull
         @Override
         public Map<Object, Object> serialize(@NotNull Collect collect) {

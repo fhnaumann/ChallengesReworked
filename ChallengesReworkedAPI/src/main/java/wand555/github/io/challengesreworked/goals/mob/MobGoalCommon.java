@@ -1,9 +1,8 @@
 package wand555.github.io.challengesreworked.goals.mob;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import wand555.github.io.challengesreworked.Collect;
-import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MobGoalCommon extends GoalCommon {
 
@@ -44,12 +42,7 @@ public class MobGoalCommon extends GoalCommon {
         public Map<Object, Object> serialize(@NotNull MobGoalCommon mobGoal) {
             return Map.of(
                     "complete", mobGoal.isComplete(),
-                    "toKill", mobGoal.getToKill().entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), entry -> {
-                        System.out.println(entry.getValue().getCurrentAmount());
-                        //Map.Entry::getValue
-
-                        return entry.getValue();
-                    }))
+                    "toKill", Mapper.fromEnumKeyMapToFileMap(mobGoal.getToKill())
             );
         }
 
@@ -58,9 +51,7 @@ public class MobGoalCommon extends GoalCommon {
         public MobGoalCommon deserialize(@NotNull Map<Object, Object> map) {
             return new MobGoalCommon(
                     (boolean) map.get("complete"),
-                    ((Map<?, ?>) map.get("toKill")).entrySet().stream().collect(Collectors.toMap(
-                            entry -> EntityType.valueOf(entry.getKey().toString()), entry -> (Collect) entry.getValue()
-                    )));
+                    Mapper.fromFileMapToEnumKeyMap((Map<?, ?>) map.get("toKill"), EntityType.class, Collect.class));
         }
     };
 

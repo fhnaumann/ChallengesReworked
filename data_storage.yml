@@ -1,20 +1,26 @@
 challenges:
 - allowedToCraft:
   - ENDER_EYE
-  punishments:
-  - amountTriggered: 0
-    affectType: CAUSER
-    healthAmount: 2
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
+  punishments: []
   forbiddenToUse:
-  - CRAFTING
   - WORKBENCH
+  - CRAFTING
   ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
+- punishments: []
+  allowedToPlace:
+  - ACACIA_FENCE_GATE
+  ==: wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon
+- allowedToBreak:
+  - ACACIA_FENCE
+  punishments: []
+  ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon
+- punishments: []
+  ==: wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon
 goals:
-- toKill:
+- complete: false
+  toKill:
     ENDER_DRAGON:
-      currentAmount: 0
       amountNeeded: 1
+      currentAmount: 0
       ==: wand555.github.io.challengesreworked.Collect
-  complete: false
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

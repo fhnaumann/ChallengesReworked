@@ -2,18 +2,20 @@ package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon;
-import wand555.github.io.challengesreworked.challenges.randomdrops.RandomDropsChallenge;
 import wand555.github.io.challengesreworked.challenges.randomdrops.RandomDropsChallengeCommon;
 import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCommon;
 import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
+
+import java.util.List;
 
 public final class ChallengesReworkedApi extends JavaPlugin {
 
@@ -22,9 +24,13 @@ public final class ChallengesReworkedApi extends JavaPlugin {
      * before anything is stored/loaded from a file.
      */
     public static void registerTypeAdapters() {
+        StandardSerializer.getDefault().register(Collect.class, Collect.adapter);
+
         registerChallengeTypeAdapters();
         registerGoalTypeAdapters();
         registerPunishmentTypeAdapters();
+        Mapper.fromFileListToEnumSet(List.of(), Material.class);
+
     }
 
     private static void registerChallengeTypeAdapters() {

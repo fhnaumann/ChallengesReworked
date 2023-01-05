@@ -1,16 +1,13 @@
 package wand555.github.io.challengesreworked.challenges.noblockplacing;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
-import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
 
@@ -47,7 +44,7 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
         public Map<Object, Object> serialize(@NotNull NoBlockPlacingChallengeCommon common) {
             Map<Object, Object> map = new HashMap<>();
             map.put("punishments", new ArrayList<>(common.getPunishmentCommons()));
-            map.put("allowedToPlace", common.getAllowedToPlace().stream().map(Enum::toString).toList());
+            map.put("allowedToPlace", Mapper.fromEnumSetToFileList(common.getAllowedToPlace()));
             return map;
         }
 
@@ -56,7 +53,7 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
         public NoBlockPlacingChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
             return new NoBlockPlacingChallengeCommon(
                     (List<PunishmentCommon>) map.get("punishments"),
-                    ((List<?>) map.get("allowedToPlace")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet())
+                    Mapper.fromFileListToEnumSet((List<?>) map.get("allowedToPlace"), Material.class)
             );
         }
     };

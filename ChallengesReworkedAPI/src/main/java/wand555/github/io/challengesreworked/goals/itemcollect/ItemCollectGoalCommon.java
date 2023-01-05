@@ -4,6 +4,7 @@ import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import wand555.github.io.challengesreworked.Collect;
 import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -40,15 +41,17 @@ public class ItemCollectGoalCommon extends GoalCommon {
         public Map<Object, Object> serialize(@NotNull ItemCollectGoalCommon itemCollectGoal) {
             return Map.of(
                     "complete", itemCollectGoal.isComplete(),
-                    "toCollect", itemCollectGoal.getToCollect().entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue))
+                    "toCollect", Mapper.fromEnumKeyMapToFileMap(itemCollectGoal.getToCollect())
             );
         }
 
         @NotNull
         @Override
         public ItemCollectGoalCommon deserialize(@NotNull Map<Object, Object> map) {
-            return new ItemCollectGoalCommon((boolean) map.get("complete"), ((Map<?, ?>) map.get("toCollect")).entrySet().stream()
-                    .collect(Collectors.toMap(entry -> Material.valueOf(entry.getKey().toString()), entry -> (Collect) entry.getValue())));
+            return new ItemCollectGoalCommon(
+                    (boolean) map.get("complete"),
+                    Mapper.fromFileMapToEnumKeyMap((Map<?, ?>) map.get("toCollect"), Material.class, Collect.class)
+            );
         }
     };
 

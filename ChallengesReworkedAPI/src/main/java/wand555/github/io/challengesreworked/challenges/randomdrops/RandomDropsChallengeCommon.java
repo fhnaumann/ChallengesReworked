@@ -4,6 +4,7 @@ import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 
 import java.util.*;
@@ -117,7 +118,7 @@ public class RandomDropsChallengeCommon extends ChallengeCommon {
         @Override
         public Map<Object, Object> serialize(@NotNull RandomDropsChallengeCommon randomDropsChallengeCommon) {
             return Map.of(
-                    "randomized", randomDropsChallengeCommon.getRandomizedMaterials(),
+                    "randomized", Mapper.fromEnumKeyEnumValueMapToFileMap(randomDropsChallengeCommon.getRandomizedMaterials()),
                     "randomBlockDrops", randomDropsChallengeCommon.isRandomBlockDrops(),
                     "randomMobDrops", randomDropsChallengeCommon.isRandomMobDrops(),
                     "randomCraftingDrops", randomDropsChallengeCommon.isRandomCraftingDrops(),
@@ -129,7 +130,7 @@ public class RandomDropsChallengeCommon extends ChallengeCommon {
         @Override
         public RandomDropsChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
             return new RandomDropsChallengeCommon(
-                    (Map<Material, Material>) map.get("randomized"),
+                    Mapper.fromFileMapToEnumKeyEnumValueMap((Map<?, ?>) map.get("randomized"), Material.class, Material.class),
                     (boolean) map.get("randomBlockDrops"),
                     (boolean) map.get("randomMobDrops"),
                     (boolean) map.get("randomCraftingDrops"),

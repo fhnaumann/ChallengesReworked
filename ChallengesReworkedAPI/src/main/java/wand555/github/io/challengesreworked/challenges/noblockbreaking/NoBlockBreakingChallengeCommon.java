@@ -1,16 +1,13 @@
 package wand555.github.io.challengesreworked.challenges.noblockbreaking;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
-import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
 
@@ -44,7 +41,7 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
         public Map<Object, Object> serialize(@NotNull NoBlockBreakingChallengeCommon noBlockBreakingChallengeCommon) {
             return Map.of(
                     "punishments", new ArrayList<>(noBlockBreakingChallengeCommon.getPunishmentCommons()),
-                    "allowedToBreak", noBlockBreakingChallengeCommon.getAllowedToBreak().stream().map(Enum::toString).toList()
+                    "allowedToBreak", Mapper.fromEnumSetToFileList(noBlockBreakingChallengeCommon.getAllowedToBreak())
             );
         }
 
@@ -53,7 +50,7 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
         public NoBlockBreakingChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
             return new NoBlockBreakingChallengeCommon(
                     (List<PunishmentCommon>) map.get("punishments"),
-                    ((List<?>) map.get("allowedToBreak")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet())
+                    Mapper.fromFileListToEnumSet((List<?>) map.get("allowedToBreak"), Material.class)
             );
         }
     };

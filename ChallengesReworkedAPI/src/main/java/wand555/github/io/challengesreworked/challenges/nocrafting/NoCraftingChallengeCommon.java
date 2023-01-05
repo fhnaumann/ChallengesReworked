@@ -1,8 +1,7 @@
 package wand555.github.io.challengesreworked.challenges.nocrafting;
 
-import dev.dejvokep.boostedyaml.serialization.standard.StandardSerializer;
 import dev.dejvokep.boostedyaml.serialization.standard.TypeAdapter;
-import wand555.github.io.challengesreworked.Common;
+import wand555.github.io.challengesreworked.Mapper;
 import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import org.bukkit.Material;
@@ -10,7 +9,6 @@ import org.bukkit.event.inventory.InventoryType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
 
@@ -53,8 +51,8 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         public Map<Object, Object> serialize(@NotNull NoCraftingChallengeCommon noCraftingChallenge) {
             Map<Object, Object> map = new HashMap<>();
             map.put("punishments", new ArrayList<>(noCraftingChallenge.getPunishmentCommons()));
-            map.put("allowedToCraft", noCraftingChallenge.getAllowedToCraft().stream().map(Enum::toString).collect(Collectors.toList()));
-            map.put("forbiddenToUse", noCraftingChallenge.getForbiddenToUse().stream().map(Enum::toString).collect(Collectors.toList()));
+            map.put("allowedToCraft", Mapper.fromEnumSetToFileList(noCraftingChallenge.getAllowedToCraft()));
+            map.put("forbiddenToUse", Mapper.fromEnumSetToFileList(noCraftingChallenge.getForbiddenToUse()));
             return map;
         }
 
@@ -63,8 +61,9 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
         public NoCraftingChallengeCommon deserialize(@NotNull Map<Object, Object> map) {
             return new NoCraftingChallengeCommon(
                     ((List<PunishmentCommon>) map.get("punishments")),
-                    ((List<?>) map.get("allowedToCraft")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet()),
-                    ((List<?>) map.get("forbiddenToUse")).stream().map(o -> InventoryType.valueOf(o.toString())).collect(Collectors.toSet()));
+                    //((List<?>) map.get("allowedToCraft")).stream().map(o -> Material.valueOf(o.toString())).collect(Collectors.toSet()),
+                    Mapper.fromFileListToEnumSet((List<?>) map.get("allowedToCraft"), Material.class),
+                    Mapper.fromFileListToEnumSet((List<?>) map.get("forbiddenToUse"), InventoryType.class));
         }
     };
 
