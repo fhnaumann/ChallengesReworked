@@ -1,21 +1,28 @@
 challenges:
 - allowedToCraft:
   - ENDER_EYE
-  punishments: []
+  punishments:
+  - howManyRemoved: 2
+    affectType: ALL
+    amountTriggered: 0
+    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
+  - howManyEffects: 2
+    affectType: ALL
+    amountTriggered: 0
+    effectDuration: 3
+    ==: wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon
   forbiddenToUse:
   - WORKBENCH
   - CRAFTING
   ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
-- punishments: []
-  allowedToPlace:
-  - ACACIA_FENCE_GATE
+- punishments:
+  - howManyEffects: 2
+    affectType: ALL
+    amountTriggered: 0
+    effectDuration: 3
+    ==: wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon
+  allowedToPlace: []
   ==: wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon
-- allowedToBreak:
-  - ACACIA_FENCE
-  punishments: []
-  ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon
-- punishments: []
-  ==: wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon
 goals:
 - complete: false
   toKill:

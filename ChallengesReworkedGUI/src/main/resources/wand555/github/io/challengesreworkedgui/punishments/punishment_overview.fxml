@@ -25,6 +25,7 @@
                      <panes>
                         <fx:include fx:id="healthPunishment" source="health_punishment.fxml" resources="wand555/github/io/challengesreworkedgui/lang_punishments"/>
                         <fx:include fx:id="randomItemPunishment" source="random_item_punishment.fxml" resources="wand555/github/io/challengesreworkedgui/lang_punishments"/>
+                        <fx:include fx:id="randomEffectPunishment" source="random_effect_punishment.fxml"/>
                      </panes>
                   </Accordion>
                </content>

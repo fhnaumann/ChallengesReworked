@@ -59,11 +59,20 @@ public class RandomEffectPunishmentCommon extends PunishmentCommon {
             return new RandomEffectPunishmentCommon(
                     (int) map.get("amountTriggered"),
                     AffectType.valueOf(map.get("affectType").toString()),
-                    (int) map.get("howManyRemoved"),
+                    (int) map.get("howManyEffects"),
                     (int) map.get("effectDuration")
             );
         }
     };
+
+    @Override
+    public PunishmentCommon copy() {
+        return new RandomEffectPunishmentCommon(
+                getAmountTriggered(),
+                getAffectType(),
+                getHowManyEffects(),
+                getEffectDuration());
+    }
 
     @Override
     public boolean equals(Object o) {

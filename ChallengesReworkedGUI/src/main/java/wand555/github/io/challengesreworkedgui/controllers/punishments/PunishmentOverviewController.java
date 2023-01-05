@@ -17,6 +17,8 @@ public class PunishmentOverviewController {
     private HealthPunishmentController healthPunishmentController;
     @FXML
     private RandomItemPunishmentController randomItemPunishmentController;
+    @FXML
+    private RandomEffectPunishmentController randomEffectPunishmentController;
 
     private ChallengeController source;
 
@@ -32,7 +34,8 @@ public class PunishmentOverviewController {
     protected void initialize() {
         controllers = List.of(
                 healthPunishmentController,
-                randomItemPunishmentController
+                randomItemPunishmentController,
+                randomEffectPunishmentController
         );
     }
 
