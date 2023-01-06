@@ -57,6 +57,7 @@ public class MobGoalController extends GoalController implements MobGoal {
         ListSelectionView<MobRow> listSelectionView = new ListSelectionView<>();
         List<EntityType> killableMobs = Stream.of(EntityType.values())
                 .filter(EntityType::isAlive)
+                .filter(entityType -> mobsToKillList.getItems().stream().noneMatch(mobRow -> mobRow.getEntityType() == entityType))
                 .sorted(Comparator.comparing(Enum::toString))
                 .toList();
         List<MobRow> rows = killableMobs.stream()

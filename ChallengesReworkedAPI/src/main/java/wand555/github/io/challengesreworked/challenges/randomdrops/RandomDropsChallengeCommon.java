@@ -27,7 +27,7 @@ public class RandomDropsChallengeCommon extends ChallengeCommon {
         this(randomize(), true, false, false, false);
     }
 
-    private RandomDropsChallengeCommon(Map<Material, Material> randomized, boolean randomBlockDrops, boolean randomMobDrops, boolean randomCraftingDrops, boolean randomFurnaceDrops) {
+    public RandomDropsChallengeCommon(Map<Material, Material> randomized, boolean randomBlockDrops, boolean randomMobDrops, boolean randomCraftingDrops, boolean randomFurnaceDrops) {
         this.randomized = randomized;
         this.randomBlockDrops = randomBlockDrops;
         this.randomMobDrops = randomMobDrops;

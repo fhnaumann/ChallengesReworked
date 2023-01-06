@@ -15,4 +15,5 @@ module challenges.reworked.api {
     exports wand555.github.io.challengesreworked.challenges.nodamage;
     exports wand555.github.io.challengesreworked.goals.itemcollect;
     exports wand555.github.io.challengesreworked.punishments.randomeffect;
+    exports wand555.github.io.challengesreworked.challenges.randomdrops;
 }

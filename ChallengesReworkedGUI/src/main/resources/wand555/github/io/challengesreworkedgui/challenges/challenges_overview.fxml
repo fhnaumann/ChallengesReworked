@@ -29,6 +29,7 @@
                         <fx:include fx:id="noBlockPlacingChallenge" source="no_block_placing_challenge.fxml" VBox.vgrow="ALWAYS" />
                         <fx:include fx:id="noBlockBreakingChallenge" source="no_block_breaking_challenge.fxml" VBox.vgrow="ALWAYS" />
                         <fx:include fx:id="noDamageChallenge" source="no_damage_challenge.fxml"/>
+                        <fx:include fx:id="randomDropsChallenge" source="random_drops_challenge.fxml"/>
                      </panes>
                   </Accordion>
                </content>
