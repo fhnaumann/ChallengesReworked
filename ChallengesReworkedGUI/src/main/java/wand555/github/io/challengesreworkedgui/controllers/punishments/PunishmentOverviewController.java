@@ -9,7 +9,10 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengeController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class PunishmentOverviewController {
 
@@ -51,11 +54,11 @@ public class PunishmentOverviewController {
                 .toList();
     }
 
-    public List<PunishmentCommon> getAllActivePunishmentsAsCommon() {
+    public Collection<PunishmentCommon> getAllActivePunishmentsAsCommon() {
         return controllers.stream()
                 .filter(PunishmentController::isActive)
                 .map(punishmentController -> (PunishmentCommon) punishmentController.getCommon())
-                .toList();
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 
     public List<PunishmentController> getControllers() {

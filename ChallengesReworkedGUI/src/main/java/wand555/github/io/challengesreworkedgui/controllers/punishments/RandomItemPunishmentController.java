@@ -21,7 +21,7 @@ public class RandomItemPunishmentController extends PunishmentController impleme
 
     @FXML
     @Override
-    protected void initialize() {
+    public void initialize() {
         common = new RandomItemPunishmentCommon();
         super.initialize();
 
@@ -51,14 +51,14 @@ public class RandomItemPunishmentController extends PunishmentController impleme
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/random_item_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             RandomItemPunishmentController rowController = loader.getController();
-            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
+            rowController.setUnmodifiable(isUnmodifiable());
 
             rowController.common = getCommon();
             rowController.itemAmountTextField.setText(Integer.toString(getCommon().getHowManyRemoved()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
 
             // changes needed if only global changes is true
-            if(isOnlyGlobalChanges()) {
+            if(isUnmodifiable()) {
                 rowController.affectTypeComboBox.setEditable(false);
                 rowController.affectTypeComboBox.setDisable(true);
                 rowController.itemAmountTextField.setEditable(false);
@@ -77,7 +77,7 @@ public class RandomItemPunishmentController extends PunishmentController impleme
         super.extractDataFromPunishmentRow(row);
         RandomItemPunishmentController randomItemPunishmentController = (RandomItemPunishmentController) row.getPunishmentController();
         itemAmountTextField.setText(randomItemPunishmentController.itemAmountTextField.getText());
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             itemAmountTextField.setEditable(false);
             itemAmountTextField.setDisable(true);
         }
@@ -87,7 +87,7 @@ public class RandomItemPunishmentController extends PunishmentController impleme
     public void setDataFromCommon(Common from, boolean thisActive) {
         super.setDataFromCommon(from, thisActive);
         itemAmountTextField.setText(Integer.toString(getCommon().getHowManyRemoved()));
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             itemAmountTextField.setDisable(true);
         }
     }
@@ -98,8 +98,8 @@ public class RandomItemPunishmentController extends PunishmentController impleme
     }
 
     @Override
-    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
-        super.setOnlyGlobalChanges(onlyGlobalChanges);
-        itemAmountTextField.setDisable(onlyGlobalChanges);
+    public void setUnmodifiable(boolean unmodifiable) {
+        super.setUnmodifiable(unmodifiable);
+        itemAmountTextField.setDisable(unmodifiable);
     }
 }

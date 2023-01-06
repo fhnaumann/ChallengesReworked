@@ -92,6 +92,16 @@ public class ItemCollectGoalController extends GoalController implements ItemCol
         itemsToCollectList.setItems(FXCollections.observableArrayList(rows));
     }
 
+    @Override
+    public void refresh() {
+        getCommon().setToCollect(
+                itemsToCollectList.getItems().stream().collect(Collectors.toMap(
+                        itemCollectRow -> itemCollectRow.getMaterial(),
+                        itemCollectRow -> itemCollectRow.getCollect()
+                ))
+        );
+    }
+
     private static class ItemCollectRow extends MaterialRow {
 
         private final Collect collect;

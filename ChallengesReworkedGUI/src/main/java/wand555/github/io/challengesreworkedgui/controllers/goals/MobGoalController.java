@@ -41,7 +41,7 @@ public class MobGoalController extends GoalController implements MobGoal {
         super.initialize();
 
         mobsToKillList.setItems(FXCollections.observableArrayList(new MobRow(
-                EntityType.ENDER_DRAGON, 1)));
+                EntityType.ENDER_DRAGON, new Collect(1, 0))));
         addMobsToKill.setOnAction(event -> {
             initMobsToKillUI();
         });
@@ -60,7 +60,7 @@ public class MobGoalController extends GoalController implements MobGoal {
                 .sorted(Comparator.comparing(Enum::toString))
                 .toList();
         List<MobRow> rows = killableMobs.stream()
-                .map(entityType -> new MobRow(entityType, 1))
+                .map(entityType -> new MobRow(entityType, new Collect(1, 0)))
                 .toList();
         listSelectionView.setSourceItems(FXCollections.observableArrayList(rows));
         listSelectionView.setTargetItems(CopyUtil.deepCopy(mobsToKillList.getItems()));
@@ -90,6 +90,15 @@ public class MobGoalController extends GoalController implements MobGoal {
     }
 
     @Override
+    public void refresh() {
+        getCommon().setToKill(
+                mobsToKillList.getItems().stream().collect(Collectors.toMap(
+                        mobRow -> mobRow.getEntityType(),
+                        mobRow -> mobRow.getCollect()
+                )));
+    }
+
+    @Override
     public MobGoalCommon getCommon() {
         return (MobGoalCommon) common;
     }
@@ -98,10 +107,6 @@ public class MobGoalController extends GoalController implements MobGoal {
 
         private final EntityType entityType;
         private final Collect collect;
-
-        public MobRow(EntityType entityType, int amountNeeded) {
-            this(entityType, new Collect(amountNeeded));
-        }
 
         public MobRow(EntityType entityType, Collect collect) {
             super(5);
@@ -129,7 +134,7 @@ public class MobGoalController extends GoalController implements MobGoal {
                         }
                         return null;
                     }));
-            getChildren().addAll(new StackPane(new Label(Mapper.mapToString(entityType))), textField);
+            getChildren().addAll(new StackPane(new Label(Mapper.mapToString(entityType))), new StackPane(textField));
         }
 
         public Collect getCollect() {

@@ -6,10 +6,7 @@ import org.apache.commons.text.WordUtils;
 import org.bukkit.potion.PotionEffect;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Mapper {
@@ -47,7 +44,7 @@ public class Mapper {
     public static <T extends Enum<T>> Set<T> fromFileListToEnumSet(List<?> listFromFile, Class<T> listType) {
         return listFromFile.stream()
                 .map(o -> str2Enum(o, listType))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 
     private static <T extends Enum<T>> T str2Enum(Object obj, Class<T> type) {

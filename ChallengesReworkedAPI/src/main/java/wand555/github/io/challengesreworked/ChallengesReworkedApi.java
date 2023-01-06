@@ -29,7 +29,6 @@ public final class ChallengesReworkedApi extends JavaPlugin {
         registerChallengeTypeAdapters();
         registerGoalTypeAdapters();
         registerPunishmentTypeAdapters();
-        Mapper.fromFileListToEnumSet(List.of(), Material.class);
 
     }
 

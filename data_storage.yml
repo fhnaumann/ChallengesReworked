@@ -1,48 +1,16 @@
 challenges:
-- allowedToCraft:
-  - ENDER_EYE
-  punishments:
-  - amountTriggered: 0
-    howManyRemoved: 1
-    affectType: ALL
-    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
-  - amountTriggered: 0
-    effectDuration: 5
-    howManyEffects: 1
-    affectType: ALL
-    ==: wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon
-  forbiddenToUse:
-  - WORKBENCH
-  - CRAFTING
-  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
 - punishments:
-  - amountTriggered: 0
+  - affectType: CAUSER
     healthAmount: 1
-    affectType: CAUSER
+    amountTriggered: 0
     ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
-  - amountTriggered: 0
-    howManyRemoved: 1
-    affectType: ALL
-    ==: wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon
-  - amountTriggered: 0
-    effectDuration: 5
-    howManyEffects: 1
-    affectType: ALL
-    ==: wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon
-  allowedToPlace: &id001 []
-  ==: wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon
-- allowedToBreak: *id001
-  punishments:
-  - amountTriggered: 0
-    healthAmount: 1
-    affectType: CAUSER
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
+  allowedToBreak: []
   ==: wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon
 goals:
-- toKill:
+- complete: false
+  toKill:
     ENDER_DRAGON:
-      currentAmount: 0
       amountNeeded: 1
+      currentAmount: 0
       ==: wand555.github.io.challengesreworked.Collect
-  complete: false
   ==: wand555.github.io.challengesreworked.goals.mob.MobGoalCommon

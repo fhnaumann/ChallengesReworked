@@ -14,7 +14,7 @@ public class NoBlockBreakingChallengeCommon extends PunishableChallengeCommon {
     private Set<Material> allowedToBreak;
 
     public NoBlockBreakingChallengeCommon() {
-        this(Set.of(), Set.of());
+        this(new TreeSet<>(), Set.of());
     }
 
     public NoBlockBreakingChallengeCommon(Collection<PunishmentCommon> punishmentCommons, Set<Material> allowedToBreak) {

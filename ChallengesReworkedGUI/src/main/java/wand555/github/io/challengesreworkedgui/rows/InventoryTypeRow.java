@@ -1,6 +1,7 @@
 package wand555.github.io.challengesreworkedgui.rows;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import org.bukkit.event.inventory.InventoryType;
 import wand555.github.io.challengesreworked.Mapper;
 
@@ -11,7 +12,7 @@ public class InventoryTypeRow extends Row {
     public InventoryTypeRow(InventoryType inventoryType) {
         this.inventoryType = inventoryType;
         String userFriendly = Mapper.mapToString(inventoryType);
-        getChildren().add(new Label(userFriendly));
+        getChildren().add(new StackPane(new Label(userFriendly)));
     }
 
     @Override

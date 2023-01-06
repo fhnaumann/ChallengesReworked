@@ -1,5 +1,9 @@
 package wand555.github.io.challengesreworkedgui;
 
+import atlantafx.base.theme.NordDark;
+import atlantafx.base.theme.NordLight;
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +21,8 @@ public class ChallengeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ChallengesReworkedApi.registerTypeAdapters();
+
+        ChallengeApplication.setUserAgentStylesheet(new NordDark().getUserAgentStylesheet());
 
         ResourceBundle.clearCache();
         ResourceBundle bundle = new ResourceBundleWrapper(ResourceBundle.getBundle("wand555/github/io/challengesreworkedgui/lang_challenges"));

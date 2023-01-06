@@ -17,7 +17,7 @@ public class NoCraftingChallengeCommon extends PunishableChallengeCommon {
 
     public NoCraftingChallengeCommon() {
         this(
-                List.of(),
+                new TreeSet<>(),
                 Set.of(Material.ENDER_EYE),
                 Set.of(InventoryType.WORKBENCH, InventoryType.CRAFTING)
         );

@@ -6,17 +6,20 @@ import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public abstract class PunishableChallengeCommon extends ChallengeCommon {
 
     protected Collection<PunishmentCommon> punishmentCommons;
 
     public PunishableChallengeCommon() {
-        this(Set.of());
+        this(new TreeSet<>());
     }
 
     public PunishableChallengeCommon(Collection<PunishmentCommon> punishmentCommons) {
         super();
+        System.out.println(punishmentCommons.getClass());
         this.punishmentCommons = punishmentCommons;
     }
 
@@ -25,7 +28,7 @@ public abstract class PunishableChallengeCommon extends ChallengeCommon {
     }
 
     public Collection<PunishmentCommon> copyPunishmentCommons() {
-        return getPunishmentCommons().stream().map(PunishmentCommon::copy).toList();
+        return getPunishmentCommons().stream().map(PunishmentCommon::copy).collect(Collectors.toCollection(TreeSet::new));
     }
 
     public void setPunishmentCommons(Collection<PunishmentCommon> punishmentCommons) {

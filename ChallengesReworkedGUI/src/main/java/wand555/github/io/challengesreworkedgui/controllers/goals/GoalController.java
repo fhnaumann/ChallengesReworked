@@ -52,6 +52,8 @@ public abstract class GoalController extends Controller implements Goal {
         }
     }
 
+    public abstract void  refresh();
+
     @Override
     public GoalCommon getCommon() {
         return common;

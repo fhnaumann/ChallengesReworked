@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -32,7 +33,6 @@ import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,6 +61,8 @@ public class ChallengesOverviewController {
     private Button globalPunishmentsButton;
 
     private ObservableList<PunishmentRow> globalPunishmentRows = FXCollections.observableArrayList();
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private void initialize() throws FileNotFoundException {
@@ -71,7 +73,21 @@ public class ChallengesOverviewController {
     public List<ChallengeCommon> getAllChallenges() {
         return getAllChallengesController().stream()
                 .filter(ChallengeController::isActive)
-                .map(challengeController -> challengeController.getCommon().copy())
+                .map(challengeController -> {
+                    if(challengeController instanceof PunishableChallengeController punishableChallengeController) {
+                        // In case if punishments are present in this challenge, they are currently set in the rows.
+                        // These rows need to be explicitly set as punishment commons so the right commons are exported.
+                        punishableChallengeController.getCommon().setPunishmentCommons(
+                                punishableChallengeController.getPunishmentList().getItems().stream()
+                                        .map(punishmentRow -> punishmentRow.getPunishmentController().getCommon())
+                                        .toList()
+                        );
+                        return punishableChallengeController.getCommon().copy();
+                    }
+                    else {
+                        return challengeController.getCommon().copy();
+                    }
+                })
                 .toList();
     }
 
@@ -93,7 +109,13 @@ public class ChallengesOverviewController {
             PunishmentOverviewController punishmentOverviewController = punishmentLoader.getController();
             punishmentOverviewController.setSource(null);
             // change only global changes so the punishments become modifiable here
-            globalPunishmentRows.forEach(punishmentRow -> punishmentRow.getPunishmentController().setOnlyGlobalChanges(false));
+            globalPunishmentRows.forEach(punishmentRow -> {
+                punishmentRow.getPunishmentController().setUnmodifiable(false);
+                punishmentRow.getPunishmentController().setGlobal(true);
+            });
+            punishmentOverviewController.getControllers().forEach(punishmentController -> {
+                punishmentController.setGlobal(true);
+            });
             punishmentOverviewController.setDataFromRows(globalPunishmentRows);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -101,11 +123,11 @@ public class ChallengesOverviewController {
             stage.setScene(scene);
             stage.setOnCloseRequest(event1 -> {
                 globalPunishmentRows = FXCollections.observableArrayList(punishmentOverviewController.getAllActivePunishmentsAsRow());
-                List<PunishmentCommon> globallyEnabledPunishmentCommons = punishmentOverviewController.getAllActivePunishmentsAsCommon();
+                Collection<PunishmentCommon> globallyEnabledPunishmentCommons = punishmentOverviewController.getAllActivePunishmentsAsCommon();
                 // add marker for when the row is constructed back
                 globalPunishmentRows.forEach(punishmentRow -> {
                     punishmentRow.getPunishmentController().setGlobal(true);
-                    punishmentRow.getPunishmentController().setOnlyGlobalChanges(true);
+                    punishmentRow.getPunishmentController().setUnmodifiable(true);
                 });
                 getAllChallengesController().stream()
                         .filter(challengeController -> challengeController instanceof PunishableChallenge)
@@ -157,7 +179,7 @@ public class ChallengesOverviewController {
                     punishableChallengeController.getPunishmentList().getItems().stream()
                             .filter(punishmentRow -> punishmentRow.getPunishmentController().getCommon().equals(punishmentCommon))
                             .forEach(punishmentRow -> {
-                                punishmentRow.getPunishmentController().setOnlyGlobalChanges(true);
+                                punishmentRow.getPunishmentController().setUnmodifiable(true);
                     });
                 });
     }
@@ -179,5 +201,13 @@ public class ChallengesOverviewController {
                 }
             }
         }
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
+    public ObservableList<PunishmentRow> getGlobalPunishmentRows() {
+        return globalPunishmentRows;
     }
 }

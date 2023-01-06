@@ -12,7 +12,6 @@ import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 public class HealthPunishmentController extends PunishmentController implements HealthPunishment {
 
@@ -20,7 +19,7 @@ public class HealthPunishmentController extends PunishmentController implements 
     private TextField heartsTextField;
 
     @FXML
-    protected void initialize() {
+    public void initialize() {
         common = new HealthPunishmentCommon(0, AffectType.CAUSER, 1);
         super.initialize();
         heartsTextField.setTextFormatter(new TextFormatter<>(
@@ -49,14 +48,14 @@ public class HealthPunishmentController extends PunishmentController implements 
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/health_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             HealthPunishmentController rowController = loader.getController();
-            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
+            rowController.setUnmodifiable(isUnmodifiable());
 
-            rowController.common = getCommon();
+            rowController.common = getCommon().copy();
             rowController.heartsTextField.setText(Integer.toString(getHealthAmount()));
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
 
             // changes needed if only global changes is true
-            if(isOnlyGlobalChanges()) {
+            if(isUnmodifiable()) {
                 rowController.affectTypeComboBox.setEditable(false);
                 rowController.affectTypeComboBox.setDisable(true);
                 rowController.heartsTextField.setEditable(false);
@@ -77,7 +76,7 @@ public class HealthPunishmentController extends PunishmentController implements 
         HealthPunishmentController healthPunishmentController = (HealthPunishmentController) row.getPunishmentController();
         heartsTextField.setText(healthPunishmentController.heartsTextField.getText());
         System.out.println(heartsTextField.getText() + "!!!");
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             heartsTextField.setEditable(false);
             heartsTextField.setDisable(true);
         }
@@ -87,7 +86,7 @@ public class HealthPunishmentController extends PunishmentController implements 
     public void setDataFromCommon(Common from, boolean thisActive) {
         super.setDataFromCommon(from, thisActive);
         heartsTextField.setText(Integer.toString(getCommon().getHealthAmount()));
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             heartsTextField.setDisable(true);
         }
     }
@@ -98,8 +97,8 @@ public class HealthPunishmentController extends PunishmentController implements 
     }
 
     @Override
-    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
-        super.setOnlyGlobalChanges(onlyGlobalChanges);
-        heartsTextField.setDisable(onlyGlobalChanges);
+    public void setUnmodifiable(boolean unmodifiable) {
+        super.setUnmodifiable(unmodifiable);
+        heartsTextField.setDisable(unmodifiable);
     }
 }

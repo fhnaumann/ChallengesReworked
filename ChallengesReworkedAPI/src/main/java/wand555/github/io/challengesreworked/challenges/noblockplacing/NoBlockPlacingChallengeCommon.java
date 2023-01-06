@@ -15,7 +15,7 @@ public class NoBlockPlacingChallengeCommon extends PunishableChallengeCommon {
 
     public NoBlockPlacingChallengeCommon() {
         this(
-                new HashSet<>(),
+                new TreeSet<>(),
                 new HashSet<>()
         );
     }

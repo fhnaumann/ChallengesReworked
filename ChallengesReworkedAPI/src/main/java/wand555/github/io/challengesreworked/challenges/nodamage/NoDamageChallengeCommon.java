@@ -12,7 +12,7 @@ import java.util.*;
 public class NoDamageChallengeCommon extends PunishableChallengeCommon {
 
         public NoDamageChallengeCommon() {
-                this(new HashSet<>());
+                this(new TreeSet<>());
         }
 
         public NoDamageChallengeCommon(Collection<PunishmentCommon> punishmentCommons) {

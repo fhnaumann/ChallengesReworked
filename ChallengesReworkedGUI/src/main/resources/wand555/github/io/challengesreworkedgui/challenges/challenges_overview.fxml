@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<AnchorPane id="background-node" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController">
+<AnchorPane fx:id="anchorPane" id="background-node" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wand555.github.io.challengesreworkedgui.controllers.challenges.ChallengesOverviewController">
    <children>
       <VBox>
          <children>

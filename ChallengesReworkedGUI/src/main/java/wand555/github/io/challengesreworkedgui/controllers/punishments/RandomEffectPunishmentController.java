@@ -6,10 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
 import wand555.github.io.challengesreworked.Common;
-import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishment;
 import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon;
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
 
@@ -24,7 +22,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
 
     @FXML
     @Override
-    protected void initialize() {
+    public void initialize() {
         common = new RandomEffectPunishmentCommon();
         super.initialize();
 
@@ -72,7 +70,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
             FXMLLoader loader = new FXMLLoader(ChallengeApplication.class.getResource("punishments/random_effect_punishment_row.fxml"), bundle);
             PunishmentRow root = loader.load();
             RandomEffectPunishmentController rowController = loader.getController();
-            rowController.setOnlyGlobalChanges(isOnlyGlobalChanges());
+            rowController.setUnmodifiable(isUnmodifiable());
 
             rowController.common = getCommon();
             rowController.howManyTextField.setText(Integer.toString(getCommon().getHowManyEffects()));
@@ -80,7 +78,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
             rowController.affectTypeComboBox.setValue(getCommon().getAffectType());
 
             //changes needed if only global
-            if(isOnlyGlobalChanges()) {
+            if(isUnmodifiable()) {
                 rowController.affectTypeComboBox.setDisable(true);
                 rowController.howManyTextField.setDisable(true);
                 rowController.durationTextField.setDisable(true);
@@ -99,7 +97,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
         RandomEffectPunishmentController randomEffectPunishmentController = (RandomEffectPunishmentController) row.getPunishmentController();
         howManyTextField.setText(Integer.toString(randomEffectPunishmentController.getCommon().getHowManyEffects()));
         durationTextField.setText(Integer.toString(randomEffectPunishmentController.getCommon().getEffectDuration()));
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             howManyTextField.setDisable(true);
             durationTextField.setDisable(true);
         }
@@ -111,7 +109,7 @@ public class RandomEffectPunishmentController extends PunishmentController imple
         super.setDataFromCommon(from, thisActive);
         howManyTextField.setText(Integer.toString(getCommon().getHowManyEffects()));
         durationTextField.setText(Integer.toString(getCommon().getEffectDuration()));
-        if(isOnlyGlobalChanges()) {
+        if(isUnmodifiable()) {
             howManyTextField.setDisable(true);
             durationTextField.setDisable(true);
         }
@@ -123,9 +121,9 @@ public class RandomEffectPunishmentController extends PunishmentController imple
     }
 
     @Override
-    public void setOnlyGlobalChanges(boolean onlyGlobalChanges) {
-        super.setOnlyGlobalChanges(onlyGlobalChanges);
-        howManyTextField.setDisable(onlyGlobalChanges);
-        durationTextField.setDisable(onlyGlobalChanges);
+    public void setUnmodifiable(boolean unmodifiable) {
+        super.setUnmodifiable(unmodifiable);
+        howManyTextField.setDisable(unmodifiable);
+        durationTextField.setDisable(unmodifiable);
     }
 }

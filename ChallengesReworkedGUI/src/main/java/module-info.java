@@ -6,6 +6,7 @@ module challenges.reworked.gui {
     requires org.bukkit;
     requires challenges.reworked.api;
     requires boosted.yaml.spigot;
+    requires atlantafx.base;
 
     opens wand555.github.io.challengesreworkedgui;
     //opens wand555.github.io.challengesreworkedgui to javafx.fxml;
@@ -32,4 +33,5 @@ module challenges.reworked.gui {
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbreaking;
     exports wand555.github.io.challengesreworkedgui.controllers.challenges.nodamage;
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.nodamage;
+
 }

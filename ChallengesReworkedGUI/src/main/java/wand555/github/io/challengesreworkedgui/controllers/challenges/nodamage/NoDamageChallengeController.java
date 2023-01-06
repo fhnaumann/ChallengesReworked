@@ -15,7 +15,7 @@ public class NoDamageChallengeController extends PunishableChallengeController i
     @FXML
     @Override
     protected void initialize() {
-        common = new NoDamageChallengeCommon(List.of());
+        common = new NoDamageChallengeCommon();
         super.initialize();
     }
 

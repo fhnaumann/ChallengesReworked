@@ -4,6 +4,7 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
@@ -11,6 +12,7 @@ import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChal
 import wand555.github.io.challengesreworked.goals.Goal;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
+import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.Wrapper;
@@ -34,10 +36,17 @@ public class OverviewController {
     private Button exportButton;
     @FXML
     private Button loadButton;
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private void initialize() {
         instance = this;
+
+        challengesOverviewController.getAnchorPane().prefWidthProperty().bind(anchorPane.widthProperty().divide(3));
+        challengesOverviewController.getAnchorPane().prefHeightProperty().bind(anchorPane.heightProperty());
+        goalsOverviewController.getAnchorPane().prefWidthProperty().bind(anchorPane.widthProperty().divide(3));
+        goalsOverviewController.getAnchorPane().prefHeightProperty().bind(anchorPane.heightProperty());
     }
 
     @FXML
@@ -100,7 +109,14 @@ public class OverviewController {
 
     public boolean isActive(Class<? extends Challenge> challengeClazz) {
         return challengesOverviewController.getAllChallengesController().stream()
-                .anyMatch(challengeController -> challengeClazz.isInstance(challengeController) && challengeController.isActive());
+                .filter(challengeController -> challengeClazz.isInstance(challengeController))
+                .anyMatch(challengeController -> challengeController.isActive());
+    }
+
+    public boolean isActiveGlobalPunishment(Class<? extends Punishment> punishmentClazz) {
+        return challengesOverviewController.getGlobalPunishmentRows().stream()
+                .filter(punishmentRow -> punishmentClazz.isInstance(punishmentRow.getPunishmentController()))
+                .anyMatch(punishmentRow -> punishmentRow.getPunishmentController().isActive());
     }
 
     public ChallengesOverviewController getChallengesOverviewController() {

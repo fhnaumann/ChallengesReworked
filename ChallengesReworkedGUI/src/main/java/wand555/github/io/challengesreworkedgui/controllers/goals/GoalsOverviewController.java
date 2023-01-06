@@ -1,6 +1,7 @@
 package wand555.github.io.challengesreworkedgui.controllers.goals;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import wand555.github.io.challengesreworked.Commonable;
 import wand555.github.io.challengesreworked.goals.Goal;
 import wand555.github.io.challengesreworked.goals.GoalCommon;
@@ -16,6 +17,8 @@ public class GoalsOverviewController {
     private ItemCollectGoalController itemCollectGoalController;
 
     private List<GoalController> controllers;
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private void initialize() {
@@ -26,6 +29,7 @@ public class GoalsOverviewController {
     }
 
     public List<GoalCommon> getAllGoals() {
+        getAllGoalControllers().forEach(GoalController::refresh);
         return getAllGoalControllers().stream()
                 .filter(GoalController::isActive)
                 .map(Goal::getCommon)
@@ -37,4 +41,8 @@ public class GoalsOverviewController {
         return controllers;
     }
 
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
 }

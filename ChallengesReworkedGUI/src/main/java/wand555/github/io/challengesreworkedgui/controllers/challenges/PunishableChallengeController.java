@@ -13,6 +13,8 @@ import wand555.github.io.challengesreworked.challenges.PunishableChallengeCommon
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import javafx.fxml.FXML;
 import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import wand555.github.io.challengesreworkedgui.ChallengeApplication;
 import wand555.github.io.challengesreworkedgui.ResourceBundleWrapper;
 import wand555.github.io.challengesreworkedgui.Wrapper;
@@ -88,6 +90,8 @@ public abstract class PunishableChallengeController extends ChallengeController 
                     System.out.println("current " + punishmentCommon);
                     System.out.println("punishablechallenge (source) " + punishableChallengeCommon);
                     System.out.println("all in challenge " + punishableChallengeCommon.getPunishmentCommons());
+                    System.out.println("!!! " + (punishableChallengeCommon.getPunishmentCommons().stream().toList().get(0).hashCode() == punishmentCommon.hashCode()));
+                    System.out.println(punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon));
                 })
                 .allMatch(punishableChallengeCommon -> punishableChallengeCommon.getPunishmentCommons().contains(punishmentCommon));
         System.out.println(test);
