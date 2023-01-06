@@ -32,6 +32,7 @@ public abstract class PunishableChallengeCommon extends ChallengeCommon {
     }
 
     public void setPunishmentCommons(Collection<PunishmentCommon> punishmentCommons) {
+        System.out.println(punishmentCommons.getClass() + "!");
         this.punishmentCommons = punishmentCommons;
     }
 

@@ -36,6 +36,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class ChallengesOverviewController {
 
@@ -80,7 +82,7 @@ public class ChallengesOverviewController {
                         punishableChallengeController.getCommon().setPunishmentCommons(
                                 punishableChallengeController.getPunishmentList().getItems().stream()
                                         .map(punishmentRow -> punishmentRow.getPunishmentController().getCommon())
-                                        .toList()
+                                        .collect(Collectors.toCollection(TreeSet::new))
                         );
                         return punishableChallengeController.getCommon().copy();
                     }
@@ -135,9 +137,8 @@ public class ChallengesOverviewController {
                         .forEach(punishableChallengeController -> {
                             //set in model
                             punishableChallengeController.getCommon().getPunishmentCommons().addAll(globallyEnabledPunishmentCommons);
-
                             //set in ui (the common object was modified in the line above, so set it again, so it reapplies the data into the UI fields)
-                            punishableChallengeController.getPunishmentList().setItems(FXCollections.observableArrayList(
+                            punishableChallengeController.getPunishmentList().getItems().addAll(FXCollections.observableArrayList(
                                     globalPunishmentRows.stream()
                                             .map(punishmentRow -> punishmentRow.getPunishmentController().getAsOneLine())
                                             .toList()
