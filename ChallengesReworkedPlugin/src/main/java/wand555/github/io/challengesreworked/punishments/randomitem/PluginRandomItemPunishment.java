@@ -1,14 +1,12 @@
-package wand555.github.io.challengesreworked.punishment.randomitem;
+package wand555.github.io.challengesreworked.punishments.randomitem;
 
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishment;
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
+import wand555.github.io.challengesreworked.punishments.PluginPunishment;
 
 import java.util.List;
 import java.util.Map;

@@ -2,7 +2,7 @@ package wand555.github.io.challengesreworked.challenges;
 
 import wand555.github.io.challengesreworked.punishments.Punishment;
 import wand555.github.io.challengesreworked.Wrapper;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
+import wand555.github.io.challengesreworked.punishments.PluginPunishment;
 
 import java.util.Collection;
 

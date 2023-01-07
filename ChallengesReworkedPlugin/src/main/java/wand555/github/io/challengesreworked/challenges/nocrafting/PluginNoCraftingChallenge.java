@@ -18,6 +18,7 @@ public class PluginNoCraftingChallenge extends PluginPunishableChallenge impleme
 
     public PluginNoCraftingChallenge(NoCraftingChallengeCommon common) {
         super(common);
+        System.out.println("pre register");
         ChallengesReworked.registerListener(plugin, this);
     }
 

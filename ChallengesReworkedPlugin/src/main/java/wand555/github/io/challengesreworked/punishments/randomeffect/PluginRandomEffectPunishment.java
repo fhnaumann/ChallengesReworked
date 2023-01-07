@@ -1,18 +1,13 @@
-package wand555.github.io.challengesreworked.punishment.randomeffect;
+package wand555.github.io.challengesreworked.punishments.randomeffect;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import wand555.github.io.challengesreworked.ChallengeManager;
-import wand555.github.io.challengesreworked.ChallengesReworked;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
-import wand555.github.io.challengesreworked.punishments.PunishmentCommon;
-import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishment;
-import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon;
-import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
+import wand555.github.io.challengesreworked.punishments.PluginPunishment;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -58,6 +58,7 @@ public final class ChallengesReworked extends JavaPlugin {
 
     public static <T extends Listener> T registerListener(JavaPlugin plugin, T listener) {
         if(HandlerList.getRegisteredListeners(plugin).stream().noneMatch(registeredListener -> registeredListener.getListener().getClass() == listener.getClass())) {
+            System.out.println("registering");
             plugin.getServer().getPluginManager().registerEvents(listener, plugin);
         }
         return listener;

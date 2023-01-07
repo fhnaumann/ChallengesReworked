@@ -1,13 +1,11 @@
-package wand555.github.io.challengesreworked.punishment.health;
+package wand555.github.io.challengesreworked.punishments.health;
 
-import wand555.github.io.challengesreworked.punishments.health.HealthPunishment;
-import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import wand555.github.io.challengesreworked.ChallengeManager;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
 import wand555.github.io.challengesreworked.logging.PlaceHolderHandler;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
+import wand555.github.io.challengesreworked.punishments.PluginPunishment;
 
 import java.util.Map;
 import java.util.Objects;

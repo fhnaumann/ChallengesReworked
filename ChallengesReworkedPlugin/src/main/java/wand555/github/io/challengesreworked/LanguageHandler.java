@@ -21,9 +21,6 @@ import java.util.stream.Stream;
 
 public class LanguageHandler {
 
-
-
-
     private final Map<Locale, YamlDocument> languageMessages;
     private Locale currentLocale;
 

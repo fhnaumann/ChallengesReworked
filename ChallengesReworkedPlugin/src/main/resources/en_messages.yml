@@ -1,14 +1,14 @@
 run:
-  start: "<color:#F2F4CB>Run has been started!"
+  start: "<color:#C9CFDA>Run has been started!"
   end:
-    success: "Run has ended! All goals have been completed."
-    fail: "Run has ended! Use /restore if you want to replay the ending."
+    success: "<color:#E1E8F4>Run has ended! All goals have been completed."
+    fail: "<color:#E1E8F4>Run has ended! Use <color:#FFB800>/restore</color:#FFB800> if you want to replay the ending."
 timer:
-  running: "<color:#8CADA7>%time%"
+  running: "<color:#C9CFDA>%time%"
 challenges:
   nocrafting:
     name: "No Crafting Challenge"
-    violation: "<color:#8CADA7>%player% <color:#F2F4CB>has crafted <color:#8CADA7>%material%!"
+    violation: "<color:#FFB800>%player%</color:#FFB800> <color:#C9CFDA>has crafted <color:#FFB800>%material%</color:#FFB800>!"
   noblockplacing:
     name: "No Block Placing Challenge"
     violation: "%player% has placed %material%!"

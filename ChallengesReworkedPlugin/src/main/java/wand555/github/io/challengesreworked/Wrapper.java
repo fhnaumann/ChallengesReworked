@@ -14,8 +14,8 @@ import wand555.github.io.challengesreworked.challenges.PluginChallenge;
 import wand555.github.io.challengesreworked.challenges.nocrafting.PluginNoCraftingChallenge;
 import wand555.github.io.challengesreworked.goals.itemcollect.PluginItemCollectGoal;
 import wand555.github.io.challengesreworked.goals.mob.PluginMobGoal;
-import wand555.github.io.challengesreworked.punishment.health.PluginHealthPunishment;
-import wand555.github.io.challengesreworked.punishment.randomitem.PluginRandomItemPunishment;
+import wand555.github.io.challengesreworked.punishments.health.PluginHealthPunishment;
+import wand555.github.io.challengesreworked.punishments.randomitem.PluginRandomItemPunishment;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

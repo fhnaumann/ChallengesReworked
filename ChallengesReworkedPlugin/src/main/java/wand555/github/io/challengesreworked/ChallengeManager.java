@@ -1,8 +1,8 @@
 package wand555.github.io.challengesreworked;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBreakingChallengeCommon;
-import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallenge;
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon;
@@ -11,7 +11,6 @@ import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCom
 import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
 import wand555.github.io.challengesreworked.punishments.AffectType;
 import wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon;
-import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishment;
 import wand555.github.io.challengesreworked.punishments.randomeffect.RandomEffectPunishmentCommon;
 import wand555.github.io.challengesreworked.punishments.randomitem.RandomItemPunishmentCommon;
 import org.bukkit.Bukkit;
@@ -29,9 +28,9 @@ import wand555.github.io.challengesreworked.goals.PluginGoal;
 import wand555.github.io.challengesreworked.goals.itemcollect.PluginItemCollectGoal;
 import wand555.github.io.challengesreworked.goals.mob.PluginMobGoal;
 import wand555.github.io.challengesreworked.logging.ChatLogger;
-import wand555.github.io.challengesreworked.punishment.health.PluginHealthPunishment;
-import wand555.github.io.challengesreworked.punishment.PluginPunishment;
-import wand555.github.io.challengesreworked.punishment.randomitem.PluginRandomItemPunishment;
+import wand555.github.io.challengesreworked.punishments.health.PluginHealthPunishment;
+import wand555.github.io.challengesreworked.punishments.PluginPunishment;
+import wand555.github.io.challengesreworked.punishments.randomitem.PluginRandomItemPunishment;
 import wand555.github.io.challengesreworked.timer.TimeOrder;
 import wand555.github.io.challengesreworked.timer.Timer;
 
@@ -178,7 +177,8 @@ public class ChallengeManager {
             Collection<GoalCommon> goalCommons = ((List<GoalCommon>)storage.getList("goals", new ArrayList<>()));
             goals = goalCommons.stream().map(goalCommon -> (PluginGoal) Wrapper.wrap(goalCommon)).toList();
             System.out.println(goals.stream().map(pluginGoal -> pluginGoal.getCommon()).toList());
-            activePluginChallenges = (Collection<PluginChallenge>) storage.getList("challenges", new ArrayList<>());
+            Collection<ChallengeCommon> challengeCommons = (Collection<ChallengeCommon>) storage.getList("challenges", new ArrayList<>());
+            challengeCommons.forEach(challengeCommon -> Wrapper.wrap(challengeCommon));
             System.out.println(activePluginChallenges);
         } catch (IOException e) {
             e.printStackTrace();
