@@ -1,15 +1,6 @@
 challenges:
-- allowedToCraft:
-  - ENDER_EYE
-  punishments:
-  - healthAmount: 1
-    amountTriggered: 0
-    affectType: CAUSER
-    ==: wand555.github.io.challengesreworked.punishments.health.HealthPunishmentCommon
-  forbiddenToUse:
-  - CRAFTING
-  - WORKBENCH
-  ==: wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon
+- disableAllRegeneration: true
+  ==: wand555.github.io.challengesreworked.challenges.noregeneration.NoRegenerationChallengeCommon
 goals:
 - complete: false
   toKill:

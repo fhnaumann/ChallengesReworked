@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ChatLogger {
 
-    private static final Component PREFIX = MiniMessage.miniMessage().deserialize("<gradient:#2C08BA:#028A97>[ChallengesReworked]</gradient>");
+    private static final Component PREFIX = MiniMessage.miniMessage().deserialize("<gradient:#7EE081:#028A97>[ChallengesReworked]</gradient>");
 
     public static void log(String path) {
         log(path, Map.of());

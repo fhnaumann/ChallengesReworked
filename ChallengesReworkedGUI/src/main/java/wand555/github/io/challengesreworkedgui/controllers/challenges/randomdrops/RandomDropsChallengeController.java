@@ -3,6 +3,7 @@ package wand555.github.io.challengesreworkedgui.controllers.challenges.randomdro
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import org.bukkit.inventory.ItemStack;
+import wand555.github.io.challengesreworked.Common;
 import wand555.github.io.challengesreworked.challenges.ChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.randomdrops.RandomDropsChallenge;
 import wand555.github.io.challengesreworked.challenges.randomdrops.RandomDropsChallengeCommon;
@@ -36,10 +37,19 @@ public class RandomDropsChallengeController extends ChallengeController implemen
         craftingDropsCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             getCommon().setRandomCraftingDrops(newValue);
         });
-        craftingDropsCheckBox.setSelected(getCommon().isRandomFurnaceDrops());
+        furnaceDropsCheckBox.setSelected(getCommon().isRandomFurnaceDrops());
         furnaceDropsCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             getCommon().setRandomFurnaceDrops(newValue);
         });
+    }
+
+    @Override
+    public void setDataFromCommon(Common from, boolean thisActive) {
+        super.setDataFromCommon(from, thisActive);
+        blockDropsCheckBox.setSelected(getCommon().isRandomBlockDrops());
+        mobDropsCheckBox.setSelected(getCommon().isRandomMobDrops());
+        craftingDropsCheckBox.setSelected(getCommon().isRandomCraftingDrops());
+        furnaceDropsCheckBox.setSelected(getCommon().isRandomFurnaceDrops());
     }
 
     @Override

@@ -28,6 +28,7 @@ import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockbre
 import wand555.github.io.challengesreworkedgui.controllers.challenges.noblockplacing.NoBlockPlacingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.nocrafting.NoCraftingChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.nodamage.NoDamageChallengeController;
+import wand555.github.io.challengesreworkedgui.controllers.challenges.noregeneration.NoRegenerationChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.challenges.randomdrops.RandomDropsChallengeController;
 import wand555.github.io.challengesreworkedgui.controllers.punishments.PunishmentOverviewController;
 import wand555.github.io.challengesreworkedgui.rows.PunishmentRow;
@@ -53,6 +54,8 @@ public class ChallengesOverviewController {
     private NoDamageChallengeController noDamageChallengeController;
     @FXML
     private RandomDropsChallengeController randomDropsChallengeController;
+    @FXML
+    private NoRegenerationChallengeController noRegenerationChallengeController;
 
     @FXML
     private Label allChallenges;
@@ -102,7 +105,8 @@ public class ChallengesOverviewController {
                 noBlockPlacingChallengeController,
                 noBlockBreakingChallengeController,
                 noDamageChallengeController,
-                randomDropsChallengeController
+                randomDropsChallengeController,
+                noRegenerationChallengeController
         );
     }
 

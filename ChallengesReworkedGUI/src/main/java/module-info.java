@@ -35,5 +35,7 @@ module challenges.reworked.gui {
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.nodamage;
     exports wand555.github.io.challengesreworkedgui.controllers.challenges.randomdrops;
     opens wand555.github.io.challengesreworkedgui.controllers.challenges.randomdrops;
+    exports wand555.github.io.challengesreworkedgui.controllers.challenges.noregeneration;
+    opens wand555.github.io.challengesreworkedgui.controllers.challenges.noregeneration;
 
 }

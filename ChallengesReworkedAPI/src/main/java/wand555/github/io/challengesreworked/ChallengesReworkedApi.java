@@ -8,6 +8,7 @@ import wand555.github.io.challengesreworked.challenges.noblockbreaking.NoBlockBr
 import wand555.github.io.challengesreworked.challenges.noblockplacing.NoBlockPlacingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nocrafting.NoCraftingChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.noregeneration.NoRegenerationChallengeCommon;
 import wand555.github.io.challengesreworked.challenges.randomdrops.RandomDropsChallengeCommon;
 import wand555.github.io.challengesreworked.goals.itemcollect.ItemCollectGoalCommon;
 import wand555.github.io.challengesreworked.goals.mob.MobGoalCommon;
@@ -38,6 +39,7 @@ public final class ChallengesReworkedApi extends JavaPlugin {
         StandardSerializer.getDefault().register(NoCraftingChallengeCommon.class, NoCraftingChallengeCommon.adapter);
         StandardSerializer.getDefault().register(NoDamageChallengeCommon.class, NoDamageChallengeCommon.adapter);
         StandardSerializer.getDefault().register(RandomDropsChallengeCommon.class, RandomDropsChallengeCommon.adapter);
+        StandardSerializer.getDefault().register(NoRegenerationChallengeCommon.class, NoRegenerationChallengeCommon.adapter);
     }
 
     private static void registerGoalTypeAdapters() {

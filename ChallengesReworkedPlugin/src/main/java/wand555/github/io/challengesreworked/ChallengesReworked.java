@@ -17,6 +17,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challengesreworked.challenges.noregeneration.NoRegenerationChallenge;
+import wand555.github.io.challengesreworked.challenges.noregeneration.NoRegenerationChallengeCommon;
+import wand555.github.io.challengesreworked.challenges.noregeneration.PluginNoRegenerationChallenge;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +35,8 @@ public final class ChallengesReworked extends JavaPlugin {
     @Override
     public void onEnable() {
         ChallengesReworkedApi.registerTypeAdapters();
+
+        new PluginNoRegenerationChallenge(new NoRegenerationChallengeCommon());
 
         // Plugin startup logic
         CommandExecutor ce = new ChallengeCommands();
