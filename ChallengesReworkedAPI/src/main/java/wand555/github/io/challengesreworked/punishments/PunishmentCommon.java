@@ -11,6 +11,10 @@ public abstract class PunishmentCommon implements Common, Comparable<PunishmentC
     private int amountTriggered;
     protected AffectType affectType;
 
+    public PunishmentCommon() {
+        this(0, AffectType.ALL);
+    }
+
     public PunishmentCommon(int amountTriggered, AffectType affectType) {
         this.amountTriggered = amountTriggered;
         this.affectType = affectType;

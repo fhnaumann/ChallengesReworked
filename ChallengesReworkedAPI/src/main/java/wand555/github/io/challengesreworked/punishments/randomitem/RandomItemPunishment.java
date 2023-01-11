@@ -1,10 +1,23 @@
 package wand555.github.io.challengesreworked.punishments.randomitem;
 
 import wand555.github.io.challengesreworked.punishments.Punishment;
+import wand555.github.io.challengesreworked.punishments.endchallenge.EndChallengePunishment;
+import wand555.github.io.challengesreworked.punishments.inventoryclear.InventoryClearPunishment;
+
+import java.util.Collection;
+import java.util.List;
 
 public interface RandomItemPunishment extends Punishment {
     @Override
     RandomItemPunishmentCommon getCommon();
+
+    @Override
+    default Collection<Class<? extends Punishment>> getIncompatiblePunishments() {
+        return List.of(
+                EndChallengePunishment.class,
+                InventoryClearPunishment.class
+        );
+    }
 
     /*
     @Override

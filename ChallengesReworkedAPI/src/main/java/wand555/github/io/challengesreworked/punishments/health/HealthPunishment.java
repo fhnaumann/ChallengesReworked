@@ -3,6 +3,8 @@ package wand555.github.io.challengesreworked.punishments.health;
 import wand555.github.io.challengesreworked.challenges.Challenge;
 import wand555.github.io.challengesreworked.challenges.nodamage.NoDamageChallenge;
 import wand555.github.io.challengesreworked.punishments.Punishment;
+import wand555.github.io.challengesreworked.punishments.death.DeathPunishment;
+import wand555.github.io.challengesreworked.punishments.endchallenge.EndChallengePunishment;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,6 +16,14 @@ public interface HealthPunishment extends Punishment {
     @Override
     default Collection<Class<? extends Challenge>> getIncompatibleChallenges() {
         return List.of(NoDamageChallenge.class);
+    }
+
+    @Override
+    default Collection<Class<? extends Punishment>> getIncompatiblePunishments() {
+        return List.of(
+                EndChallengePunishment.class,
+                DeathPunishment.class
+        );
     }
 
     default int getHealthAmount() {

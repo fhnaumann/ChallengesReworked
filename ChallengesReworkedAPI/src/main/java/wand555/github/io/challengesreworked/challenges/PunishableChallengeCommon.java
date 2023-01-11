@@ -27,7 +27,7 @@ public abstract class PunishableChallengeCommon extends ChallengeCommon {
         return punishmentCommons;
     }
 
-    public Collection<PunishmentCommon> copyPunishmentCommons() {
+    public final Collection<PunishmentCommon> copyPunishmentCommons() {
         return getPunishmentCommons().stream().map(PunishmentCommon::copy).collect(Collectors.toCollection(TreeSet::new));
     }
 
